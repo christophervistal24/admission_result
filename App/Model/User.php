@@ -1,6 +1,7 @@
 <?php
 namespace App\Model;
-class User extends \App\Model\Database
+use \App\Model\Database as DB;
+class User extends DB
 {
     public static function fetch_data()
     {

@@ -1,17 +1,16 @@
 <?php
 namespace App\Controller;
-use \App\Model\Database as DB;
-use \App\Model\User as User;
-class Page extends \App\Core\Controller
+// use \App\Model\User as User;
+use \App\Core\Controller;
+
+class Page extends Controller
 {
 
     public function index()
     {
-
-        Page::make('index',[
-            'title'     => 'Title Here',
-            'data'      => 'Sample Data',
-            'user_info' => User::fetch_data(),
+        Page::render('/index',[
+            'title' => 'Home',
+            'sample' => 'Sample Data'
         ]);
     }
 
