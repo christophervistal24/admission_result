@@ -1,10 +1,7 @@
 <?php
 namespace App\Model;
-use \App\Model\Database as DB;
-class User extends DB
+use App\Core\Database;
+use PDO;
+class User extends Database
 {
-    public static function fetch_data()
-    {
-        return parent::sample_fetch();
-    }
 }
