@@ -10,12 +10,12 @@ class App
     {
         $url = $this->parse();
 
-        if (file_exists('../App/Controller/' . $url[0] . '.php')) {
+        if (file_exists(APP['APP_ROOT'] . 'Controller/' . $url[0] . '.php')) {
             $this->controller = $url[0];
             unset($url[0]);
         }
 
-        require_once '../App/Controller/' . $this->controller . '.php';
+        require_once  APP['APP_ROOT'] . '/Controller/' . $this->controller . '.php';
 
         $this->controller =  '\\App\\Controller\\' . $this->controller;
         $this->controller = new $this->controller;

@@ -12,10 +12,19 @@ class Page extends Controller
     }
     public function index()
     {
-        Page::render('/index',[
-            'title' => 'Home',
+        $this->render('templates/header');
+        $this->render('templates/navbar');
+        $this->render('index',[
+            'title' => ' | Home',
             'sample' => 'Sample Data'
         ]);
+        $this->render('templates/footer');
+    }
+
+    public function login()
+    {
+        $this->render('templates/header');
+        $this->render('login');
     }
 
 }

@@ -7,6 +7,16 @@ class Student extends Controller
 {
     public function index()
     {
-        echo get_class();
+        $this->render('student/test');
+    }
+
+    public function test()
+    {
+        $this->render('student/test');
+    }
+
+    public function new()
+    {
+        $this->render('student/new');
     }
 }

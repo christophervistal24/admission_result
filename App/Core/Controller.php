@@ -5,10 +5,9 @@ class Controller
 
     public function render($view  , $data = [])
     {
-        if (file_exists('../App/Views' . $view . '.php')) {
-            require_once '../App/Views/layouts/header.php';
-            require_once '../App/Views' . $view . '.php';
-            require_once '../App/Views/layouts/footer.php';
+        if (file_exists(APP['URL_ROOT'] . 'App/Views/' . $view . '.php')) {
+            extract($data);
+            require_once APP['URL_ROOT'] . 'App/Views/' . $view. '.php';
         }
     }
 

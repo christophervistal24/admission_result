@@ -7,6 +7,6 @@ class Admin extends Controller
 {
     public function index()
     {
-        echo get_class();
+        $this->render('admin/index');
     }
 }
