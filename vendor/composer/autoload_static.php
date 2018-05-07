@@ -7,6 +7,10 @@ namespace Composer\Autoload;
 class ComposerStaticInit61f822a742abdc540a4d326cb1c13013
 {
     public static $prefixLengthsPsr4 = array (
+        'V' => 
+        array (
+            'Violin\\' => 7,
+        ),
         'A' => 
         array (
             'App\\' => 4,
@@ -14,6 +18,10 @@ class ComposerStaticInit61f822a742abdc540a4d326cb1c13013
     );
 
     public static $prefixDirsPsr4 = array (
+        'Violin\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/alexgarrett/violin/src',
+        ),
         'App\\' => 
         array (
             0 => __DIR__ . '/../..' . '/App/Controller',
@@ -22,22 +30,11 @@ class ComposerStaticInit61f822a742abdc540a4d326cb1c13013
         ),
     );
 
-    public static $classMap = array (
-        'App\\Controller\\Admin' => __DIR__ . '/../..' . '/App/Controller/admin.php',
-        'App\\Controller\\Page' => __DIR__ . '/../..' . '/App/Controller/page.php',
-        'App\\Core\\App' => __DIR__ . '/../..' . '/App/Core/App.php',
-        'App\\Core\\Controller' => __DIR__ . '/../..' . '/App/Core/Controller.php',
-        'App\\Core\\Database' => __DIR__ . '/../..' . '/App/Core/Model.php',
-        'App\\Core\\Functions' => __DIR__ . '/../..' . '/App/Core/Functions.php',
-        'App\\Model\\User' => __DIR__ . '/../..' . '/App/Model/User.php',
-    );
-
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInit61f822a742abdc540a4d326cb1c13013::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit61f822a742abdc540a4d326cb1c13013::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit61f822a742abdc540a4d326cb1c13013::$classMap;
 
         }, null, ClassLoader::class);
     }

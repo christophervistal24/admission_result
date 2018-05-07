@@ -3,7 +3,8 @@ namespace App\Core;
 trait Functions
 {
     private $input = [];
-    public function is_post()
+
+    public function is_post() : bool
     {
         return $_SERVER['REQUEST_METHOD'] === 'POST';
     }
