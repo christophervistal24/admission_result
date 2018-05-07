@@ -16,4 +16,5 @@ trait Functions
         });
        return $this->input;
     }
+
 }
