@@ -1,6 +1,7 @@
 {
     "require": {
-         "alexgarrett/violin": "2.*"
+         "alexgarrett/violin": "2.*",
+        "setasign/fpdf": "^1.8"
     },
 
     "autoload" : {
