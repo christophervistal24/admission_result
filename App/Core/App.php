@@ -3,7 +3,7 @@ namespace App\Core;
 class App
 {
     protected $controller = 'page';
-    protected $method     = 'login';
+    protected $method     = 'index';
     protected $params     = [];
 
     public function __construct()

@@ -7,6 +7,23 @@ class Admin extends Controller
 {
     public function index()
     {
-        $this->render('admin/index');
+        $data['title'] = 'Dashboard';
+        $this->render('templates/header',$data);
+        $this->render('admin/dashboard');
+        $this->render('templates/footer');
+    }
+
+    public function new()
+    {
+        $data['title'] = 'Add';
+        $data['school_year'] = date('Y')  . ' - ' . date('Y',strtotime("+ 1 year"));
+        $this->render('templates/header',$data);
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            echo '<pre>';
+            print_r($_POST);
+            echo '</pre>';
+        }
+        $this->render('admin/new',$data);
+        $this->render('templates/footer');
     }
 }

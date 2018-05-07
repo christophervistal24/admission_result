@@ -1,5 +1,45 @@
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</div>
+</main>
+<!-- END Main Container -->
+</div>
+<!-- END Page Container -->
+<!-- Codebase Core JS -->
+<script src="<?= APP['DOC_ROOT'] ?>assets/js/core/jquery.min.js"></script>
+<script src="<?= APP['DOC_ROOT'] ?>assets/js/core/popper.min.js"></script>
+<script src="<?= APP['DOC_ROOT'] ?>assets/js/core/bootstrap.min.js"></script>
+<script src="<?= APP['DOC_ROOT'] ?>assets/js/core/jquery.slimscroll.min.js"></script>
+<script src="<?= APP['DOC_ROOT'] ?>assets/js/core/jquery.scrollLock.min.js"></script>
+<script src="<?= APP['DOC_ROOT'] ?>assets/js/core/jquery.appear.min.js"></script>
+<script src="<?= APP['DOC_ROOT'] ?>assets/js/core/jquery.countTo.min.js"></script>
+<script src="<?= APP['DOC_ROOT'] ?>assets/js/core/js.cookie.min.js"></script>
+<script src="<?= APP['DOC_ROOT'] ?>assets/js/codebase.js"></script>
+<script>
+    $(document).ready(function(){
+        $('.verbal-score').keyup(function(){
+             $('#total_of_verbal').val(parseFloat("0"+$('#verbal-comprehension').val()) + parseFloat("0"+$('#verbal-reasoning').val()));
+                $('#over_all_total').val(parseFloat("0"+$('#total_of_verbal').val()) + parseFloat("0"+$('#total_of_non_verbal').val()));
+        });
+
+        $('.non-verbal-score').keyup(function(){
+                $('#total_of_non_verbal').val(parseFloat("0"+$('#figurative-reasoning').val()) + parseFloat("0"+$('#quantitative-reasoning').val()));
+                $('#over_all_total').val(parseFloat("0"+$('#total_of_verbal').val()) + parseFloat("0"+$('#total_of_non_verbal').val()));
+        });
+
+
+        $('#addAdmissionResult').submit(function(e){
+            e.preventDefault();
+            $.ajax({
+                    url:'/../../system/App/Views/ajax/admission_test_result.php',
+                    type:"POST",
+                    dataType:"json",
+                    data:$(this).serialize(),
+                    success:function(data){
+                        alert(data);
+                    }
+                });
+        });
+
+    });
+</script>
 </body>
 </html>
