@@ -10,21 +10,14 @@ class Page extends Controller
     {
         $this->model = new User;
     }
-    public function index()
-    {
-        $this->render('templates/header');
-        $this->render('templates/navbar');
-        $this->render('index',[
-            'title' => ' | Home',
-            'sample' => 'Sample Data'
-        ]);
-        $this->render('templates/footer');
-    }
-
     public function login()
     {
-        $this->render('templates/header');
-        $this->render('login');
+        $data['title'] = 'Login';
+        $data['copyright'] = date('Y')  . ' - ' . date('Y',strtotime("+ 1 year"));
+        $data['user'] = $this->model->userLogin($_POST);
+        $this->render('templates/header',$data);
+        $this->render('login',$data);
+        $this->render('templates/footer');
     }
 
 }

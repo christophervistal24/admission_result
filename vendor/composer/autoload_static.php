@@ -25,10 +25,10 @@ class ComposerStaticInit61f822a742abdc540a4d326cb1c13013
     public static $classMap = array (
         'App\\Controller\\Admin' => __DIR__ . '/../..' . '/App/Controller/admin.php',
         'App\\Controller\\Page' => __DIR__ . '/../..' . '/App/Controller/page.php',
-        'App\\Controller\\Student' => __DIR__ . '/../..' . '/App/Controller/student.php',
         'App\\Core\\App' => __DIR__ . '/../..' . '/App/Core/App.php',
         'App\\Core\\Controller' => __DIR__ . '/../..' . '/App/Core/Controller.php',
         'App\\Core\\Database' => __DIR__ . '/../..' . '/App/Core/Model.php',
+        'App\\Core\\Functions' => __DIR__ . '/../..' . '/App/Core/Functions.php',
         'App\\Model\\User' => __DIR__ . '/../..' . '/App/Model/User.php',
     );
 
