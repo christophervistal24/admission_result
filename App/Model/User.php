@@ -27,4 +27,24 @@ class User extends Database
             }
          }
     }
+
+    public function getAllCourse()
+    {
+        return $this->db->query("SELECT course.id , course.course , departments.department_name FROM course
+            LEFT JOIN departments ON course.dept_id = departments.id ORDER BY course.dept_id")->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+   /* public function getByOrGetAll(array $data = null)
+    {
+        $clause = $this->lastElementKeyAndvalue($data);
+        if (strpos($clause['where_clause'], 'where') !== false) {
+            return $this->db->query("
+            SELECT  " . implode(',',$data['fields']) . " FROM " . $data['table'] . "
+             " . $clause['where_clause'] . '=' . $clause['where_clause_value'] . " ")->fetch(PDO::FETCH_ASSOC);
+        }
+
+          return  $this->db->query(" SELECT  " . implode(',',$data['fields']) . "  FROM " . $data['table'] . " ")
+                                   ->fetchAll(PDO::FETCH_ASSOC);
+    }*/
+
 }

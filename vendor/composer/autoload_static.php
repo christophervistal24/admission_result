@@ -31,7 +31,37 @@ class ComposerStaticInit61f822a742abdc540a4d326cb1c13013
     );
 
     public static $classMap = array (
+        'App\\Controller\\Admin' => __DIR__ . '/../..' . '/App/Controller/admin.php',
+        'App\\Controller\\Page' => __DIR__ . '/../..' . '/App/Controller/page.php',
+        'App\\Core\\App' => __DIR__ . '/../..' . '/App/Core/App.php',
+        'App\\Core\\Controller' => __DIR__ . '/../..' . '/App/Core/Controller.php',
+        'App\\Core\\Database' => __DIR__ . '/../..' . '/App/Core/Model.php',
+        'App\\Core\\Functions' => __DIR__ . '/../..' . '/App/Core/Functions.php',
+        'App\\Model\\User' => __DIR__ . '/../..' . '/App/Model/User.php',
         'FPDF' => __DIR__ . '/..' . '/setasign/fpdf/fpdf.php',
+        'Violin\\Contracts\\MessageBagContract' => __DIR__ . '/..' . '/alexgarrett/violin/src/Contracts/MessageBagContract.php',
+        'Violin\\Contracts\\RuleContract' => __DIR__ . '/..' . '/alexgarrett/violin/src/Contracts/RuleContract.php',
+        'Violin\\Contracts\\ValidatorContract' => __DIR__ . '/..' . '/alexgarrett/violin/src/Contracts/ValidatorContract.php',
+        'Violin\\Rules\\AlnumDashRule' => __DIR__ . '/..' . '/alexgarrett/violin/src/Rules/AlnumDashRule.php',
+        'Violin\\Rules\\AlnumRule' => __DIR__ . '/..' . '/alexgarrett/violin/src/Rules/AlnumRule.php',
+        'Violin\\Rules\\AlphaRule' => __DIR__ . '/..' . '/alexgarrett/violin/src/Rules/AlphaRule.php',
+        'Violin\\Rules\\ArrayRule' => __DIR__ . '/..' . '/alexgarrett/violin/src/Rules/ArrayRule.php',
+        'Violin\\Rules\\BetweenRule' => __DIR__ . '/..' . '/alexgarrett/violin/src/Rules/BetweenRule.php',
+        'Violin\\Rules\\BoolRule' => __DIR__ . '/..' . '/alexgarrett/violin/src/Rules/BoolRule.php',
+        'Violin\\Rules\\CheckedRule' => __DIR__ . '/..' . '/alexgarrett/violin/src/Rules/CheckedRule.php',
+        'Violin\\Rules\\DateRule' => __DIR__ . '/..' . '/alexgarrett/violin/src/Rules/DateRule.php',
+        'Violin\\Rules\\EmailRule' => __DIR__ . '/..' . '/alexgarrett/violin/src/Rules/EmailRule.php',
+        'Violin\\Rules\\IntRule' => __DIR__ . '/..' . '/alexgarrett/violin/src/Rules/IntRule.php',
+        'Violin\\Rules\\IpRule' => __DIR__ . '/..' . '/alexgarrett/violin/src/Rules/IpRule.php',
+        'Violin\\Rules\\MatchesRule' => __DIR__ . '/..' . '/alexgarrett/violin/src/Rules/MatchesRule.php',
+        'Violin\\Rules\\MaxRule' => __DIR__ . '/..' . '/alexgarrett/violin/src/Rules/MaxRule.php',
+        'Violin\\Rules\\MinRule' => __DIR__ . '/..' . '/alexgarrett/violin/src/Rules/MinRule.php',
+        'Violin\\Rules\\NumberRule' => __DIR__ . '/..' . '/alexgarrett/violin/src/Rules/NumberRule.php',
+        'Violin\\Rules\\RegexRule' => __DIR__ . '/..' . '/alexgarrett/violin/src/Rules/RegexRule.php',
+        'Violin\\Rules\\RequiredRule' => __DIR__ . '/..' . '/alexgarrett/violin/src/Rules/RequiredRule.php',
+        'Violin\\Rules\\UrlRule' => __DIR__ . '/..' . '/alexgarrett/violin/src/Rules/UrlRule.php',
+        'Violin\\Support\\MessageBag' => __DIR__ . '/..' . '/alexgarrett/violin/src/Support/MessageBag.php',
+        'Violin\\Violin' => __DIR__ . '/..' . '/alexgarrett/violin/src/Violin.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

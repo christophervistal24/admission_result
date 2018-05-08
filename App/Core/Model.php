@@ -8,7 +8,7 @@ class Database
 
     public function __construct()
     {
-        return $this->db = new PDO("mysql:host=$this->dbserver;dbname=$this->dbname;",$this->db_user,$this->db_pass,[
+         $this->db = new PDO("mysql:host=$this->dbserver;dbname=$this->dbname;",$this->db_user,$this->db_pass,[
          PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
          PDO::ATTR_EMULATE_PREPARES => false
         ]);

@@ -88,12 +88,28 @@
                         </div>
                         <div class="col-lg-4">
                             <div class="form-material">
-                                <input required type="text" class="form-control" name="info[first_preferred_course]" id="" placeholder="1st">
+                                <select required type="text" class="form-control" name="info[first_preferred_course]" id="" placeholder="1st">
+                                    <?php foreach ($course as $keys => $courses): ?>
+                                    <option value="<?= $courses['id'] ?>"><?= $courses['course']?>
+                                    <span>
+                                        <?= '(' . $courses['department_name'].')'; ?>
+                                    </span>
+                                    </option>
+                                    <?php endforeach ?>
+                                </select>
                             </div>
                         </div>
                         <div class="col-lg-4">
                             <div class="form-material">
-                                <input required type="text" class="form-control" name="info[second_preferred_course]" id="" placeholder="2nd">
+                                <select required type="text" class="form-control" name="info[second_preferred_course]" id="" placeholder="2nd">
+                                    <?php foreach ($course as $keys => $courses): ?>
+                                    <option value="<?= $courses['id'] ?>"><?= $courses['course']; ?>
+                                        <span>
+                                        <?= '(' . $courses['department_name'].')'; ?>
+                                        </span>
+                                    </option>
+                                    <?php endforeach ?>
+                                </select>
                             </div>
                         </div>
                         <div class="col-lg-12">

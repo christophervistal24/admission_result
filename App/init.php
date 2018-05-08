@@ -7,3 +7,4 @@ define('APP',[
 ]);
 
 require_once APP['URL_ROOT'] . 'vendor/autoload.php';
+use App\Model\User;
