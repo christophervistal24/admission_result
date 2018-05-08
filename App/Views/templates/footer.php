@@ -13,6 +13,15 @@
 <script src="<?= APP['DOC_ROOT'] ?>assets/js/core/jquery.countTo.min.js"></script>
 <script src="<?= APP['DOC_ROOT'] ?>assets/js/core/js.cookie.min.js"></script>
 <script src="<?= APP['DOC_ROOT'] ?>assets/js/codebase.js"></script>
+<script src="<?= APP['DOC_ROOT'] ?>assets/js/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="<?= APP['DOC_ROOT'] ?>assets/js/plugins/datatables/dataTables.bootstrap4.min.js"></script>
+<script src="<?= APP['DOC_ROOT'] ?>assets/js/pages/be_tables_datatables.js"></script>
+<script src="<?= APP['DOC_ROOT'] ?>assets/js/plugins/bootstrap-wizard/jquery.bootstrap.wizard.js"></script>
+<script src="<?= APP['DOC_ROOT'] ?>assets/js/plugins/jquery-validation/jquery.validate.min.js"></script>
+<script src="<?= APP['DOC_ROOT'] ?>assets/js/plugins/jquery-validation/additional-methods.min.js"></script>
+<script src="<?= APP['DOC_ROOT'] ?>assets/js/pages/be_forms_wizard.js"></script>
+
+
 <script>
     $(document).ready(function(){
         $('.verbal-score').keyup(function(){

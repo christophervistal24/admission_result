@@ -1,42 +1,23 @@
 <?php ob_start(); ?>
 <!DOCTYPE html>
-<!--[if lte IE 9]>     <html lang="en" class="no-focus lt-ie10 lt-ie10-msg"> <![endif]-->
-<!--[if gt IE 9]><!--> <html lang="en" class="no-focus"> <!--<![endif]-->
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
     <title>SDSSU (FES) <?= $title ?? '' ?></title>
-    <meta name="author" content="pixelcave">
-    <meta name="robots" content="noindex, nofollow">
-    <!-- Open Graph Meta -->
-    <meta property="og:title" content="Codebase - Bootstrap 4 Admin Template &amp; UI Framework">
-    <meta property="og:site_name" content="Codebase">
-    <meta property="og:description" content="Codebase - Bootstrap 4 Admin Template &amp; UI Framework created by pixelcave and published on Themeforest">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="">
-    <meta property="og:image" content="">
-    <!-- Icons -->
     <!-- The following icons can be replaced with your own, they are used by desktop and mobile browsers -->
-    <link rel="shortcut icon" href="<?= APP['DOC_ROOT'] ?>assets/img/favicons/favicon.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="<?= APP['DOC_ROOT'] ?>assets/img/favicons/favicon-192x192.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="<?= APP['DOC_ROOT'] ?>assets/img/favicons/apple-touch-icon-180x180.png">
-    <!-- END Icons -->
+    <link rel="shortcut icon" href="<?= APP['DOC_ROOT'] ?>assets/img/photos/sdssu.png">
     <style type="text/css">
     body{
         overflow-x: hidden;
     }
     </style>
-    <!-- Stylesheets -->
-    <!-- Codebase framework -->
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-    <link rel="stylesheet" href="<?= APP['DOC_ROOT'] ?>assets/js/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css">
-    <link rel="stylesheet" href="<?= APP['DOC_ROOT'] ?>assets/js/plugins/select2/select2.min.css">
-    <link rel="stylesheet" href="<?= APP['DOC_ROOT'] ?>assets/js/plugins/select2/select2-bootstrap.min.css">
-    <link rel="stylesheet" id="css-main" href="<?= APP['DOC_ROOT'] ?>assets/css/codebase.min.css">
-    <!-- You can include a specific file from css/themes/ folder to alter the default color theme of the template. eg: -->
-    <!-- <link rel="stylesheet" id="css-theme" href="assets/css/themes/flat.min.css"> -->
-    <!-- END Stylesheets -->
+    <script src ="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src ="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <link rel   ="stylesheet" href="<?= APP['DOC_ROOT'] ?>assets/js/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css">
+    <link rel   ="stylesheet" href="<?= APP['DOC_ROOT'] ?>assets/js/plugins/select2/select2.min.css">
+    <link rel   ="stylesheet" href="<?= APP['DOC_ROOT'] ?>assets/js/plugins/select2/select2-bootstrap.min.css">
+    <link rel   ="stylesheet" id="css-main" href="<?= APP['DOC_ROOT'] ?>assets/css/codebase.min.css">
+    <link rel   ="stylesheet" href="<?= APP['DOC_ROOT'] ?>assets/js/plugins/datatables/dataTables.bootstrap4.min.css">
 </head>
 <body>
     <!-- Page Container -->

@@ -16,8 +16,9 @@ SELECT
     `entrace_rating`.`quantitative_reasoning`,
     `entrace_rating`.`verbal_total`,
     `entrace_rating`.`non_verbal_total`,
-    `entrace_rating`.`over_all_total`, `course`.`course`,
-    `course_2`.`course`
+    `entrace_rating`.`over_all_total`,
+    `course`.`course` as first_course,
+    `course_2`.`course` as second_course
 FROM
     admission_result
     INNER JOIN examiner_info ON admission_result.examiner_info_id = examiner_info.id
@@ -29,7 +30,9 @@ ON
 WHERE
     admission_result.id = ' $_GET[id] '
 ")->fetch(PDO::FETCH_ASSOC);
+echo '<pre>';
 print_r($result);
+echo '</pre>';
 //  class PDF extends FPDF
 // {
 // // Page header
