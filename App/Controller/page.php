@@ -2,6 +2,7 @@
 namespace App\Controller;
 use App\Model\User;
 use App\Core\Controller;
+use App\Core\Functions;
 
 class Page extends Controller
 {
@@ -12,13 +13,12 @@ class Page extends Controller
     }
     public function index()
     {
-
-        $data['title'] = 'Login';
-        $data['copyright'] = date('Y')  . ' - ' . date('Y',strtotime("+ 1 year"));
-        $data['user'] = $this->model->userLogin($_POST);
-        $this->render('templates/header',$data);
-        $this->render('index',$data);
-        $this->render('templates/footer');
+            $data['title']     = 'Login';
+            $data['copyright'] = date('Y')  . ' - ' . date('Y',strtotime("+ 1 year"));
+            $data['user']      = $this->model->userLogin($_POST);
+            $this->render('templates/header',$data);
+            $this->render('index',$data);
+            $this->render('templates/footer');
     }
 
 }

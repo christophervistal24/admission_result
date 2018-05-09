@@ -17,6 +17,7 @@
                     <th class="text-center d-none d-sm-table-cell" style="width: 15%;">Non V. Total</th>
                     <th class="text-center d-none d-sm-table-cell" style="width: 15%;">Over All Total</th>
                     <th class="text-center d-none d-sm-table-cell" style="width: 15%;">Actions</th>
+                    <th class="text-center d-none d-sm-table-cell" style="width: 15%;">Delete</th>
                     <!-- <th class="d-none d-sm-table-cell" style="width: 15%;">P - First Course</th> -->
                     <!-- <th class="d-none d-sm-table-cell" style="width: 15%;">P - Second Course</th> -->
                 </tr>
@@ -24,18 +25,23 @@
             <tbody>
                 <?php foreach ($admission_result as $keys => $value): ?>
                 <tr>
-                     <td class="text-capitalize text-center"><?= $value['id']; ?></td>
-                     <td class="text-capitalize text-center"><a href="print?id=<?= $value['id'] ?>"><?= $value['Name']; ?></a></td>
-                     <td class="text-capitalize text-center"><?= $value['verbal_total']; ?></td>
-                     <td class="text-capitalize text-center"><?= $value['non_verbal_total']; ?></td>
-                     <td class="text-capitalize text-center"><?= $value['over_all_total']; ?></td>
+                    <td class="text-capitalize text-center"><?= $value['id']; ?></td>
+                    <td class="text-capitalize text-center"><a href="print?id=<?= $value['id'] ?>"><?= $value['Name']; ?></a></td>
+                    <td class="text-capitalize text-center"><?= $value['verbal_total']; ?></td>
+                    <td class="text-capitalize text-center"><?= $value['non_verbal_total']; ?></td>
+                    <td class="text-capitalize text-center"><?= $value['over_all_total']; ?></td>
                     <td class="text-center text-sm-center">
                         <a href="vprofile?id=<?= $value['id']?>" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="View Profile"><i class="fa fa-user"></i></a>
                         <a href="editresult?id=<?= $value['id']?>" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Edit Full Result">
-                        <i class="fa fa-edit"></i>
+                            <i class="fa fa-edit"></i>
                         </a>
                         <a href="print?id=<?= $value['id']?>" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Print Full Result">
-                        <i class="fa fa-print"></i>
+                            <i class="fa fa-print"></i>
+                        </a>
+                    </td>
+                    <td class="text-center text-sm-center">
+                        <a href="delete?id=<?= $value['id']?>" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Delete Result">
+                            <i class="fa fa-trash"></i>
                         </a>
                     </td>
                 </tr>

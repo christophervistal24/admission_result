@@ -13,19 +13,42 @@ class User extends Database
             extract($this->escape($data));
             $sql =
             "
-                SELECT username,password
+                SELECT username,password,id
                 FROM tbl_users
                 WHERE username = '$username' AND password = '$password'
             ";
 
-            $result = $this->db->query($sql);
-            $count = $result->rowCount();
-            if($count <= 0 ){
-                echo 'No user';
+            $result = $this->db->query($sql)->fetch(PDO::FETCH_ASSOC);
+            if(empty($result) && isset($result)){
+                return false;
             }else{
-                echo 'Good';//check hash and redirect
+                $_SESSION['id'] = $result['id'];
+                Functions::after_successful_login();
+                header("Location:/system/admin/dashboard");
             }
          }
+    }
+
+    public function getUserInfoById($id)
+    {
+        return $this->db->query("
+            SELECT
+            `tbl_users`.`id`,
+            `tbl_user_info`.`id` AS info_id,
+            `tbl_users`.`username`,
+            `tbl_users`.`password`,
+            `tbl_user_info`.`firstname`,
+            `tbl_user_info`.`middlename`,
+            `tbl_user_info`.`lastname`,
+            `tbl_user_info`.`gender`,
+            `tbl_user_info`.`birthdate`,
+            `tbl_user_info`.`profile`,
+            `tbl_users`.`created_at`,
+            `tbl_users`.`updated_at`
+            FROM
+            `tbl_users`
+            INNER JOIN tbl_user_info ON tbl_users.id = tbl_user_info.user_id WHERE tbl_users.id = '$id'
+        ")->fetch(PDO::FETCH_ASSOC);
     }
 
     public function getAllCourse()
@@ -54,6 +77,7 @@ class User extends Database
             INNER JOIN examiner_info ON admission_result.examiner_info_id = examiner_info.id
             LEFT JOIN entrace_rating ON admission_result.entrace_rating_id = entrace_rating.id
             INNER JOIN course ON admission_result.preferred_course_id_1 = course.id
+            WHERE `admission_result`.`is_delete` = 'NO'
          --   LEFT JOIN course AS course_2
        -- ON
           --  admission_result.preferred_course_id_2 = course_2.id
@@ -110,5 +134,21 @@ class User extends Database
           return  $this->db->query(" SELECT  " . implode(',',$data['fields']) . "  FROM " . $data['table'] . " ")
                                    ->fetchAll(PDO::FETCH_ASSOC);
     }*/
+
+    public function delete_admission_result($id)
+    {
+        $result = $this->db->query("
+           UPDATE
+            `admission_result`
+            SET
+                `is_delete` = 'YES'
+            WHERE
+                `id` = '$id'
+        ");
+
+        if($result == true){
+                header("Location:/system/admin/dashboard");
+        }
+    }
 
 }

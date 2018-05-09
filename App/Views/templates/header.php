@@ -14,7 +14,6 @@
     </style>
     <script src ="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src ="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-    <link rel   ="stylesheet" href="<?= APP['DOC_ROOT'] ?>assets/js/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css">
     <link rel   ="stylesheet" href="<?= APP['DOC_ROOT'] ?>assets/js/plugins/select2/select2.min.css">
     <link rel   ="stylesheet" href="<?= APP['DOC_ROOT'] ?>assets/js/plugins/select2/select2-bootstrap.min.css">
     <link rel   ="stylesheet" id="css-main" href="<?= APP['DOC_ROOT'] ?>assets/css/codebase.min.css">
@@ -24,6 +23,10 @@
     <!-- Page Container -->
     <!-- Pop Out Modal -->
     <!-- end of pop out modal -->
+    <?php if (isset($_SESSION['id'])): ?>
+    <?php
+     extract($data['info']);
+    ?>
     <div id="page-container" class="sidebar-o side-scroll page-header-modern main-content-boxed">
         <!-- Side Overlay-->
         <aside id="side-overlay">
@@ -43,7 +46,7 @@
                             <a class="img-link mr-5" href="profile">
                                 <img class="img-avatar img-avatar32" src="<?= APP['DOC_ROOT'] ?>public/img/avatars/avatar15.jpg" alt="">
                             </a>
-                            <a id="side_overlay_name" class="align-middle link-effect text-capitalize text-primary-dark font-w600" href="profile">NAME HERE</a>
+                            <a id="side_overlay_name" class="text-capitalize align-middle link-effect text-capitalize text-primary-dark font-w600" href="profile"><?=$lastname . ' , '. $firstname . ' ' . $middlename ?>.</a>
                         </div>
                         <!-- END User Info -->
                     </div>
@@ -339,9 +342,8 @@
                             <!-- END Close Sidebar -->
                             <!-- Logo -->
                             <div class="content-header-item">
-                                <a class="link-effect font-w700" href="index.html">
-                                    <i class="si si-fire text-primary"></i>
-                                    <span class="font-size-xl text-dual-primary-dark">code</span><span class="font-size-xl text-primary">base</span>
+                                <a class="link-effect font-w700" href="/system/admin/">
+                                    <span class="font-size-xl text-primary">SDSSU</span>
                                 </a>
                             </div>
                             <!-- END Logo -->
@@ -358,12 +360,13 @@
                         <!-- END Visible only in mini mode -->
                         <!-- Visible only in normal mode -->
                         <div class="sidebar-mini-hidden-b text-center">
-                            <a class="img-link" href="profile">
-                                    IMAGE
+                            <a class="img-link " href="profile">
+                                <img id="sidebar_img" class="img-fluid img-avatar rounded-circle" src="<?= APP['DOC_ROOT'] . 'assets/img/uploads/' . $profile; ?>" alt="">
+                                 <!-- <img id="sidebar_img" class="img-avatar" src="<?= APP['DOC_ROOT'] . 'public/assets/uploads/' . $data['user_info']['image']; ?>" alt=""> -->
                             </a>
                             <ul class="list-inline mt-10">
                                 <li class="list-inline-item">
-                                    <a id="sidebar_name" class="link-effect text-dual-primary-dark font-size-xs font-w600 text-uppercase" href="profile">NAME HERE</a>
+                                    <a id="sidebar_name" class="link-effect text-dual-primary-dark font-size-xs font-w600 text-uppercase" href="profile"><?=$lastname . ' , '. $firstname . ' ' . $middlename ?>.</a>
                                 </li>
                                 <li class="list-inline-item">
                                     <!-- Layout API, functionality initialized in Codebase() -> uiApiLayout() -->
@@ -422,15 +425,13 @@
                     <!-- Open Search Section -->
                     <!-- Layout API, functionality initialized in Codebase() -> uiApiLayout() -->
                     <button type="button" class="btn btn-circle btn-dual-secondary" data-toggle="layout" data-action="header_search_on">
-                    <i class="fa fa-search"></i>
+                        date
+                    <!-- <i class="fa fa-search"></i> -->
                     </button>
                     <!-- END Open Search Section -->
                     <!-- Layout Options (used just for demonstration) -->
                     <!-- Layout API, functionality initialized in Codebase() -> uiApiLayout() -->
                     <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-circle btn-dual-secondary" id="page-header-options-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fa fa-wrench"></i>
-                        </button>
                         <div class="dropdown-menu" aria-labelledby="page-header-options-dropdown">
                             <h6 class="dropdown-header">Header</h6>
                             <button type="button" class="btn btn-sm btn-block btn-alt-secondary" data-toggle="layout" data-action="header_fixed_toggle">Fixed Mode</button>
@@ -450,9 +451,6 @@
                     <!-- Themes functionality initialized in Codebase() -> uiHandleTheme() -->
                     <div class="btn-group" role="group">
                         <!-- change with import -->
-                        <button type="button" data-toggle="modal" data-target="#modal-popin" class="btn btn-circle btn-dual-secondary">
-                        <i class="fa fa-file-excel-o"></i>
-                        </button>
                         <div class="dropdown-menu min-width-150" aria-labelledby="page-header-themes-dropdown">
                             <h6 class="dropdown-header text-center">Color Themes</h6>
                             <div class="row no-gutters text-center mb-5">
@@ -503,16 +501,12 @@
                     <!-- User Dropdown -->
                     <div class="btn-group" role="group">
                         <button id="top_right_name" type="button" class="text-capitalize btn btn-rounded btn-dual-secondary" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            NAME HERE
+                           <?=$lastname . ' , '. $firstname . ' ' . $middlename ?>.
                         <i class="fa fa-angle-down ml-5"></i>
                         </button>
                         <div class="dropdown-menu dropdown-menu-right min-width-150" aria-labelledby="page-header-user-dropdown">
                             <a class="dropdown-item" href="profile">
                                 <i class="si si-user mr-5"></i> Profile
-                            </a>
-                            <a class="dropdown-item d-flex align-items-center justify-content-between" href="#inbox">
-                                <span><i class="si si-envelope-open mr-5"></i> Inbox</span>
-                                <span class="badge badge-primary">3</span>
                             </a>
                             <div class="dropdown-divider"></div>
                             <!-- Toggle Side Overlay -->
@@ -537,7 +531,6 @@
             <!-- Header Search -->
             <div id="page-header-search" class="overlay-header">
                 <div class="content-header content-header-fullrow">
-                    <form action="be_pages_generic_search.html" method="post">
                         <div class="input-group">
                             <span class="input-group-btn">
                                 <!-- Close Search Section -->
@@ -547,14 +540,7 @@
                                 </button>
                                 <!-- END Close Search Section -->
                             </span>
-                            <input type="text" class="form-control" placeholder="Search or hit ESC.." id="page-header-search-input" name="page-header-search-input">
-                            <span class="input-group-btn">
-                                <button type="submit" class="btn btn-secondary">
-                                <i class="fa fa-search"></i>
-                                </button>
-                            </span>
                         </div>
-                    </form>
                 </div>
             </div>
             <!-- END Header Search -->
@@ -574,3 +560,4 @@
         <main id="main-container">
             <!-- Page Content -->
             <div class="content">
+<?php endif; ?>
