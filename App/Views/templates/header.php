@@ -9,7 +9,7 @@
     <link rel="shortcut icon" href="<?= APP['DOC_ROOT'] ?>assets/img/photos/sdssu.png">
     <style type="text/css">
     body{
-        overflow-x: hidden;
+    overflow-x: hidden;
     }
     </style>
     <script src ="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
@@ -25,7 +25,7 @@
     <!-- end of pop out modal -->
     <?php if (isset($_SESSION['id'])): ?>
     <?php
-     extract($data['info']);
+    extract($data['info']);
     ?>
     <div id="page-container" class="sidebar-o side-scroll page-header-modern main-content-boxed">
         <!-- Side Overlay-->
@@ -93,222 +93,29 @@
                     <!-- Friends -->
                     <div class="block pull-r-l">
                         <div class="block-header bg-body-light">
-                            <h3 class="block-title"><i class="fa fa-fw fa-users font-size-default mr-5"></i>Friends</h3>
+                            <h3 class="block-title"><i class="fa fa-fw fa-trash font-size-default mr-5"></i>DELETED ADMISSION RESULTS</h3>
                             <div class="block-options">
-                                <button type="button" class="btn-block-option" data-toggle="block-option" data-action="state_toggle" data-action-mode="demo">
-                                <i class="si si-refresh"></i>
-                                </button>
                                 <button type="button" class="btn-block-option" data-toggle="block-option" data-action="content_toggle"></button>
                             </div>
                         </div>
                         <div class="block-content">
                             <ul class="nav-users push">
+                                <?php foreach ($deleted_admission_results as $keys => $info): ?>
                                 <li>
-                                    <a href="be_pages_generic_profile.html">
-                                        <img class="img-avatar" src="assets/img/avatars/avatar4.jpg" alt="">
-                                        <i class="fa fa-circle text-success"></i> Judy Ford
-                                        <div class="font-w400 font-size-xs text-muted">Photographer</div>
-                                    </a>
+
+                                        <i class="fa fa-fw fa-trash"></i> <?= $info['Fullname'] ?>
+
+                                        <div class="d-inline-flex">
+                                            <a class="font-w400" href="/system/admin/restore?a_id=<?= urlencode($info['id'])?>">Restore</a>
+                                            <a href="/system/admin/permanent_delete?a_id=<?= urlencode($info['id'])?>&e_r_id=<?=urlencode($info['entrace_rating_id'])?>&e_i_id=<?=urlencode($info['examiner_info_id'])?>" class="font-w400 ">P - Delete</a>
+                                        </div>
+
                                 </li>
-                                <li>
-                                    <a href="be_pages_generic_profile.html">
-                                        <img class="img-avatar" src="assets/img/avatars/avatar12.jpg" alt="">
-                                        <i class="fa fa-circle text-success"></i> Brian Cruz
-                                        <div class="font-w400 font-size-xs text-muted">Web Designer</div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="be_pages_generic_profile.html">
-                                        <img class="img-avatar" src="assets/img/avatars/avatar4.jpg" alt="">
-                                        <i class="fa fa-circle text-warning"></i> Sara Fields
-                                        <div class="font-w400 font-size-xs text-muted">UI Designer</div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="be_pages_generic_profile.html">
-                                        <img class="img-avatar" src="assets/img/avatars/avatar13.jpg" alt="">
-                                        <i class="fa fa-circle text-danger"></i> Henry Harrison
-                                        <div class="font-w400 font-size-xs text-muted">Copywriter</div>
-                                    </a>
-                                </li>
+                                <?php endforeach ?>
                             </ul>
                         </div>
                     </div>
                     <!-- END Friends -->
-                    <!-- Activity -->
-                    <div class="block pull-r-l">
-                        <div class="block-header bg-body-light">
-                            <h3 class="block-title">
-                            <i class="fa fa-fw fa-clock-o font-size-default mr-5"></i>Activity
-                            </h3>
-                            <div class="block-options">
-                                <button type="button" class="btn-block-option" data-toggle="block-option" data-action="state_toggle" data-action-mode="demo">
-                                <i class="si si-refresh"></i>
-                                </button>
-                                <button type="button" class="btn-block-option" data-toggle="block-option" data-action="content_toggle"></button>
-                            </div>
-                        </div>
-                        <div class="block-content">
-                            <ul class="list list-activity">
-                                <li>
-                                    <i class="si si-wallet text-success"></i>
-                                    <div class="font-w600">+$29 New sale</div>
-                                    <div>
-                                        <a href="javascript:void(0)">Admin Template</a>
-                                    </div>
-                                    <div class="font-size-xs text-muted">5 min ago</div>
-                                </li>
-                                <li>
-                                    <i class="si si-close text-danger"></i>
-                                    <div class="font-w600">Project removed</div>
-                                    <div>
-                                        <a href="javascript:void(0)">Best Icon Set</a>
-                                    </div>
-                                    <div class="font-size-xs text-muted">26 min ago</div>
-                                </li>
-                                <li>
-                                    <i class="si si-pencil text-info"></i>
-                                    <div class="font-w600">You edited the file</div>
-                                    <div>
-                                        <a href="javascript:void(0)">
-                                            <i class="fa fa-file-text-o"></i> Docs.doc
-                                        </a>
-                                    </div>
-                                    <div class="font-size-xs text-muted">3 hours ago</div>
-                                </li>
-                                <li>
-                                    <i class="si si-plus text-success"></i>
-                                    <div class="font-w600">New user</div>
-                                    <div>
-                                        <a href="javascript:void(0)">StudioWeb - View Profile</a>
-                                    </div>
-                                    <div class="font-size-xs text-muted">5 hours ago</div>
-                                </li>
-                                <li>
-                                    <i class="si si-wrench text-warning"></i>
-                                    <div class="font-w600">App v5.5 is available</div>
-                                    <div>
-                                        <a href="javascript:void(0)">Update now</a>
-                                    </div>
-                                    <div class="font-size-xs text-muted">8 hours ago</div>
-                                </li>
-                                <li>
-                                    <i class="si si-user-follow text-pulse"></i>
-                                    <div class="font-w600">+1 Friend Request</div>
-                                    <div>
-                                        <a href="javascript:void(0)">Accept</a>
-                                    </div>
-                                    <div class="font-size-xs text-muted">1 day ago</div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <!-- END Activity -->
-                    <!-- Profile -->
-                    <div class="block pull-r-l">
-                        <div class="block-header bg-body-light">
-                            <h3 class="block-title">
-                            <i class="fa fa-fw fa-pencil font-size-default mr-5"></i>Profile
-                            </h3>
-                            <div class="block-options">
-                                <button type="button" class="btn-block-option" data-toggle="block-option" data-action="content_toggle"></button>
-                            </div>
-                        </div>
-                        <div class="block-content">
-                            <form action="be_pages_dashboard.html" method="post" onsubmit="return false;">
-                                <div class="form-group mb-15">
-                                    <label for="side-overlay-profile-name">Name</label>
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" id="side-overlay-profile-name" name="side-overlay-profile-name" placeholder="Your name.." value="John Smith">
-                                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                    </div>
-                                </div>
-                                <div class="form-group mb-15">
-                                    <label for="side-overlay-profile-email">Email</label>
-                                    <div class="input-group">
-                                        <input type="email" class="form-control" id="side-overlay-profile-email" name="side-overlay-profile-email" placeholder="Your email.." value="john.smith@example.com">
-                                        <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-                                    </div>
-                                </div>
-                                <div class="form-group mb-15">
-                                    <label for="side-overlay-profile-password">New Password</label>
-                                    <div class="input-group">
-                                        <input type="password" class="form-control" id="side-overlay-profile-password" name="side-overlay-profile-password" placeholder="New Password..">
-                                        <span class="input-group-addon"><i class="fa fa-asterisk"></i></span>
-                                    </div>
-                                </div>
-                                <div class="form-group mb-15">
-                                    <label for="side-overlay-profile-password-confirm">Confirm New Password</label>
-                                    <div class="input-group">
-                                        <input type="password" class="form-control" id="side-overlay-profile-password-confirm" name="side-overlay-profile-password-confirm" placeholder="Confirm New Password..">
-                                        <span class="input-group-addon"><i class="fa fa-asterisk"></i></span>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-6">
-                                        <button type="submit" class="btn btn-block btn-alt-primary">
-                                        <i class="fa fa-refresh mr-5"></i> Update
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    <!-- END Profile -->
-                    <!-- Settings -->
-                    <div class="block pull-r-l">
-                        <div class="block-header bg-body-light">
-                            <h3 class="block-title">
-                            <i class="fa fa-fw fa-wrench font-size-default mr-5"></i>Settings
-                            </h3>
-                            <div class="block-options">
-                                <button type="button" class="btn-block-option" data-toggle="block-option" data-action="content_toggle"></button>
-                            </div>
-                        </div>
-                        <div class="block-content">
-                            <div class="row gutters-tiny">
-                                <div class="col-6">
-                                    <div class="custom-controls-stacked">
-                                        <label class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="side-overlay-settings-status" name="side-overlay-settings-status" value="1" checked>
-                                            <span class="custom-control-indicator"></span>
-                                            <span class="custom-control-description">Online Status</span>
-                                        </label>
-                                        <label class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="side-overlay-settings-public-profile" name="side-overlay-settings-public-profile" value="1">
-                                            <span class="custom-control-indicator"></span>
-                                            <span class="custom-control-description">Public Profile</span>
-                                        </label>
-                                        <label class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="side-overlay-settings-notifications" name="side-overlay-settings-notifications" value="1" checked>
-                                            <span class="custom-control-indicator"></span>
-                                            <span class="custom-control-description">Notifications</span>
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="custom-controls-stacked">
-                                        <label class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="side-overlay-settings-updates" name="side-overlay-settings-updates" value="1">
-                                            <span class="custom-control-indicator"></span>
-                                            <span class="custom-control-description">Auto updates</span>
-                                        </label>
-                                        <label class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="side-overlay-settings-api-access" name="side-overlay-settings-api-access" value="1" checked>
-                                            <span class="custom-control-indicator"></span>
-                                            <span class="custom-control-description">API Access</span>
-                                        </label>
-                                        <label class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="side-overlay-settings-limit-requests" name="side-overlay-settings-limit-requests" value="1">
-                                            <span class="custom-control-indicator"></span>
-                                            <span class="custom-control-description">API Requests</span>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- END Settings -->
                 </div>
                 <!-- END Side Content -->
             </div>
@@ -362,7 +169,7 @@
                         <div class="sidebar-mini-hidden-b text-center">
                             <a class="img-link " href="profile">
                                 <img id="sidebar_img" class="img-fluid img-avatar rounded-circle" src="<?= APP['DOC_ROOT'] . 'assets/img/uploads/' . $profile; ?>" alt="">
-                                 <!-- <img id="sidebar_img" class="img-avatar" src="<?= APP['DOC_ROOT'] . 'public/assets/uploads/' . $data['user_info']['image']; ?>" alt=""> -->
+                                <!-- <img id="sidebar_img" class="img-avatar" src="<?= APP['DOC_ROOT'] . 'public/assets/uploads/' . $data['user_info']['image']; ?>" alt=""> -->
                             </a>
                             <ul class="list-inline mt-10">
                                 <li class="list-inline-item">
@@ -425,7 +232,7 @@
                     <!-- Open Search Section -->
                     <!-- Layout API, functionality initialized in Codebase() -> uiApiLayout() -->
                     <button type="button" class="btn btn-circle btn-dual-secondary" data-toggle="layout" data-action="header_search_on">
-                        date
+                    date
                     <!-- <i class="fa fa-search"></i> -->
                     </button>
                     <!-- END Open Search Section -->
@@ -501,7 +308,7 @@
                     <!-- User Dropdown -->
                     <div class="btn-group" role="group">
                         <button id="top_right_name" type="button" class="text-capitalize btn btn-rounded btn-dual-secondary" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                           <?=$lastname . ' , '. $firstname . ' ' . $middlename ?>.
+                        <?=$lastname . ' , '. $firstname . ' ' . $middlename ?>.
                         <i class="fa fa-angle-down ml-5"></i>
                         </button>
                         <div class="dropdown-menu dropdown-menu-right min-width-150" aria-labelledby="page-header-user-dropdown">
@@ -531,16 +338,16 @@
             <!-- Header Search -->
             <div id="page-header-search" class="overlay-header">
                 <div class="content-header content-header-fullrow">
-                        <div class="input-group">
-                            <span class="input-group-btn">
-                                <!-- Close Search Section -->
-                                <!-- Layout API, functionality initialized in Codebase() -> uiApiLayout() -->
-                                <button type="button" class="btn btn-secondary" data-toggle="layout" data-action="header_search_off">
-                                <i class="fa fa-times"></i>
-                                </button>
-                                <!-- END Close Search Section -->
-                            </span>
-                        </div>
+                    <div class="input-group">
+                        <span class="input-group-btn">
+                            <!-- Close Search Section -->
+                            <!-- Layout API, functionality initialized in Codebase() -> uiApiLayout() -->
+                            <button type="button" class="btn btn-secondary" data-toggle="layout" data-action="header_search_off">
+                            <i class="fa fa-times"></i>
+                            </button>
+                            <!-- END Close Search Section -->
+                        </span>
+                    </div>
                 </div>
             </div>
             <!-- END Header Search -->
@@ -560,4 +367,4 @@
         <main id="main-container">
             <!-- Page Content -->
             <div class="content">
-<?php endif; ?>
+                <?php endif; ?>

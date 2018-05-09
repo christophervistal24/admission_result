@@ -3,6 +3,7 @@ namespace App\Model;
 use App\Core\Database;
 use App\Core\Functions;
 use PDO;
+use RuntimeException;
 class User extends Database
 {
     use Functions;
@@ -135,13 +136,13 @@ class User extends Database
                                    ->fetchAll(PDO::FETCH_ASSOC);
     }*/
 
-    public function delete_admission_result($id)
+    public function modify_admission_result($id,$keyword)
     {
         $result = $this->db->query("
            UPDATE
             `admission_result`
             SET
-                `is_delete` = 'YES'
+                `is_delete` = '$keyword'
             WHERE
                 `id` = '$id'
         ");
@@ -149,6 +150,73 @@ class User extends Database
         if($result == true){
                 header("Location:/system/admin/dashboard");
         }
+    }
+
+    public function get_deleted_admission_results()
+    {
+       return $this->db->query("
+         SELECT
+            `admission_result`.`id`,
+            `admission_result`.`examiner_info_id`,
+            `admission_result`.`entrace_rating_id`,
+             CONCAT(`examiner_info`.`firstname` , ' ' , `examiner_info`.`middlename` , '. ' , `examiner_info`.`lastname`) as Fullname
+        FROM
+            `admission_result`
+        INNER JOIN examiner_info ON admission_result.examiner_info_id = examiner_info.id
+        WHERE
+            admission_result.is_delete = 'YES'
+        ")->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function permanent_delete_admission(array $id = null)
+    {
+            $this->db->beginTransaction();
+            try {
+
+                $stmt1 = $this->db->prepare("
+                    DELETE FROM `entrace_rating`   WHERE id = ?
+                ");
+
+                $stmt1->execute([
+                    $id['entrace_rating_id'],
+                ]);
+
+                if ($stmt1->rowCount() < 1) {
+                    throw new RuntimeException("Delete from table1 matched no rows.");
+                 }
+
+                $stmt2 = $this->db->prepare("
+                    DELETE FROM `examiner_info`    WHERE id = ?
+                ");
+
+                $stmt2->execute([
+                    $id['examiner_info_id'],
+                ]);
+
+                 if ($stmt2->rowCount() < 1) {
+                    throw new RuntimeException("Delete from table2 matched no rows.");
+                 }
+
+                $stmt3 = $this->db->prepare("
+                    DELETE FROM `admission_result` WHERE id = ?
+                ");
+
+                $stmt3->execute([
+                    $id['admission_id']
+                ]);
+
+                if ($stmt3->rowCount() < 1) {
+                    throw new RuntimeException("Delete from table3 matched no rows.");
+                 }
+
+                $result = $this->db->commit();
+                if($result == true){
+                    header("Location:/system/admin/dashboard");
+                }
+            } catch (PDOException $e) {
+                $this->db->rollBack();
+                die($e->getMessage());
+            }
     }
 
 }
