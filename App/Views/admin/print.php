@@ -466,7 +466,7 @@ $html='<table border="1" >
 <td width="200" height="30">(DATA HERE)</td>
 </tr>
 <tr>
-<td width="200" height="30">Verbal Comprehension</td>
+<td width="200" height="30" >Verbal Comprehension</td>
 <td width="200" height="30">                        '.$result['verbal_comprehension'].'</td>
 <td width="200" height="30">(DATA HERE)</td>
 </tr>
@@ -514,5 +514,6 @@ $pdf->SetTextColor(255,0,0);
 $pdf->Cell(0,0,'NOT VALID IF THERE IS ANY ALTERATION',0,0,'L');
 $pdf->setRightMargin(20);
 $pdf->Cell(0,0,'VALID FOR ' . date('Y')  . ' - ' . date('Y',strtotime("+ 1 year")) . ' ONLY',0,0,'R');
+$pdf->SetTextColor(0,0,0);
 $pdf->Output();
 ?>

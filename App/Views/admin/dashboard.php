@@ -24,13 +24,13 @@
             <tbody>
                 <?php foreach ($admission_result as $keys => $value): ?>
                 <tr>
-                    <?php foreach ($value as $items => $values): ?>
-                     <td class="text-capitalize text-center"><?= $values; ?></td>
-                    <?php endforeach ?>
-                    <td class="text-center">
-                        <a href="vprofile?id=<?= $value['id']?>" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="View Full Result">
-                        <i class="fa fa-user"></i>
-                        </a>
+                     <td class="text-capitalize text-center"><?= $value['id']; ?></td>
+                     <td class="text-capitalize text-center"><a href="print?id=<?= $value['id'] ?>"><?= $value['Name']; ?></a></td>
+                     <td class="text-capitalize text-center"><?= $value['verbal_total']; ?></td>
+                     <td class="text-capitalize text-center"><?= $value['non_verbal_total']; ?></td>
+                     <td class="text-capitalize text-center"><?= $value['over_all_total']; ?></td>
+                    <td class="text-center text-sm-center">
+                        <a href="vprofile?id=<?= $value['id']?>" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="View Profile"><i class="fa fa-user"></i></a>
                         <a href="editresult?id=<?= $value['id']?>" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Edit Full Result">
                         <i class="fa fa-edit"></i>
                         </a>

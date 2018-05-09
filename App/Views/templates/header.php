@@ -1,4 +1,5 @@
 <?php ob_start(); ?>
+<?php date_default_timezone_set('Asia/Manila'); ?>
 <!DOCTYPE html>
 <head>
     <meta charset="utf-8">

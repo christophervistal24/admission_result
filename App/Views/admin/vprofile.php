@@ -1,5 +1,5 @@
 <div class="block-header block-header-default">
-    <h3 class="block-title">Profile of <span class="block-title text-capitalize"><?=$examiner_results['Fullname']?></span></h3>
+    <h3 class="text-capitalize">Profile of <?=$examiner_results['Fullname']?></h3>
 </div>
 <!-- Progress Wizard 2 -->
 <div class="js-wizard-simple block">
@@ -22,7 +22,7 @@
     </ul>
     <!-- END Step Tabs -->
     <!-- Form -->
-    <form action="be_forms_wizard.html" method="post">
+    <form action="" method="post">
         <!-- Steps Content -->
         <div class="block-content block-content-full tab-content" style="min-height: 274px;">
             <!-- Step 1 -->
@@ -124,6 +124,13 @@
                     <div class="form-material floating">
                         <input class="form-control" type="text" readonly value="<?= $examiner_results['second_course'] ?>" id="wizard-progress2-email" name="wizard-progress2-email">
                         <label for="wizard-progress2-email">Second Course</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="form-material floating">
+                        <input class="form-control" type="text" readonly value="<?= date('d/m/Y h:i A',$examiner_results['exam_at']) ?>" id="wizard-progress2-email" name="wizard-progress2-email">
+                        <label for="wizard-progress2-email">Exam at </label>
                     </div>
                 </div>
             </div>

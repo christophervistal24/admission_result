@@ -199,7 +199,6 @@
                                 <br>
                                 <input type="hidden" value="add_admission_result" name="action">
                                 <input type="submit" value="Add & Print" class="mr-5 btn btn-primary border-0 rounded-0 float-right">
-                                <input type="submit" value="Add" class="mr-5 btn btn-primary border-0 rounded-0 float-right">
                             </div>
                         </div>
                     </form>

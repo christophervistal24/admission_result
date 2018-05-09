@@ -57,12 +57,13 @@ class Admin extends Controller
     public function editresult()
     {
         $data['school_year'] = date('Y')  . ' - ' . date('Y',strtotime("+ 1 year"));
-        // if (isset($_GET['id'])) {
-        //     $data['id'] = $_GET['id'];
-        // }
-        // $data['examiner_results'] = $this->model->getAdmissionResultById($data['id']);
+        if (isset($_GET['id'])) {
+            $data['id'] = $_GET['id'];
+        }
+        $fetch_course['course']          = $this->model->getAllCourse();
+        $data['examiner_results'] = $this->model->getAdmissionResultById($data['id']);
         $this->render('templates/header',$data);
-        $this->render('admin/editresult',$data);
+        $this->render('admin/editresult',$data + $fetch_course);
         $this->render('templates/footer');
     }
 }

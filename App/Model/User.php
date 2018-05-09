@@ -64,7 +64,13 @@ class User extends Database
     {
             return $this->db->query("
             SELECT
-                CONCAT(`examiner_info`.`firstname` , ' ' , `examiner_info`.`middlename` , ' ' , `examiner_info`.`lastname`) as Fullname,
+                CONCAT(`examiner_info`.`firstname` , ' ' , `examiner_info`.`middlename` , '. ' , `examiner_info`.`lastname`) as Fullname,
+                `examiner_info`.`id` as examiner_info_id,
+                `entrace_rating`.`id` as entrance_rating_id,
+                `admission_result`.`id` as admission_result_id,
+                `examiner_info`.`firstname`,
+                `examiner_info`.`lastname`,
+                `examiner_info`.`middlename`,
                 `examiner_info`.`sex`,
                 `examiner_info`.`age`,
                 `examiner_info`.`birthdate`,
@@ -75,8 +81,11 @@ class User extends Database
                 `entrace_rating`.`verbal_total`,
                 `entrace_rating`.`non_verbal_total`,
                 `entrace_rating`.`over_all_total`,
+                `course`.`id` as course_id,
                 `course`.`course` as first_course,
-                `course_2`.`course` as second_course
+                `course_2`.`course` as second_course,
+                `admission_result`.`guidance_counselor`,
+                `admission_result`.`exam_at`
             FROM
                 admission_result
                 INNER JOIN examiner_info ON admission_result.examiner_info_id = examiner_info.id
