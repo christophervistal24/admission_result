@@ -12,8 +12,10 @@
     overflow-x: hidden;
     }
     </style>
-    <script src ="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script src ="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <!-- <script src ="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
+    <!-- <script src ="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script> -->
+    <!-- <script src="<?= APP['DOC_ROOT'] ?>assets/js/jquery.min.js"></script> -->
+    <script src="<?= APP['DOC_ROOT'] ?>assets/js/sweetalert.min.js"></script>
     <link rel   ="stylesheet" href="<?= APP['DOC_ROOT'] ?>assets/js/plugins/select2/select2.min.css">
     <link rel   ="stylesheet" href="<?= APP['DOC_ROOT'] ?>assets/js/plugins/select2/select2-bootstrap.min.css">
     <link rel   ="stylesheet" id="css-main" href="<?= APP['DOC_ROOT'] ?>assets/css/codebase.min.css">
