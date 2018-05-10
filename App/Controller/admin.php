@@ -13,7 +13,7 @@ class Admin extends Controller
     public function __construct()
     {
         $this->model = new User;
-        $this->profile = $this->model->getUserInfoById($_SESSION['id']);
+        $this->profile = $this->model->getUserInfoById(@$_SESSION['id']);
         $this->deleted_admission_results = $this->model->get_deleted_admission_results();
     }
     public function index()
