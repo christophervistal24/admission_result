@@ -16,6 +16,7 @@ success:function(data){
         $('#examiner_birthdate').val(data.birthdate);
         // $('#examiner_first_course').select(data.firs);
         // $('#examiner_second_course').select(data.firs);
+        // $('#guidance_counselor_name').val('');
         $('#over_all_total').val(data.over_all_total);
         $('#total_of_verbal').val(data.verbal_total);
         $('#verbal-comprehension').val(data.verbal_comprehension);
@@ -33,13 +34,8 @@ success:function(data){
         .then((willDelete) => {
           if (willDelete) {
             location.replace('print?id='+data.result_id);
-            //proceed to pdf page
-            // swal("Poof! Your imaginary file has been deleted!", {
-            //   icon: "success",
-            // });
           } else {
-            // swal("Your imaginary file is safe!");
-            // go back here
+            location.reload();
           }
         });
    }

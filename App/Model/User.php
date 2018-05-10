@@ -84,18 +84,18 @@ class User extends Database
           --  admission_result.preferred_course_id_2 = course_2.id
         ")->fetchAll(PDO::FETCH_ASSOC);
     }
-
     public function getAdmissionResultById($id)
     {
             return $this->db->query("
-            SELECT
-                CONCAT(`examiner_info`.`firstname` , ' ' , `examiner_info`.`middlename` , '. ' , `examiner_info`.`lastname`) as Fullname,
+              SELECT
+              CONCAT(`examiner_info`.`firstname` , ' ' , `examiner_info`.`middlename` , '. ' , `examiner_info`.`lastname`) as Fullname,
                 `examiner_info`.`id` as examiner_info_id,
                 `entrace_rating`.`id` as entrance_rating_id,
                 `admission_result`.`id` as admission_result_id,
+                `admission_result`.`exam_at`,
                 `examiner_info`.`firstname`,
-                `examiner_info`.`lastname`,
                 `examiner_info`.`middlename`,
+                `examiner_info`.`lastname`,
                 `examiner_info`.`sex`,
                 `examiner_info`.`age`,
                 `examiner_info`.`birthdate`,
@@ -105,22 +105,17 @@ class User extends Database
                 `entrace_rating`.`quantitative_reasoning`,
                 `entrace_rating`.`verbal_total`,
                 `entrace_rating`.`non_verbal_total`,
-                `entrace_rating`.`over_all_total`,
-                `course`.`id` as course_id,
-                `course`.`course` as first_course,
-                `course_2`.`course` as second_course,
-                `admission_result`.`guidance_counselor`,
-                `admission_result`.`exam_at`
+                `entrace_rating`.`over_all_total`, `course`.`course` as first_course,
+                `course_2`.`course` as second_course , `guidance_conselors`.`fullname` ,
+                `guidance_conselors`.`id`
             FROM
                 admission_result
-                INNER JOIN examiner_info ON admission_result.examiner_info_id = examiner_info.id
-                LEFT JOIN entrace_rating ON admission_result.entrace_rating_id = entrace_rating.id
-                INNER JOIN course ON admission_result.preferred_course_id_1 = course.id
-                LEFT JOIN course AS course_2
-            ON
-                admission_result.preferred_course_id_2 = course_2.id
-            WHERE
-                admission_result.id = ' $id '
+            INNER JOIN examiner_info ON admission_result.examiner_info_id          = examiner_info.id
+            LEFT JOIN entrace_rating ON admission_result.entrace_rating_id         = entrace_rating.id
+            INNER JOIN course ON admission_result.preferred_course_id_1            = course.id
+            LEFT JOIN course AS course_2 ON admission_result.preferred_course_id_2 = course_2.id
+            LEFT JOIN guidance_conselors ON guidance_conselors.id                  = admission_result.guidance_counselor_id
+            WHERE admission_result.id = ' $id '
             ")->fetch(PDO::FETCH_ASSOC);
     }
    /* public function getByOrGetAll(array $data = null)
@@ -217,6 +212,36 @@ class User extends Database
                 $this->db->rollBack();
                 die($e->getMessage());
             }
+    }
+
+    public function getAllGuidanceConselors()
+    {
+        return $this->db->query("
+           SELECT
+                `id`,
+                `fullname`,
+                `position`,
+                `signature`,
+                `created_at`,
+                `updated_at`
+            FROM
+                `guidance_conselors`
+        ")->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getGuidanceConselorByName($id)
+    {
+        return $this->db->query("
+           SELECT
+                `id`,
+                `fullname`,
+                `position`,
+                `signature`,
+                `created_at`,
+                `updated_at`
+            FROM
+                `guidance_conselors` WHERE `id` = '$id'
+        ")->fetch(PDO::FETCH_ASSOC);
     }
 
 }

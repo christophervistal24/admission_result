@@ -65,7 +65,7 @@ if (isset($_POST['action'])) {
                     `entrace_rating_id`,
                     `preferred_course_id_1`,
                     `preferred_course_id_2`,
-                    `guidance_counselor`,
+                    `guidance_counselor_id`,
                     `exam_at`
                 )
                 VALUES(?,?,?,?,?,?)
@@ -136,7 +136,7 @@ if (isset($_POST['action'])) {
                 "
                UPDATE
                     `admission_result`
-                SET `preferred_course_id_1` = ?, `preferred_course_id_2` = ?, `guidance_counselor` = ?
+                SET `preferred_course_id_1` = ?, `preferred_course_id_2` = ?, `guidance_counselor_id` = ?
                  WHERE
                    `id` = ?
                 ";
@@ -160,7 +160,7 @@ if (isset($_POST['action'])) {
                                 'birthdate'               => $birthdate,
                                 'first_preferred_course'  => $first_preferred_course,
                                 'second_preferred_course' => $second_preferred_course,
-                                'guidance_counselor'      => $guidance_counselor,
+                                // 'guidance_conselor_id'    => $guidance_counselor,
                                 'over_all_total'          => $over_all_total,
                                 'verbal_total'            => $verbal_total,
                                 'non_verbal_total'        => $non_verbal_total,

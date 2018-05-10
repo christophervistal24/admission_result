@@ -32,17 +32,13 @@ class Admin extends Controller
     public function new()
     {
         if (!Functions::before_every_protected_page()) {
-        $data['title']       = 'Add';
-        $data['school_year'] = date('Y')  . ' - ' . date('Y',strtotime("+ 1 year"));
-        $data['info']        = $this->profile;
+        $data['title']                     = 'Add';
+        $data['school_year']               = date('Y')  . ' - ' . date('Y',strtotime("+ 1 year"));
+        $data['info']                      = $this->profile;
         $data['deleted_admission_results'] = $this->deleted_admission_results;
-        $data['course']      = $this->model->getAllCourse();
+        $data['course']                    = $this->model->getAllCourse();
+        $data['guidance_conselors']        = $this->model->getAllGuidanceConselors();
         $this->render('templates/header',$data);
-          /* if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            echo '<pre>';
-            print_r($_POST);
-            echo '</pre>';
-        }*/
         $this->render('admin/new',$data);
         $this->render('templates/footer');
       }
@@ -83,7 +79,7 @@ class Admin extends Controller
                     $this->render('templates/header',$data);
                     $this->render('admin/profile',$data);
                     $this->render('templates/footer');
-                }
+        }
     }
 
     public function editresult()
@@ -97,11 +93,21 @@ class Admin extends Controller
             $fetch_course['course']            = $this->model->getAllCourse();
             $data['examiner_results']          = $this->model->getAdmissionResultById($data['id']);
             $data['deleted_admission_results'] = $this->deleted_admission_results;
+            $data['guidance_conselors']        = $this->model->getAllGuidanceConselors();
             $this->render('templates/header',$data);
             $this->render('admin/editresult',$data + $fetch_course);
             $this->render('templates/footer');
         }
 
+    }
+
+    public function addguidance()
+    {
+                $data['info'] = $this->profile;
+                $data['deleted_admission_results'] = $this->deleted_admission_results;
+                $this->render('templates/header',$data);
+                $this->render('admin/addguidance',$data);
+                $this->render('templates/footer');
     }
 
     public function delete()

@@ -194,10 +194,19 @@
                             </table>
                             <div class="col-lg-4 float-right ">
                                 <div class="text-left form-material">
-                                    <input type="text" required name="info[guidance_counselor]" id="" readonly value="JOAN A. MARTIZANO ZARTIGA,MA,RGC" class=" text-center form-control">
+                                        <div class="row">
+                                            <div class="col-lg-4 m-lg-auto">
+                                                <img  id="signature_image" class="mt-5 img-fluid" src="<?= APP['DOC_ROOT'] ?>assets/img/uploads/untitled.png" alt="">
+                                            </div>
+                                        </div>
+                                        <select type="text" required name="info[guidance_counselor]" id="guidance_counselor_name"  class=" text-center form-control">
+                                        <?php foreach ($guidance_conselors as $informations): ?>
+                                            <option value="<?= $informations['id']; ?>"><?= $informations['fullname']; ?></option>
+                                        <?php endforeach ?>
+                                    </select>
                                 </div>
                                 <div class="text-center">
-                                    <label for="">Guidance Counselor III</label>
+                                    <label for="" id="position"><?= $guidance_conselors[0]['position']; ?></label>
                                 </div>
                                 <br>
                                 <input type="hidden" value="add_admission_result" name="action">

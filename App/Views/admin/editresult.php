@@ -207,10 +207,28 @@ function calculateEquivalent($value , $compare = [])
                             </table>
                             <div class="col-lg-4 float-right ">
                                 <div class="text-left form-material">
-                                    <input type="text" required name="info[guidance_counselor]" id="guidance_counselor"  value="<?= $examiner_results['guidance_counselor']  ?>" class=" text-center form-control">
+                                    <div class="col-lg-4 m-lg-auto">
+                                        <?php foreach ($guidance_conselors as $key => $values): ?>
+                                             <?php if ($values['fullname'] === $examiner_results['fullname']): ?>
+                                               <img  id="signature_image" class="mt-5 img-fluid" src="<?= APP['DOC_ROOT'] ?>assets/img/uploads/<?php echo $values['signature'];  ?>" alt="">
+                                             <?php endif ?>
+                                        <?php endforeach ?>
+                                    </div>
+                                      <select type="text" required name="info[guidance_counselor]" id="guidance_counselor_name"  class=" text-center form-control">
+                                        <?php global $position; ?>
+                                        <?php foreach ($guidance_conselors as $key => $informations):?>
+                                            <option <?= ($informations['fullname'] === $examiner_results['fullname']) ? 'selected' : null ?> value="<?= $informations['id']; ?>" ">
+                                                <?php
+                                                    echo $informations['fullname'];
+                                                   ($informations['fullname'] === $examiner_results['fullname']) ? $position = $key : null
+                                                ?>
+                                            </option>
+                                        <?php endforeach ?>
+                                    </select>
                                 </div>
                                 <div class="text-center">
-                                    <label for="">Guidance Counselor III</label>
+                                   <label for="" id="position"><?= $guidance_conselors[$position]['position'] ?></label>
+
                                 </div>
                                 <br>
                                 <input type="hidden" value="edit_admission_result" name="action">

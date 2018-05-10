@@ -23,5 +23,6 @@
 <script src="<?= APP['DOC_ROOT'] ?>assets/js/admin/addadmission.js"></script>
 <script src="<?= APP['DOC_ROOT'] ?>assets/js/admin/editadmission.js"></script>
 <script src="<?= APP['DOC_ROOT'] ?>assets/js/admin/admissionkeypress.js"></script>
+<script src="<?= APP['DOC_ROOT'] ?>assets/js/admin/addnewcounselor.js"></script>
 </body>
 </html>

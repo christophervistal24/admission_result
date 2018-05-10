@@ -18,18 +18,16 @@ SELECT
     `entrace_rating`.`quantitative_reasoning`,
     `entrace_rating`.`verbal_total`,
     `entrace_rating`.`non_verbal_total`,
-    `entrace_rating`.`over_all_total`,
-    `admission_result`.`guidance_counselor`,
-    `course`.`course` as first_course,
-    `course_2`.`course` as second_course
+    `entrace_rating`.`over_all_total`, `course`.`course` as first_course,
+    `course_2`.`course` as second_course ,`guidance_conselors`.`fullname` as guidance_counselor,
+    `guidance_conselors`.`position` as position , `guidance_conselors`.`signature`
 FROM
     admission_result
-    INNER JOIN examiner_info ON admission_result.examiner_info_id = examiner_info.id
-    LEFT JOIN entrace_rating ON admission_result.entrace_rating_id = entrace_rating.id
-    INNER JOIN course ON admission_result.preferred_course_id_1 = course.id
-    LEFT JOIN course AS course_2
-ON
-    admission_result.preferred_course_id_2 = course_2.id
+INNER JOIN examiner_info ON admission_result.examiner_info_id = examiner_info.id
+LEFT JOIN entrace_rating ON admission_result.entrace_rating_id = entrace_rating.id
+INNER JOIN course ON admission_result.preferred_course_id_1 = course.id
+LEFT JOIN course AS course_2 ON admission_result.preferred_course_id_2 = course_2.id
+LEFT JOIN guidance_conselors ON guidance_conselors.id = admission_result.guidance_counselor_id
 WHERE
     admission_result.id = ' $_GET[id] '
 ")->fetch(PDO::FETCH_ASSOC);
@@ -504,10 +502,12 @@ $pdf->Ln(20);
 $pdf->Cell(0,0,'Date Printed: ' . date('d/m/Y h:i A',time()),0,0,'L');
 $pdf->SetFont('Arial','',10);
 $pdf->Line(113,162,190,162);
-$pdf->Cell(0,0,$result['guidance_counselor'],0,0,'R');
+$pdf->setRightMargin(87);
+$pdf->Image($_SERVER['DOCUMENT_ROOT'] . '/system/assets/img/uploads/'.$result['signature'],145,145,15);
+$pdf->Cell(0,0,$result['guidance_counselor'],0,0,'C');
 $pdf->SetFont('Arial','',9);
 $pdf->setRightMargin(40);
-$pdf->Cell(0,11,'Guidance Counselor III',0,0,'R');
+$pdf->Cell(0,11,$result['position'],0,0,'R');
 $pdf->setLeftMargin(20);
 $pdf->Ln(10.5);
 $pdf->SetFont('Arial','I',7);

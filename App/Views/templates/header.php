@@ -198,8 +198,18 @@
                         <ul class="nav-main">
                             <a href="dashboard"><i class="si si-user"></i><span class="sidebar-mini-hide">Dashboard</span></a>
                             <a href="profile"><i class="si si-user"></i><span class="sidebar-mini-hide">Profile</span></a>
-                            <a href="new"><i class="si si-user"></i><span class="sidebar-mini-hide">Add admission results</span></a>
                              <li>
+                                <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-cup"></i><span class="sidebar-mini-hide">Add</span></a>
+                                <ul>
+                                    <li>
+                                        <a href="addguidance">Add Guidance Counselor</a>
+                                    </li>
+                                    <li>
+                                        <a href="new">Add Admission Result</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
                                 <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-cup"></i><span class="sidebar-mini-hide">Account Settings</span></a>
                                 <ul>
                                     <li>
