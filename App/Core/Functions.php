@@ -107,7 +107,7 @@ trait Functions
 
     public static function confirm_session_is_valid() {
         if(!self::is_session_valid()) {
-            end_session();
+            self::end_session();
             header("/system/page/index");
             exit;
         }
@@ -145,4 +145,14 @@ trait Functions
         self::confirm_session_is_valid();
     }
 
+    public function calculateEquivalent($value , $compare = [])
+    {
+        if ($value > $compare[0]) {
+                return "Above Average";
+        }   else if ($value < $compare[1]){
+                return "Below Average";
+        }   else{
+                return "Average";
+        }
+    }
 }

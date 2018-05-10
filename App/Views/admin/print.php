@@ -2,6 +2,7 @@
 <?php
 date_default_timezone_set('Asia/Manila');
 use App\Model\User;
+use App\Core\Functions;
 $db = (new User)->connect();
 $result = $db->query("
 SELECT
@@ -459,37 +460,37 @@ $html='<table border="1" >
 <tr>
 <td width="200">&nbsp;</td>
 <td width="200">                        '.$result['over_all_total'].'</td>
-<td width="200">(DATA HERE)</td>
+<td width="200">'.Functions::calculateEquivalent($result['over_all_total'],[64,25]).'</td>
 </tr>
 <tr>
 <td width="200" height="30">               VERBAL</td><td width="200" height="30">                        '.$result['verbal_total'].'</td>
-<td width="200" height="30">(DATA HERE)</td>
+<td width="200" height="30">'.Functions::calculateEquivalent($result['verbal_total'],[21,13]).'</td>
 </tr>
 <tr>
 <td width="200" height="30" >Verbal Comprehension</td>
 <td width="200" height="30">                        '.$result['verbal_comprehension'].'</td>
-<td width="200" height="30">(DATA HERE)</td>
+<td width="200" height="30">'.Functions::calculateEquivalent($result['verbal_comprehension'],[8,5]).'</td>
 </tr>
 <tr>
 <td width="200" height="30">Verbal Reasoning</td>
 <td width="200" height="30">                        '.$result['verbal_reasoning'].'</td>
-<td width="200" height="30">(DATA HERE)</td>
+<td width="200" height="30">'.Functions::calculateEquivalent($result['verbal_reasoning'],[13,8]).'</td>
 </tr>
 
 <tr>
 <td width="200" height="30">            NON VERBAL</td><td width="200" height="30">
                        '.$result['non_verbal_total'].'</td>
-<td width="200" height="30">(DATA HERE)</td>
+<td width="200" height="30">'.Functions::calculateEquivalent($result['non_verbal_total'],[24,13]).'</td>
 </tr>
 <tr>
 <td width="200" height="30">Figurative Reasoning</td>
 <td width="200" height="30">                        '.$result['figurative_reasoning'].'</td>
-<td width="200" height="30">(DATA HERE)</td>
+<td width="200" height="30">'.Functions::calculateEquivalent($result['figurative_reasoning'],[11,6]).'</td>
 </tr>
 <tr>
 <td width="200" height="30">Quantitative Reasoning</td>
 <td width="200" height="30">                        '.$result['quantitative_reasoning'].'</td>
-<td width="200" height="30">(DATA HERE)</td>
+<td width="200" height="30">'.Functions::calculateEquivalent($result['quantitative_reasoning'],[13,7]).'</td>
 </tr>
 
 

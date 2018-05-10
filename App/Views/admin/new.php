@@ -121,7 +121,7 @@
                                         <th class="text-center d-none d-sm-table-cell" rowspan="2">Raw Score <hr><input type="number" readonly="" name="exam_rating[over_all_total]" class="form-control border-0 text-center" id="over_all_total" placeholder="OVER ALL TOTAL"></th>
 
                                         <th class="text-center">Descriptive Equivalent <hr>
-                                            <input type="text" readonly id="over_all_total_equivalent" class="form-control">
+                                            <input type="text" readonly id="over_all_total_equivalent" class="text-center form-control">
                                         </th>
                                     </tr>
                                 </thead>
@@ -139,7 +139,7 @@
                                         </th>
                                         <td><input  id="total_of_verbal" name="exam_rating[verbal_total]" placeholder="TOTAL OF VERBAL" type="number"  readonly class="total text-center form-control border-0"></td>
                                         <td class="text-center d-none d-sm-table-cell">
-                                            <input class="form-control" type="text" id="verbal_total-equivalent">
+                                            <input class="form-control text-center" readonly type="text" id="verbal_total-equivalent">
                                         </td>
                                     </tr>
                                     <tr>
@@ -147,7 +147,7 @@
                                             <input type="number" required name="exam_rating[verbal_comprehension]" id="verbal-comprehension"  class="verbal-score text-center form-control border-0" placeholder="Enter score here..">
                                         </th>
                                         <td class="text-center d-none d-sm-table-cell">
-                                            <input type="text" class="form-control" id="verbal_comprehension_equivalent">
+                                            <input type="text" readonly class="text-center form-control" id="verbal_comprehension_equivalent">
                                         </td>
                                     </tr>
                                     <tr>
@@ -155,7 +155,7 @@
                                             <input type="number" required id="verbal-reasoning" name="exam_rating[verbal_reasoning]" class="verbal-score text-center form-control border-0" placeholder="Enter score here..">
                                         </th>
                                         <td class="text-center d-none d-sm-table-cell">
-                                            <input class="form-control" type="text" id="verbal_reasoning_equivalent">
+                                            <input class="form-control text-center" readonly type="text" id="verbal_reasoning_equivalent">
                                         </td>
                                     </tr>
                                     <tr>
@@ -171,7 +171,7 @@
                                         </th>
                                         <td class="text-center"><input  name="exam_rating[non_verbal_total]" id="total_of_non_verbal" placeholder="NON VERBAL TOTAL" readonly type="number"  class="total text-center form-control border-0"></td>
                                         <td class="text-center d-none d-sm-table-cell">
-                                            <input type="text" class="form-control" id="non_verbal-equivalent">
+                                            <input type="text" readonly class="text-center form-control" id="non_verbal-equivalent">
                                         </td>
                                     </tr>
                                     <tr>
@@ -179,7 +179,7 @@
                                             <input type="number"  name="exam_rating[figurative_reasoning]" id="figurative-reasoning" required class="non-verbal-score text-center form-control border-0" placeholder="Enter score here..">
                                         </th>
                                         <td class="text-center d-none d-sm-table-cell">
-                                            <input type="text" class="form-control" id="figurative-equivalent">
+                                            <input type="text" readonly class="text-center form-control" id="figurative-equivalent">
                                         </td>
                                     </tr>
                                     <tr>
@@ -187,7 +187,7 @@
                                             <input type="number" required name="exam_rating[quantitative_reasoning]"  id="quantitative-reasoning" class="non-verbal-score text-center form-control border-0" placeholder="Enter score here..">
                                         </th>
                                         <td class="text-center d-none d-sm-table-cell">
-                                            <input class="form-control" type="text" id="quantitative-equivalent">
+                                            <input class="form-control text-center"  readonly type="text" id="quantitative-equivalent">
                                         </td>
                                     </tr>
                                 </tbody>
