@@ -142,5 +142,60 @@ if (isset($_POST['action'])) {
         }
         break;
 
+        case '_create':
+            extract($_POST['admin']);
+            extract($_FILES['image']);
+            $path = 'assets/img/uploads/';
+            $db->beginTransaction();
+            try {
+                $sql =
+                "
+               INSERT INTO `tbl_users`(
+                    `username`,
+                    `password`,
+                    `created_at`
+                )
+                VALUES(?,?,?)
+                ";
+                $stmt1 = $db->prepare($sql);
+                $stmt1->execute([
+                    $username,
+                    Functions::set_password_hash($password),
+                    time(),
+                ]);
+
+                $user_id = $db->lastInsertId();
+                $sql2 =
+                "
+                INSERT INTO `tbl_user_info`(
+                    `user_id`,
+                    `firstname`,
+                    `middlename`,
+                    `lastname`,
+                    `gender`,
+                    `birthdate`,
+                    `profile`
+                )
+                VALUES(?,?,?,?,?,?,?)
+                ";
+                $stmt2 = $db->prepare($sql2);
+                $stmt2->execute([
+                    $user_id,
+                    $firstname,
+                    $middlename,
+                    $lastname,
+                    $gender,
+                    $birthday,
+                    $name
+                ]);
+                if($db->commit() === true &&  move_uploaded_file($tmp_name,APP['URL_ROOT'].$path.$name)){
+                    echo json_encode(['success'=>true,'message'=>'Successfully create new account']);
+                }
+            } catch (Exception $e) {
+                echo $e->getMessage();
+                $db->rollBack();
+            }
+        break;
+
     }
 }

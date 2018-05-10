@@ -57,7 +57,7 @@
                 <!-- Side Content -->
                 <div class="content-side">
                     <!-- Search -->
-                    <div class="block pull-t pull-r-l">
+                    <!-- <div class="block pull-t pull-r-l">
                         <div class="block-content block-content-full block-content-sm bg-body-light">
                             <form action="be_pages_generic_search.html" method="post">
                                 <div class="input-group">
@@ -70,10 +70,10 @@
                                 </div>
                             </form>
                         </div>
-                    </div>
+                    </div> -->
                     <!-- END Search -->
                     <!-- Mini Stats -->
-                    <div class="block pull-r-l">
+                   <!--  <div class="block pull-r-l">
                         <div class="block-content block-content-full block-content-sm bg-body-light">
                             <div class="row">
                                 <div class="col-4">
@@ -90,7 +90,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <!-- END Mini Stats -->
                     <!-- Friends -->
                     <div class="block pull-r-l">
@@ -196,10 +196,10 @@
                     <!-- Side Navigation -->
                     <div class="content-side content-side-full">
                         <ul class="nav-main">
-                            <a href="dashboard"><i class="si si-user"></i><span class="sidebar-mini-hide">Dashboard</span></a>
+                            <a href="dashboard"><i class="fa fa-dashboard"></i><span class="sidebar-mini-hide">Dashboard</span></a>
                             <a href="profile"><i class="si si-user"></i><span class="sidebar-mini-hide">Profile</span></a>
                              <li>
-                                <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-cup"></i><span class="sidebar-mini-hide">Add</span></a>
+                                <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-plus"></i><span class="sidebar-mini-hide">Add</span></a>
                                 <ul>
                                     <li>
                                         <a href="addguidance">Add Guidance Counselor</a>
@@ -207,16 +207,16 @@
                                     <li>
                                         <a href="new">Add Admission Result</a>
                                     </li>
+                                     <li>
+                                        <a href="createnew">Add New User</a>
+                                    </li>
                                 </ul>
                             </li>
                             <li>
-                                <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-cup"></i><span class="sidebar-mini-hide">Account Settings</span></a>
+                                <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-settings"></i><span class="sidebar-mini-hide">Account Settings</span></a>
                                 <ul>
                                     <li>
-                                        <a href="profile">Personal Information</a>
-                                    </li>
-                                    <li>
-                                        <a href="createnew">Create new admin</a>
+                                        <a href="changeinfo">Personal Information</a>
                                     </li>
                                 </ul>
                             </li>
@@ -243,10 +243,10 @@
                     <!-- END Toggle Sidebar -->
                     <!-- Open Search Section -->
                     <!-- Layout API, functionality initialized in Codebase() -> uiApiLayout() -->
-                    <button type="button" class="btn btn-circle btn-dual-secondary" data-toggle="layout" data-action="header_search_on">
-                    date
+                    <a  class="btn  btn-dual-secondary">
+                    <?= date('l jS \of F Y  ',time()); ?>
                     <!-- <i class="fa fa-search"></i> -->
-                    </button>
+                    </a>
                     <!-- END Open Search Section -->
                     <!-- Layout Options (used just for demonstration) -->
                     <!-- Layout API, functionality initialized in Codebase() -> uiApiLayout() -->
@@ -340,7 +340,7 @@
                     <!-- Toggle Side Overlay -->
                     <!-- Layout API, functionality initialized in Codebase() -> uiApiLayout() -->
                     <button type="button" class="btn btn-circle btn-dual-secondary" data-toggle="layout" data-action="side_overlay_toggle">
-                    <i class="fa fa-tasks"></i>
+                    <i class="fa fa-trash"></i>
                     </button>
                     <!-- END Toggle Side Overlay -->
                 </div>

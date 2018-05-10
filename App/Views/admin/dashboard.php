@@ -1,4 +1,40 @@
 <div class="block">
+    <div class="row gutters-tiny">
+        <!-- Row #1 -->
+        <div class="col-md-6 col-xl-3">
+            <a class="block block-link-shadow" href="javascript:void(0)">
+                <div class="block-content block-content-full">
+                    <div class="font-size-h2 font-w700"><?= $no_of_admission_results; ?></div>
+                    <div class="font-size-sm font-w600 text-uppercase text-muted">No. of Admission Results</div>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-6 col-xl-3">
+            <a class="block block-link-shadow" href="javascript:void(0)">
+                <div class="block-content block-content-full">
+                    <div class="font-size-h2 font-w700"><?= $no_of_deleted_admission_results; ?></div>
+                    <div class="font-size-sm font-w600 text-uppercase text-muted">No. of Deleted Admission Results</div>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-6 col-xl-3">
+            <a class="block block-link-shadow" href="javascript:void(0)">
+                <div class="block-content block-content-full text-right">
+                    <div class="font-size-h2 font-w700"><?= $guidance_conselors; ?></div>
+                    <div class="font-size-sm font-w600 text-uppercase text-muted">No.  of Guidance Counselors</div>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-6 col-xl-3">
+            <a class="block block-link-shadow" href="javascript:void(0)">
+                <div class="block-content block-content-full text-right">
+                    <div class="font-size-h2 font-w700"><?= $no_of_users; ?></div>
+                    <div class="font-size-sm font-w600 text-uppercase text-muted">No. of Users</div>
+                </div>
+            </a>
+        </div>
+        <!-- END Row #1 -->
+    </div>
     <div class="block-header block-header-default">
         <h3 class="block-title">List of <small>Admission results</small></h3>
     </div>

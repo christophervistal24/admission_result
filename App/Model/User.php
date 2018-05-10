@@ -27,7 +27,6 @@ class User extends Database
                 return false;
             }else{
                 $_SESSION['id'] = $result['id'];
-                Functions::after_successful_login();
                 header("Location:/system/admin/dashboard");
             }
          }
@@ -257,6 +256,11 @@ class User extends Database
             return true;
         }
         return false;
+    }
+
+    public function count_user()
+    {
+        return $this->db->query("SELECT username FROM tbl_users")->fetchAll(PDO::FETCH_ASSOC);
     }
 
 }

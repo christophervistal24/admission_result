@@ -19,10 +19,14 @@ class Admin extends Controller
     public function index()
     {
         if (!Functions::before_every_protected_page()) {
-            $data['title']            = 'Dashboard';
-            $data['info']             = $this->profile;
-            $data['admission_result'] = $this->model->getAllAdmissionResult();
-            $data['deleted_admission_results'] = $this->deleted_admission_results;
+            $data['title']                           = 'Dashboard';
+            $data['info']                            = $this->profile;
+            $data['admission_result']                = $this->model->getAllAdmissionResult();
+            $data['guidance_conselors']              = count($this->model->getAllGuidanceConselors());
+            $data['no_of_admission_results']         = count($this->model->getAllAdmissionResult());
+            $data['no_of_deleted_admission_results'] = count($this->deleted_admission_results);
+            $data['no_of_users']                     = count($this->model->count_user());
+            $data['deleted_admission_results']       = $this->deleted_admission_results;
             $this->render('templates/header',$data);
             $this->render('admin/dashboard',$data);
             $this->render('templates/footer');
@@ -73,7 +77,7 @@ class Admin extends Controller
 
     public function profile()
     {
-        if (!Functions::before_every_protected_page()) {
+         if (!Functions::before_every_protected_page()) {
                     $data['info'] = $this->profile;
                     $data['deleted_admission_results'] = $this->deleted_admission_results;
                     $this->render('templates/header',$data);
@@ -130,6 +134,30 @@ class Admin extends Controller
         }
     }
 
+    public function changeinfo()
+    {
+         if (!Functions::before_every_protected_page()) {
+                    $data['info'] = $this->profile;
+                    $data['deleted_admission_results'] = $this->deleted_admission_results;
+                    $this->render('templates/header',$data);
+                    $this->render('admin/changeinfo',$data);
+                    $this->render('templates/footer');
+        }
+    }
+
+    public function createnew()
+    {
+        if (!Functions::before_every_protected_page()) {
+            $data['title']            = 'Dashboard';
+            $data['info']             = $this->profile;
+            $data['admission_result'] = $this->model->getAllAdmissionResult();
+            $data['deleted_admission_results'] = $this->deleted_admission_results;
+            $this->render('templates/header',$data);
+            $this->render('admin/createnew',$data);
+            $this->render('templates/footer');
+        }
+    }
+
     public function restore()
     {
         if (isset($_GET['a_id']) && !Functions::before_every_protected_page()) {
@@ -140,7 +168,6 @@ class Admin extends Controller
 
     public function logout()
     {
-        Functions::after_successful_logout();
         $this->render('admin/logout');
     }
 }
