@@ -17,6 +17,16 @@ trait Functions
        return $this->input;
     }
 
+    public function set_password_hash($password)
+    {
+        return password_hash($password,PASSWORD_DEFAULT);
+    }
+
+    public function is_user(array $data = null)
+    {
+        return password_verify($data['input_password'],$data['password_from_db']);
+    }
+
     protected function lastElementKeyAndvalue(array $array_items)
     {
         end($array_items);

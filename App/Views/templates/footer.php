@@ -24,5 +24,8 @@
 <script src="<?= APP['DOC_ROOT'] ?>assets/js/admin/editadmission.js"></script>
 <script src="<?= APP['DOC_ROOT'] ?>assets/js/admin/admissionkeypress.js"></script>
 <script src="<?= APP['DOC_ROOT'] ?>assets/js/admin/addnewcounselor.js"></script>
+<script src="<?= APP['DOC_ROOT'] ?>assets/js/admin/change_information.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/additional-methods.js"></script>
 </body>
 </html>

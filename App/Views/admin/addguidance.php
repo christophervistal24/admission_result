@@ -7,22 +7,22 @@
             <div class="row">
                 <div class="form-group col-lg-12">
                     <label>Fullname with degree</label>
-                    <input type="text" name="fullname_with_degree" class="form-control">
+                    <input type="text" required name="fullname_with_degree" class="form-control">
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-lg-3">
                     <label>Position : </label>
-                    <input type="text" name="position" id="position" class="form-control">
+                    <input type="text" required name="position" id="position" class="form-control">
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-lg-3">
                     <label for="">Signature ( Attach an image )</label>
-                    <input type="file" name="signature_image" id="signature_image">
+                    <input type="file" required name="signature_image" id="signature_image">
                 </div>
             </div>
-            <input type="hidden" name="action" value="add_new_g_counselor">
+            <input type="hidden" required name="action" value="add_new_g_counselor">
             <div class="form-group">
                 <input type="submit" value="Add" class="btn btn-primary rounded-0 border-0">
             </div>

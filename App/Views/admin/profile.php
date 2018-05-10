@@ -5,7 +5,7 @@
             <!-- Avatar -->
             <div class="mb-15">
                 <a class="img-link" href="profile">
-                    <img class="img-avatar img-avatar96 img-avatar-thumb" src="<?= APP['DOC_ROOT'] ?>/assets/img/uploads/<?= $profile; ?>" alt="">
+                    <img id="change_info_img" class="img-avatar img-avatar96 img-avatar-thumb" src="<?= APP['DOC_ROOT'] ?>/assets/img/uploads/<?= $profile; ?>" alt="">
                 </a>
             </div>
             <!-- END Avatar -->
@@ -63,7 +63,7 @@
                             <label class="col-lg-4 col-form-label" for="val-password">Password *</label>
                             <div class="col-lg-8"><input required type="password" class="form-control" id="val_password" name="password" placeholder=""></div>
                         </div>
-                        <input type="hidden" value="change_information" name="action">
+                        <input type="hidden" value="change_personal_information" name="action">
                         <div class="form-group row col-lg-8 ml-auto"><button type="submit" class="btn btn-alt-primary float-right">Change information</button></div>
                     </form>
                     <hr>

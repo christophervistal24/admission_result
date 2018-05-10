@@ -213,7 +213,7 @@
                                 <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-cup"></i><span class="sidebar-mini-hide">Account Settings</span></a>
                                 <ul>
                                     <li>
-                                        <a href="changeinfo">Personal Information</a>
+                                        <a href="profile">Personal Information</a>
                                     </li>
                                     <li>
                                         <a href="createnew">Create new admin</a>

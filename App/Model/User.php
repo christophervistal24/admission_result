@@ -16,11 +16,14 @@ class User extends Database
             "
                 SELECT username,password,id
                 FROM tbl_users
-                WHERE username = '$username' AND password = '$password'
+                WHERE username = '$username'
             ";
 
             $result = $this->db->query($sql)->fetch(PDO::FETCH_ASSOC);
-            if(empty($result) && isset($result)){
+            if(!$this->is_user([
+                'input_password'   => $password,
+                'password_from_db' => $result['password'],
+            ])){
                 return false;
             }else{
                 $_SESSION['id'] = $result['id'];
@@ -242,6 +245,18 @@ class User extends Database
             FROM
                 `guidance_conselors` WHERE `id` = '$id'
         ")->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function checkPassword($id,$password)
+    {
+        $result = $this->db->query("SELECT password FROM tbl_users WHERE id = '$id'")->fetch(PDO::FETCH_ASSOC);
+        if ($this->is_user([
+            'input_password' => $password,
+            'password_from_db' => $result['password'],
+        ])) {
+            return true;
+        }
+        return false;
     }
 
 }
