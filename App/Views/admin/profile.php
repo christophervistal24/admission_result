@@ -13,7 +13,7 @@
             <!-- Personal -->
             <h1 class="h3 text-primary-light font-w700 mb-10 text-capitalize"><?= $firstname . ' ' . substr($middlename,0,1) . '. ' . $lastname; ?></h1>
             <!-- END Personal -->
-            <a class="btn btn-rounded btn-hero btn-sm btn-alt-primary mb-5" href="changeinfo">
+            <a class="btn btn-rounded btn-hero btn-sm btn-alt-primary mb-5" href="profile">
                 <i class="fa fa-user-o mr-5"></i> Admin
             </a>
             <!-- END Actions -->

@@ -28,8 +28,8 @@
 <script src="<?= APP['DOC_ROOT'] ?>assets/js/admin/custom.js"></script>
 <script src="<?= APP['DOC_ROOT'] ?>assets/js/plugins/sparkline/jquery.sparkline.min.js"></script>
 <script src="<?= APP['DOC_ROOT'] ?>assets/js/pages/be_blocks_widgets_stats.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/additional-methods.js"></script>
+<script src="<?= APP['DOC_ROOT'] ?>assets/js/jqueryvalidation.js"></script>
+<script src="<?= APP['DOC_ROOT'] ?>assets/js/additionalmethodsjvalidate.js"></script>
  <!-- Page JS Code -->
         <script>
             jQuery(function () {
