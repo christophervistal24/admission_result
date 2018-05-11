@@ -56,43 +56,6 @@
                 <!-- END Side Header -->
                 <!-- Side Content -->
                 <div class="content-side">
-                    <!-- Search -->
-                    <!-- <div class="block pull-t pull-r-l">
-                        <div class="block-content block-content-full block-content-sm bg-body-light">
-                            <form action="be_pages_generic_search.html" method="post">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" id="side-overlay-search" name="side-overlay-search" placeholder="Search..">
-                                    <span class="input-group-btn">
-                                        <button type="submit" class="btn btn-secondary px-10">
-                                        <i class="fa fa-search"></i>
-                                        </button>
-                                    </span>
-                                </div>
-                            </form>
-                        </div>
-                    </div> -->
-                    <!-- END Search -->
-                    <!-- Mini Stats -->
-                   <!--  <div class="block pull-r-l">
-                        <div class="block-content block-content-full block-content-sm bg-body-light">
-                            <div class="row">
-                                <div class="col-4">
-                                    <div class="font-size-sm font-w600 text-uppercase text-muted">Clients</div>
-                                    <div class="font-size-h4">460</div>
-                                </div>
-                                <div class="col-4">
-                                    <div class="font-size-sm font-w600 text-uppercase text-muted">Sales</div>
-                                    <div class="font-size-h4">728</div>
-                                </div>
-                                <div class="col-4">
-                                    <div class="font-size-sm font-w600 text-uppercase text-muted">Earnings</div>
-                                    <div class="font-size-h4">$7,860</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
-                    <!-- END Mini Stats -->
-                    <!-- Friends -->
                     <div class="block pull-r-l">
                         <div class="block-header bg-body-light">
                             <h3 class="block-title"><i class="fa fa-fw fa-trash font-size-default mr-5"></i>DELETED ADMISSION RESULTS</h3>
@@ -104,14 +67,11 @@
                             <ul class="nav-users push">
                                 <?php foreach ($deleted_admission_results as $keys => $info): ?>
                                 <li>
-
-                                        <i class="fa fa-fw fa-trash"></i> <?= $info['Fullname'] ?>
-
-                                        <div class="d-inline-flex">
-                                            <a class="font-w400" href="/system/admin/restore?a_id=<?= urlencode($info['id'])?>">Restore</a>
-                                            <a href="/system/admin/permanent_delete?a_id=<?= urlencode($info['id'])?>&e_r_id=<?=urlencode($info['entrace_rating_id'])?>&e_i_id=<?=urlencode($info['examiner_info_id'])?>" class="font-w400 ">P - Delete</a>
-                                        </div>
-
+                                    <i class="fa fa-fw fa-trash"></i> <?= $info['Fullname'] ?>
+                                    <div class="d-inline-flex">
+                                        <a class="font-w400" href="/system/admin/restore?a_id=<?= urlencode($info['id'])?>">Restore</a>
+                                        <a href="/system/admin/permanent_delete?a_id=<?= urlencode($info['id'])?>&e_r_id=<?=urlencode($info['entrace_rating_id'])?>&e_i_id=<?=urlencode($info['examiner_info_id'])?>" class="font-w400 ">P - Delete</a>
+                                    </div>
                                 </li>
                                 <?php endforeach ?>
                             </ul>
@@ -151,7 +111,7 @@
                             <!-- END Close Sidebar -->
                             <!-- Logo -->
                             <div class="content-header-item">
-                                <a class="link-effect font-w700" href="/system/admin/">
+                                <a class="link-effect font-w700" href="/system/admin/dashboard">
                                     <span class="font-size-xl text-primary">SDSSU</span>
                                 </a>
                             </div>
@@ -198,16 +158,25 @@
                         <ul class="nav-main">
                             <a href="dashboard"><i class="fa fa-dashboard"></i><span class="sidebar-mini-hide">Dashboard</span></a>
                             <a href="profile"><i class="si si-user"></i><span class="sidebar-mini-hide">Profile</span></a>
-                             <li>
-                                <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-plus"></i><span class="sidebar-mini-hide">Add</span></a>
+
+                            <li>
+                                <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-plus"></i><span class="sidebar-mini-hide">G - Counselors</span></a>
                                 <ul>
                                     <li>
                                         <a href="addguidance">Add Guidance Counselor</a>
                                     </li>
                                     <li>
+                                        <a  href="list"></i>List of Guidance Counselors</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-plus"></i><span class="sidebar-mini-hide">Add</span></a>
+                                <ul>
+                                    <li>
                                         <a href="new">Add Admission Result</a>
                                     </li>
-                                     <li>
+                                    <li>
                                         <a href="createnew">Add New User</a>
                                     </li>
                                 </ul>
@@ -244,8 +213,8 @@
                     <!-- Open Search Section -->
                     <!-- Layout API, functionality initialized in Codebase() -> uiApiLayout() -->
                     <a  class="btn  btn-dual-secondary">
-                    <?= date('l jS \of F Y  ',time()); ?>
-                    <!-- <i class="fa fa-search"></i> -->
+                        <?= date('l jS \of F Y  ',time()); ?>
+                        <!-- <i class="fa fa-search"></i> -->
                     </a>
                     <!-- END Open Search Section -->
                     <!-- Layout Options (used just for demonstration) -->

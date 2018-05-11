@@ -107,11 +107,13 @@ class Admin extends Controller
 
     public function addguidance()
     {
+        if (!Functions::before_every_protected_page()) {
                 $data['info'] = $this->profile;
                 $data['deleted_admission_results'] = $this->deleted_admission_results;
                 $this->render('templates/header',$data);
                 $this->render('admin/addguidance',$data);
                 $this->render('templates/footer');
+        }
     }
 
     public function delete()
@@ -164,6 +166,36 @@ class Admin extends Controller
             $data['id'] = $_GET['a_id'];
             $result = $this->model->modify_admission_result($data['id'],'NO');
         }
+    }
+
+    public function list()
+    {
+        if (!Functions::before_every_protected_page()) {
+            $data['title']                     = 'List of Guidance Counselor';
+            $data['info']                      = $this->profile;
+            $data['admission_result']          = $this->model->getAllAdmissionResult();
+            $data['deleted_admission_results'] = $this->deleted_admission_results;
+            $data['guidance_conselors']        = $this->model->getAllGuidanceConselors();
+            $this->render('templates/header',$data);
+            $this->render('admin/list',$data);
+            $this->render('templates/footer');
+        }
+    }
+
+     public function editguidance()
+    {
+        if (!Functions::before_every_protected_page()) {
+            if (isset($_GET['id'])) {
+                $data['id'] = $_GET['id'];
+            }
+            $data['info'] = $this->profile;
+            $data['deleted_admission_results'] = $this->deleted_admission_results;
+            $fetch_data['counselor_information'] = $this->model->getGuidanceConselorByName($data['id']);
+            $this->render('templates/header',$data);
+            $this->render('admin/editguidance',$data + $fetch_data);
+            $this->render('templates/footer');
+        }
+
     }
 
     public function logout()

@@ -52,7 +52,7 @@
                     <th class="text-center d-none d-sm-table-cell" style="width: 15%;">V. Total</th>
                     <th class="text-center d-none d-sm-table-cell" style="width: 15%;">Non V. Total</th>
                     <th class="text-center d-none d-sm-table-cell" style="width: 15%;">Over All Total</th>
-                    <th class="text-center d-none d-sm-table-cell" style="width: 15%;">Actions</th>
+                    <th class="text-center d-none d-sm-table-cell">Actions</th>
                     <th class="text-center d-none d-sm-table-cell" style="width: 15%;">Delete</th>
                     <!-- <th class="d-none d-sm-table-cell" style="width: 15%;">P - First Course</th> -->
                     <!-- <th class="d-none d-sm-table-cell" style="width: 15%;">P - Second Course</th> -->

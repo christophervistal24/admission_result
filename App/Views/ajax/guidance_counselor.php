@@ -32,5 +32,31 @@ if (isset($_POST['action'])) {
             $id = $_POST['guidance_id'];
             echo json_encode(['informations'=>$user->getGuidanceConselorByName($id)]);
         break;
+
+        case 'edit_g_counselor':
+             extract($_POST);
+             extract($_FILES['signature_image']);
+                $path = 'assets/img/uploads/';
+                 $stmt = $db->prepare("
+                        UPDATE
+                            `guidance_conselors`
+                        SET
+                            `fullname` = ?,`position` = ?,`signature` = ?,`updated_at` = ?
+                        WHERE
+                            `id` = ?
+                ");
+                  $result = $stmt->execute(
+                    [
+                        $fullname_with_degree,
+                        $position,
+                        $name,
+                        time(),
+                        $id,
+                    ]
+                );
+                if ($result === true &&  move_uploaded_file($tmp_name,APP['URL_ROOT'].$path.$name)) {
+                        echo json_encode(['success'=>true,'message'=>'Information Update','image'=>$name]);
+                }
+        break;
     }
 }
