@@ -1,6 +1,5 @@
 {
     "require": {
-        "alexgarrett/violin": "2.*",
         "setasign/fpdf": "^1.8",
         "filp/whoops": "^2.3"
     },

@@ -7,39 +7,26 @@ use App\Helpers\Database\QueryHelper;
 
 abstract class Model extends Database
 {
-    // TODO Extract this to QueryHelper
+    // TODO Extract (SET statement in update method) to QueryHelper
     // TODO Add escape for every query params
 
-    /** @table [string] [Model table name] **/
     protected $table;
 
-    /** @primaryKey [string] [Model primary key] */
     protected $primaryKey;
 
-    /** @columns array [Model set of properties] */
     protected $columns = [];
 
-   /**
-    * [__construct execute Database class constructor which make a connection from the DB]
-    */
    public function __construct()
    {
         parent::__construct();
    }
 
-   /**
-    * [columns description]
-    * @return [type] [description]
-    */
    protected function columns() :array
    {
       return parent::columnsIn($this->table);
    }
 
-   /**
-    * [setModelProperties description]
-    * @param array $fields [description]
-    */
+  
    private function setModelProperties(array $fields = [])
    {
         // Set a values for a model properties
@@ -48,36 +35,21 @@ abstract class Model extends Database
         }
    }
 
-   /**
-    * [selectOnly description]
-    * @param  int    $id      [description]
-    * @param  array  $columns [description]
-    * @return [type]          [description]
-    */
+ 
    private function selectOnly(int $id , array $columns = ['*']) :string
    {
         $query = "SELECT " . implode(',',$columns) . " FROM {$this->table} WHERE id ='$id'";
         return $query;
    }
 
-   /**
-    * [select description]
-    * @param  array  $columns [description]
-    * @return [type]          [description]
-    */
+
    private function select(array $columns = ['*']) :string
    {
         $query = "SELECT " . implode(',',$columns) . " FROM {$this->table}";
         return $query;
    }
 
-   /**
-    * [fetch description]
-    * @param  string $where       [description]
-    * @param  string $where_value [description]
-    * @param  array  $columns     [description]
-    * @return [type]              [description]
-    */
+   
    private function fetch(string $where, string $where_value, array $columns = ['*']) :string
    {
       $query = "SELECT " . implode(',',$columns) . " FROM {$this->table} 
@@ -85,11 +57,7 @@ abstract class Model extends Database
       return $query;
    }
 
-   /**
-    * [insert description]
-    * @param  array  $values [description]
-    * @return [type]         [description]
-    */
+  
    private function insert(array $values = []) :string
    {
         // Function that will order the values by exact order of table columns
@@ -107,10 +75,7 @@ abstract class Model extends Database
         return $query;
    }
 
-   /**
-    * [update description]
-    * @return [type] [description]
-    */
+ 
    private function update()
    {
       // Prefix for Update
@@ -131,10 +96,7 @@ abstract class Model extends Database
        return $query;
    }
 
-   /**
-    * [delete description]
-    * @return [type] [description]
-    */
+
    private function delete() :string
    {
         $query = "
@@ -147,65 +109,40 @@ abstract class Model extends Database
         return $query;
    }
 
-   /**
-    * [countData description]
-    * @return [type] [description]
-    */
+   
    private function countData()
    {
         $query = "SELECT COUNT(id) as count FROM {$this->table}";
         return $query;
    }
   
-  /**
-   * [get description]
-   * @param  array  $columns [description]
-   * @return [type]          [description]
-   */
+ 
   public function get(array $columns = ['*']) :array 
   {
         return $this->db->query($this->select($columns))
                         ->fetchAll(PDO::FETCH_OBJ);
   }
  
-  /**
-   * [where description]
-   * @param  string $where       [description]
-   * @param  string $where_value [description]
-   * @param  array  $columns     [description]
-   * @return [type]              [description]
-   */
+
   public function where(string $where, string $where_value, array $columns = ['*'])
   {
       return $this->db->query($this->fetch($where,$where_value,$columns))
                       ->fetch(PDO::FETCH_OBJ);
   }
 
-   /**
-    * [create description]
-    * @param  array  $values [description]
-    * @return [type]         [description]
-    */
+   
    public function create(array $values = [])
    {
         $this->db->query($this->insert($values));
    }
 
-   /**
-    * [save description]
-    * @return [type] [description]
-    */
+ 
    public function save()
    {
-       $this->db->query(parent::update());
+       $this->db->query($this->update());
    }
 
-   /**
-    * [find description]
-    * @param  int    $id      [description]
-    * @param  array  $columns [description]
-    * @return [type]          [description]
-    */
+  
    public function find(int $id , array $columns = ['*']) :object 
    {
         $result = $this->db->query($this->selectOnly($id, $columns))
