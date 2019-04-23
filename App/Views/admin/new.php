@@ -67,7 +67,7 @@
                         </div>
                         <div class="col-lg-2 ml-lg-auto">
                             <div class="form-material">
-                                <input required type="number" name="info[age]" class="form-control" id="">
+                                <input required  placeholder="Fill Birthdate" type="number" readonly name="info[age]" class="text-center form-control font-weight-bold" id="examineeAge">
                             </div>
                             <div class="text-center">
                                 <label for="">Age</label>
@@ -75,7 +75,7 @@
                         </div>
                         <div class="col-lg-4 ml-lg-auto">
                             <div class="form-material">
-                                <input required type="date" name="info[birthdate]" class="form-control" id="">
+                                <input required type="date" name="info[birthdate]" class="form-control" id="birthDate">
                             </div>
                             <div class="text-center">
                                 <label for="">Birthdate</label>

@@ -449,51 +449,49 @@ $pdf->Cell(0,-25,'ENTRANCE EXAM RATING',0,0,'L');
 $pdf->MultiCell(0,0,false);
 $pdf->Ln(-8);
 $pdf->setLeftMargin(35);
-$html='<table border="1" >
-<tr>
-<td width="200" height="30">                  TOTAL</td>
-<td width="200" height="30">                Raw Score</td>
-<td width="200" height="30">      Descriptive Equivalent</td>
-</tr>
-<tr>
-<td width="200">&nbsp;</td>
-<td width="200">                        '.$result['over_all_total'].'</td>
-<td width="200">'.Functions::calculateEquivalent($result['over_all_total'],[64,25]).'</td>
-</tr>
-<tr>
-<td width="200" height="30">               VERBAL</td><td width="200" height="30">                        '.$result['verbal_total'].'</td>
-<td width="200" height="30">'.Functions::calculateEquivalent($result['verbal_total'],[21,13]).'</td>
-</tr>
-<tr>
-<td width="200" height="30" >Verbal Comprehension</td>
-<td width="200" height="30">                        '.$result['verbal_comprehension'].'</td>
-<td width="200" height="30">'.Functions::calculateEquivalent($result['verbal_comprehension'],[8,5]).'</td>
-</tr>
-<tr>
-<td width="200" height="30">Verbal Reasoning</td>
-<td width="200" height="30">                        '.$result['verbal_reasoning'].'</td>
-<td width="200" height="30">'.Functions::calculateEquivalent($result['verbal_reasoning'],[13,8]).'</td>
-</tr>
 
-<tr>
-<td width="200" height="30">            NON VERBAL</td><td width="200" height="30">
-                       '.$result['non_verbal_total'].'</td>
-<td width="200" height="30">'.Functions::calculateEquivalent($result['non_verbal_total'],[24,13]).'</td>
-</tr>
-<tr>
-<td width="200" height="30">Figurative Reasoning</td>
-<td width="200" height="30">                        '.$result['figurative_reasoning'].'</td>
-<td width="200" height="30">'.Functions::calculateEquivalent($result['figurative_reasoning'],[11,6]).'</td>
-</tr>
-<tr>
-<td width="200" height="30">Quantitative Reasoning</td>
-<td width="200" height="30">                        '.$result['quantitative_reasoning'].'</td>
-<td width="200" height="30">'.Functions::calculateEquivalent($result['quantitative_reasoning'],[13,7]).'</td>
-</tr>
+//START OF TABLE
+$pdf->Cell(40,5,'TOTAL',1,0,'C',0);
+$pdf->Cell(50,5,$result['over_all_total'],1,0,'C',0);
+$pdf->Cell(50,5,Functions::calculateEquivalent($result['over_all_total'],[64,25]),1,0,'C',0);
 
 
-</table>';
-$pdf->WriteHTML($html);
+            $pdf->Ln(); //line break
+$pdf->Cell(40,5,' ','LTR',0,'L',0);   // empty cell with left,top, and right borders
+$pdf->Cell(50,5,$result['verbal_total'],0,0,'C',0);
+$pdf->Cell(50,5,Functions::calculateEquivalent($result['verbal_total'],[21,13]),1,0,'C',0);
+
+                $pdf->Ln();
+
+$pdf->Cell(40,5,' VERBAL','LR',0,'C',0);  // cell with left and right borders
+$pdf->Cell(50,5,$result['verbal_comprehension'],1,0,'C',0);
+$pdf->Cell(50,5,Functions::calculateEquivalent($result['verbal_comprehension'],[8,5]),1,0,'C',0);
+                $pdf->Ln();
+
+$pdf->Cell(40,5,'','LBR',0,'L',0);   // empty cell with left,bottom, and right borders
+
+$pdf->Cell(50,5,$result['verbal_reasoning'],1,0,'C',0);
+$pdf->Cell(50,5,Functions::calculateEquivalent($result['verbal_reasoning'],[13,8]),1,0,'C',0);
+
+            $pdf->Ln(); //line break
+$pdf->Cell(40,5,' ','LTR',0,'L',0);   // empty cell with left,top, and right borders
+$pdf->Cell(50,5,$result['non_verbal_total'],0,0,'C',0);
+$pdf->Cell(50,5,Functions::calculateEquivalent($result['non_verbal_total'],[24,13]),1,0,'C',0);
+
+                $pdf->Ln();
+
+$pdf->Cell(40,5,' NON VERBAL','LR',0,'C',0);  // cell with left and right borders
+$pdf->Cell(50,5,$result['figurative_reasoning'],1,0,'C',0);
+$pdf->Cell(50,5,Functions::calculateEquivalent($result['figurative_reasoning'],[11,6]),1,0,'C',0);
+
+                $pdf->Ln();
+
+$pdf->Cell(40,5,'','LBR',0,'L',0);   // empty cell with left,bottom, and right borders
+
+$pdf->Cell(50,5,$result['quantitative_reasoning'],1,0,'C',0);
+$pdf->Cell(50,5,Functions::calculateEquivalent($result['quantitative_reasoning'],[13,7]),1,0,'C',0);
+// END OF TABLE
+
 $pdf->SetFont('Arial','',7);
 $pdf->setLeftMargin(20);
 $pdf->setRightMargin(24);
@@ -501,9 +499,9 @@ $pdf->setRightMargin(24);
 $pdf->Ln(20);
 $pdf->Cell(0,0,'Date Printed: ' . date('d/m/Y h:i A',time()),0,0,'L');
 $pdf->SetFont('Arial','',10);
-$pdf->Line(113,162,190,162);
+$pdf->Line(113,150,190,150);
 $pdf->setRightMargin(87);
-$pdf->Image($_SERVER['DOCUMENT_ROOT'] . '/system/assets/img/uploads/'.$result['signature'],145,145,15);
+$pdf->Image($_SERVER['DOCUMENT_ROOT'] . '/system/assets/img/uploads/'.$result['signature'],145,137,15);
 $pdf->Cell(0,0,$result['guidance_counselor'],0,0,'C');
 $pdf->SetFont('Arial','',9);
 $pdf->setRightMargin(40);

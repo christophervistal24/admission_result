@@ -53,7 +53,7 @@ trait Functions
 
     public static function before_every_protected_page(){
         if (!isset($_SESSION['id'])) {
-            header("Location:/system/page/index");
+            header("Location:/system/login");
         }
     }
 

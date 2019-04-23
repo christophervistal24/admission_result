@@ -17,7 +17,7 @@ $.ajax({
             })
             .then((willDelete) => {
               if (willDelete) {
-                location.replace('print?id='+data.result_id);
+                location.replace('print3?id='+data.result_id);
                 //proceed to pdf page
                 // swal("Poof! Your imaginary file has been deleted!", {
                 //   icon: "success",

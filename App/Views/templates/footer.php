@@ -32,10 +32,20 @@
 <script src="<?= APP['DOC_ROOT'] ?>assets/js/additionalmethodsjvalidate.js"></script>
  <!-- Page JS Code -->
         <script>
+            
             jQuery(function () {
-                // Init page helpers (Content Filtering helper)
-                Codebase.helpers('content-filter');
-            });
+                    // Init page helpers (Content Filtering helper)
+                    Codebase.helpers('content-filter');
+                });
+           
+                $("#birthDate").change((function () {
+                    //get the yearOfBirth
+                    let yearOfBirth = $("#birthDate").val().split('-')[0];
+                    //get the current date
+                    let currentDate = new Date().getFullYear();
+
+                    $('#examineeAge').val(currentDate - yearOfBirth);
+                }));
         </script>
 
 </body>

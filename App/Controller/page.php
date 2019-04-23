@@ -11,15 +11,14 @@ class Page extends Controller
     {
         $this->model = new User;
     }
+    
     public function index()
     {
         if (!Functions::after_login()) {
             $data['title']     = 'Login';
             $data['copyright'] = date('Y')  . ' - ' . date('Y',strtotime("+ 1 year"));
             $data['user']      = $this->model->userLogin($_POST);
-            $this->render('templates/header',$data);
-            $this->render('index',$data);
-            $this->render('templates/footer');
+            $this->render('welcome',$data);
         }
 
     }

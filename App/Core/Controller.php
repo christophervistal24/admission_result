@@ -1,14 +1,28 @@
 <?php
 namespace App\Core;
+
+use App\Helpers\TemplateLoader as Template;
+use App\Helpers\ViewLoader as View;
+
 class Controller
 {
-
-    public function render($view  , $data = [])
+    public function render(string $view, array $data = [])
     {
-        if (file_exists(APP['URL_ROOT'] . 'App/Views/' . $view . '.php')) {
-            extract($data);
-            require_once APP['URL_ROOT'] . 'App/Views/' . $view. '.php';
-        }
+        
+        /**
+         * The error is there are some pages that not used templates
+         */
+
+        // Replace all (dot) with / accessing a directory
+        $filename = str_replace('.','/', $view);
+
+        Template::loadFile('header' , $data);
+
+        View::loadFile($filename, $data);
+
+        Template::loadFile('footer');
+    
+       
     }
 
 }

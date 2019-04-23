@@ -36,6 +36,10 @@ if (isset($_POST['action'])) {
         case 'edit_g_counselor':
              extract($_POST);
              extract($_FILES['signature_image']);
+             $current_signature = $db->query("
+                SELECT signature FROM guidance_conselors WHERE id = '$id'
+                ");
+                $signature = (empty($name) ? $current_signature->fetch()['signature']  : $name);
                 $path = 'assets/img/uploads/';
                  $stmt = $db->prepare("
                         UPDATE
@@ -49,13 +53,27 @@ if (isset($_POST['action'])) {
                     [
                         $fullname_with_degree,
                         $position,
-                        $name,
+                        $signature,
                         time(),
                         $id,
                     ]
                 );
-                if ($result === true &&  move_uploaded_file($tmp_name,APP['URL_ROOT'].$path.$name)) {
-                        echo json_encode(['success'=>true,'message'=>'Information Update','image'=>$name]);
+                if ($result === true && move_uploaded_file($tmp_name,APP['URL_ROOT'].$path.$signature)) {
+                        echo json_encode(
+                            [
+                                'success' => true,
+                                'message' => 'Information Update',
+                                'image'=> $signature
+                            ]
+                    );
+                } else if ($result === true) {
+                    echo json_encode(
+                            [
+                                'success' => true,
+                                'message' => 'Information Update',
+                                'image'=> $signature
+                            ]
+                    );
                 }
         break;
     }

@@ -28,7 +28,7 @@
         <div class="col-md-6 col-xl-3">
             <a class="block block-link-shadow" href="javascript:void(0)">
                 <div class="block-content block-content-full text-right">
-                    <div class="font-size-h2 font-w700"><?= $no_of_users; ?></div>
+                    <div class="font-size-h2 font-w700"><?= $no_of_users->count; ?></div>
                     <div class="font-size-sm font-w600 text-uppercase text-muted">No. of Users</div>
                 </div>
             </a>
@@ -62,7 +62,7 @@
                 <?php foreach ($admission_result as $keys => $value): ?>
                 <tr>
                     <td class="text-capitalize text-center"><?= $value['id']; ?></td>
-                    <td class="text-capitalize text-center"><a href="print?id=<?= $value['id'] ?>"><?= $value['Name']; ?></a></td>
+                    <td class="text-capitalize text-center"><a href="print3?id=<?= $value['id'] ?>"><?= $value['Name']; ?></a></td>
                     <td class="text-capitalize text-center"><?= $value['verbal_total']; ?></td>
                     <td class="text-capitalize text-center"><?= $value['non_verbal_total']; ?></td>
                     <td class="text-capitalize text-center"><?= $value['over_all_total']; ?></td>
@@ -71,7 +71,7 @@
                         <a href="editresult?id=<?= $value['id']?>" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Edit Full Result">
                             <i class="fa fa-edit"></i>
                         </a>
-                        <a href="print?id=<?= $value['id']?>" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Print Full Result">
+                        <a href="print3?id=<?= $value['id']?>" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Print Full Result">
                             <i class="fa fa-print"></i>
                         </a>
                     </td>

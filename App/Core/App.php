@@ -1,9 +1,10 @@
 <?php
 namespace App\Core;
+
 class App
 {
-    protected $controller = 'page';
-    protected $method     = 'index';
+    protected $controller = 'AuthController';
+    protected $method     = 'login';
     protected $params     = [];
 
     public function __construct()
@@ -31,7 +32,7 @@ class App
         call_user_func_array([$this->controller , $this->method], $this->params);
     }
 
-    public function parse()
+    private function parse()
     {
         if(isset($_GET['url'])){
             return $url = explode('/',filter_var(rtrim($_GET['url'],'/'),FILTER_SANITIZE_URL));

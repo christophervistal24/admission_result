@@ -33,7 +33,7 @@ success:function(data){
         })
         .then((willDelete) => {
           if (willDelete) {
-            location.replace('print?id='+data.result_id);
+            location.replace('print3?id='+data.result_id);
           } else {
             location.reload();
           }

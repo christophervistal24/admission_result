@@ -32,7 +32,7 @@ if (isset($_POST['action'])) {
 
         case 'check_username' :
             $username = $_POST['username'];
-            $result = $db->query("SELECT COUNT(username) as is_exists FROM tbl_users WHERE username = '$username'")->fetch(PDO::FETCH_ASSOC);
+            $result   = $db->query("SELECT COUNT(username) as is_exists FROM tbl_users WHERE username = '$username'")->fetch(PDO::FETCH_ASSOC);
             if ($result['is_exists']) {
                 echo json_encode(false);
             }else{

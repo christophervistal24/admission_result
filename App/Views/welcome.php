@@ -22,7 +22,7 @@
         <input type="password" id="password" class="form-control" name="password" placeholder="Password" required>
       </div>
       <button class="float-right  btn mt-3 btn-primary rounded-0" type="submit">Sign in</button>
-      <p class="mt-5 mb-3  text-muted text-center"><b>SDSSU ADMISSION RESULT &copy; <?= $copyright; ?></b></p>
+      <p class="mt-5 mb-3  text-muted text-center"><b>SDSSU ADMISSION RESULT &copy; <?= date('Y'); ?></b></p>
     </form>
   </div>
 </div>

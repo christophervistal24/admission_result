@@ -131,7 +131,7 @@
                         <div class="sidebar-mini-hidden-b text-center">
                             <a class="img-link " href="profile">
                                 <img id="sidebar_img" class="img-fluid img-avatar rounded-circle" src="<?= APP['DOC_ROOT'] . 'assets/img/uploads/' . $profile; ?>" alt="">
-                                <!-- <img id="sidebar_img" class="img-avatar" src="<?= APP['DOC_ROOT'] . 'public/assets/uploads/' . $data['user_info']['image']; ?>" alt=""> -->
+                                
                             </a>
                             <ul class="list-inline mt-10">
                                 <li class="list-inline-item">

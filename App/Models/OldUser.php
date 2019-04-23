@@ -4,6 +4,7 @@ use App\Core\Database;
 use App\Core\Functions;
 use PDO;
 use RuntimeException;
+
 class User extends Database
 {
     use Functions;
@@ -86,6 +87,7 @@ class User extends Database
           --  admission_result.preferred_course_id_2 = course_2.id
         ")->fetchAll(PDO::FETCH_ASSOC);
     }
+
     public function getAdmissionResultById($id)
     {
             return $this->db->query("
@@ -120,6 +122,7 @@ class User extends Database
             WHERE admission_result.id = ' $id '
             ")->fetch(PDO::FETCH_ASSOC);
     }
+    
    /* public function getByOrGetAll(array $data = null)
     {
         $clause = $this->lastElementKeyAndvalue($data);
