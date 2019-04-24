@@ -18,12 +18,23 @@ trait QueryHelper
             }, ARRAY_FILTER_USE_KEY);
     }
 
-    public static function prepareQuery(array $list) : array
+    public static function columnsAndValues(array $list) : array
     {
         return [
             'columns' => '`'. implode('`,`',array_keys($list)) . '`',
             'values' => self::generateValuesForTable($list),
         ];
+    }
+
+    public static function prepareSetStatement(array $columns = [], $model) :string 
+    {  
+        $statement = null;
+        
+        foreach ($columns as $column) {
+            $statement .=  $column . "='" .  $model->$column . "',";
+        }
+
+        return rtrim($statement, ',');
     }
 
     private static function generateValuesForTable(array $list) :string

@@ -17,8 +17,6 @@ class User extends Model
         // Get all columns of table
         $this->columns = parent::columns();
 
-        // Remove the primary key
-        array_shift($this->columns);
     }
 
    

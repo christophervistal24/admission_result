@@ -12,7 +12,8 @@
                 "App/Core",
                 "App/Models",
                 "App/Helpers",
-                "App/Helpers/Database"
+                "App/Helpers/Database",
+                "App/Services"
             ]
         }
     }

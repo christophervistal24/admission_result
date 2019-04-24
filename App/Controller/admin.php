@@ -1,12 +1,11 @@
 <?php
 namespace App\Controller;
 
-use App\Models\User;
-use App\Models\UserInfo;
-use App\Models\AdmissionResult;
-use App\Models\GuidanceConselor;
+
 use App\Core\Controller;
 use App\Core\Functions;
+use App\Models\AdmissionResult;
+use App\Models\GuidanceConselor;
 
 class Admin extends Controller
 {
@@ -19,52 +18,65 @@ class Admin extends Controller
 
     public function __construct()
     {
-        $this->user      = new User;
-        $this->user_info = new UserInfo;
-        $this->admission = new AdmissionResult;
-        $this->guidance  = new GuidanceConselor;
-        $this->dataThatAlwaysNeed();
+        $this->user      = load('Models\User');
+        $this->user_info = load('Models\UserInfo');
+        $this->admission = load('Models\AdmissionResult');
+        $this->guidance  = load('Models\GuidanceConselor');
+        $this->course    = load('Models\Course');
+
+        $this->data();
     }
 
-    private function dataThatAlwaysNeed()
+    private function data()
     {
         $this->deleted_admission_results = $this->admission->deletedResults();
-        $this->admission_results = $this->admission->results();
-        $this->user_info = $this->user_info->where('user_id',$_SESSION['id']);
+        $this->admission_results         = $this->admission->results();
+        $user_info                 = $this->user_info->where('user_id',$_SESSION['id']);
+
+        return [
+                'title'                           => '| Dashboard',
+                'info'                            => (array) $user_info,
+                'no_of_users'                     => $this->user->count(),
+                'guidance_conselors'              => count($this->guidance->get()),
+                'admission_result'                => (array) $this->admission_results,
+                'no_of_admission_results'         => count( $this->admission_results ),
+                'deleted_admission_results'       => (array) $this->deleted_admission_results,
+                'no_of_deleted_admission_results' => count( $this->deleted_admission_results ),
+            ];
     }
 
 
     public function index()
     {
         // if (!Functions::before_every_protected_page()) {
-      
-
-            $data = [
-                'title'              => '| Dashboard',
-                'info'               => (array) $this->user_info,
-                'no_of_users'        => $this->user->count(),
-                'guidance_conselors' => count($this->guidance->get()),
-                'admission_result'                => (array) $this->admission_results,
-                'no_of_admission_results'         => count( $this->admission_results ),
-                'deleted_admission_results'       => (array) $this->deleted_admission_results,
-                'no_of_deleted_admission_results' => count( $this->deleted_admission_results ),
-            ];
-
+            $data = $this->data();
             $this->render('admin/dashboard',$data);
         // }
     }
 
+    public function create()
+    {
+            $data['title'] = 'Dashboard';
+            $data['info'] = (array)  $this->user_info->where('user_id',$_SESSION['id']);
+            $data['admission_result']          = (array) $this->admission_results;
+            $data['deleted_admission_results'] = (array) $this->deleted_admission_results;
+            
+            $this->render('admin.create',$data);
+    }
+
+
+// --------------------------------------------------------------------------------------------------
     public function new()
     {
         if (!Functions::before_every_protected_page()) {
         $data['title']                     = 'Add';
         $data['school_year']               = date('Y')  . ' - ' . date('Y',strtotime("+ 1 year"));
-        $data['info']                      = $this->profile;
+        $data['info']                      = (array) $this->user_info;
         $data['deleted_admission_results'] = $this->deleted_admission_results;
-        $data['course']                    = $this->model->getAllCourse();
-        $data['guidance_conselors']        = $this->model->getAllGuidanceConselors();
+        $data['course']                    =  $this->course->getCourse();
+        $data['guidance_conselors']        = [ (array)$this->guidance->get()[0] ]; 
 
-        
+
         $this->render('admin/new',$data);
       }
     }
@@ -183,7 +195,7 @@ class Admin extends Controller
         }
     }
 
-    public function createnew()
+   /* public function createnew()
     {
         if (!Functions::before_every_protected_page()) {
             $data['title']                     = 'Dashboard';
@@ -191,9 +203,9 @@ class Admin extends Controller
             $data['admission_result']          = $this->model->getAllAdmissionResult();
             $data['deleted_admission_results'] = $this->deleted_admission_results;
             
-            $this->render('admin/createnew',$data);
+            $this->render('admin.create',$data);
         }
-    }
+    }*/
 
     public function restore()
     {

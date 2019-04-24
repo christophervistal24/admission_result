@@ -6,7 +6,7 @@ use App\Models\Model;
 
 class GuidanceConselor extends Model
 {
-    protected $table      = 'admission_result';
+    protected $table      = 'guidance_conselors';
     protected $primaryKey = 'id';
     protected $columns    = [];
 

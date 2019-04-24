@@ -7,14 +7,22 @@ define('APP',[
     'DOC_ROOT'      =>  "/" . str_replace("\\","/",basename(dirname(__DIR__))) . "/",
 ]);
 
+
+
 require_once APP['URL_ROOT'] . 'vendor/autoload.php';
+
+function load(string $name) :object
+{
+    $container = new App\Services\Container();
+    return $container->get('App\\' . $name);
+}
 
 // For development purpose
 function dd($item)
 {
     echo "<pre>";
-    die(print_r($item));
+    die(print_r($item,true));
 }
 
-use App\Models\User;
+
 

@@ -21,7 +21,7 @@
                     <td><?= $value['fullname'] ?></td>
                     <td class="text-center"><?= $value['position'] ?></td>
                     <td class="text-center"><img  class="img-fluid" style="width:8%" src="<?= APP['DOC_ROOT'] ?>assets/img/uploads/<?= $value['signature'] ?>" alt=""></td>
-                    <td class="text-center"><a href="editguidance?id=<?= $value['id']?>" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Edit Informations">
+                    <td class="text-center"><a href="edit?id=<?= $value['id']?>" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Edit Informations">
                             <i class="fa fa-edit"></i>
                         </a></td>
                 </tr>

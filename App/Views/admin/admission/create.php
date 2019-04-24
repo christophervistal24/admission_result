@@ -23,7 +23,7 @@
 </h2>
 <div class="block">
     <div class="block-header block-header-default text-center">
-        <h3 class="block-title"><b>UNIVERSITY ADMISSION TEST RESULT</b><br>1st Semester AY <?= $school_year; ?></h3>
+        <h3 class="block-title"><b>UNIVERSITY ADMISSION TEST RESULT</b><br>1st Semester AY <?= date('Y')  . ' - ' . date('Y',strtotime("+ 1 year")); ?></h3>
     </div>
     <div class="block-content">
         <div class="row justify-content-center py-20">

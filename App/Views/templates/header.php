@@ -45,7 +45,7 @@
                         <!-- END Close Side Overlay -->
                         <!-- User Info -->
                         <div class="content-header-item">
-                            <a class="img-link mr-5" href="profile">
+                            <a class="img-link mr-5" href="/system/userprofile">
                                 <img class="img-avatar img-avatar32" src="<?= APP['DOC_ROOT'] ?>public/img/avatars/avatar15.jpg" alt="">
                             </a>
                             <a id="side_overlay_name" class="text-capitalize align-middle link-effect text-capitalize text-primary-dark font-w600" href="profile"><?=$lastname . ' , '. $firstname . ' ' . $middlename ?>.</a>
@@ -111,7 +111,7 @@
                             <!-- END Close Sidebar -->
                             <!-- Logo -->
                             <div class="content-header-item">
-                                <a class="link-effect font-w700" href="/system/admin/dashboard">
+                                <a class="link-effect font-w700" href="/system/admin/">
                                     <span class="font-size-xl text-primary">SDSSU</span>
                                 </a>
                             </div>
@@ -156,17 +156,17 @@
                     <!-- Side Navigation -->
                     <div class="content-side content-side-full">
                         <ul class="nav-main">
-                            <a href="dashboard"><i class="fa fa-dashboard"></i><span class="sidebar-mini-hide">Dashboard</span></a>
-                            <a href="profile"><i class="si si-user"></i><span class="sidebar-mini-hide">Profile</span></a>
+                            <a href="/system/admin"><i class="fa fa-dashboard"></i><span class="sidebar-mini-hide">Dashboard</span></a>
+                            <a href="/system/userprofile/"><i class="si si-user"></i><span class="sidebar-mini-hide">Profile</span></a>
 
                             <li>
                                 <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-plus"></i><span class="sidebar-mini-hide">G - Counselors</span></a>
                                 <ul>
                                     <li>
-                                        <a href="addguidance">Add Guidance Counselor</a>
+                                        <a href="/system/guidance/create">Add Guidance Counselor</a>
                                     </li>
                                     <li>
-                                        <a  href="list"></i>List of Guidance Counselors</a>
+                                        <a  href="/system/guidance/index"></i>List of Guidance Counselors</a>
                                     </li>
                                 </ul>
                             </li>
@@ -174,10 +174,10 @@
                                 <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-plus"></i><span class="sidebar-mini-hide">Add</span></a>
                                 <ul>
                                     <li>
-                                        <a href="new">Add Admission Result</a>
+                                        <a href="/system/admission/create">Add Admission Result</a>
                                     </li>
                                     <li>
-                                        <a href="createnew">Add New User</a>
+                                        <a href="/system/admin/create">Add New User</a>
                                     </li>
                                 </ul>
                             </li>
@@ -185,7 +185,7 @@
                                 <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-settings"></i><span class="sidebar-mini-hide">Account Settings</span></a>
                                 <ul>
                                     <li>
-                                        <a href="changeinfo">Personal Information</a>
+                                        <a href="/system/userprofile/edit">Personal Information</a>
                                     </li>
                                 </ul>
                             </li>
@@ -293,7 +293,7 @@
                         <i class="fa fa-angle-down ml-5"></i>
                         </button>
                         <div class="dropdown-menu dropdown-menu-right min-width-150" aria-labelledby="page-header-user-dropdown">
-                            <a class="dropdown-item" href="profile">
+                            <a class="dropdown-item" href="/system/userprofile">
                                 <i class="si si-user mr-5"></i> Profile
                             </a>
                             <div class="dropdown-divider"></div>

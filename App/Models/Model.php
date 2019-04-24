@@ -19,6 +19,7 @@ abstract class Model extends Database
     public function __construct()
     {
         parent::__construct();
+        // Remove the primary key
     }
 
     protected function columns() :array
@@ -71,7 +72,7 @@ abstract class Model extends Database
           , $this->columns);
 
         // Prepare columns and values
-        ['columns' => $columns, 'values' => $values] = QueryHelper::prepareQuery($values);
+        ['columns' => $columns, 'values' => $values] = QueryHelper::columnsAndValues($values);
 
         $query =  "INSERT INTO {$this->table} (" . $columns . ") VALUES (" . $values . ")";
 
@@ -84,16 +85,11 @@ abstract class Model extends Database
         // Prefix for Update
         $query   = "UPDATE {$this->table} SET ";
 
-        // Initilize column container
-        $columns = null;
-
         // Prepare a SET statement
-        foreach ($this->columns as $column) {
-          $columns .=  $column . "='" .  $this->$column . "',";
-        }
-
+        $columns = QueryHelper::prepareSetStatement($this->columns,$this);
+     
         // Build a Query
-        $query = $query . rtrim($columns, ',') . " WHERE {$this->primaryKey} = '" . 
+        $query = $query . $columns . " WHERE {$this->primaryKey} = '" . 
                  $this->{$this->primaryKey} . "' LIMIT 1";
 
         return $query;
