@@ -13,6 +13,7 @@ class Admission extends Controller
         $this->admission = load('Models\AdmissionResult');
         $this->guidance  = load('Models\GuidanceConselor');
         $this->course    = load('Models\Course');
+        $this->request   = load('Helpers\Request');
     }
 
     private function data()
@@ -44,6 +45,11 @@ class Admission extends Controller
 
     public function store()
     {
-        dd('Process for storing..');
+        if ( $this->request->post() && $this->request->action === 'add_admission_result' ) {
+            // Examine info
+            
+        } else {
+            dd('404 not found');
+        }
     }
 }

@@ -7,6 +7,9 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Whoops\\' => array($vendorDir . '/filp/whoops/src/Whoops'),
+    'Twig\\' => array($vendorDir . '/twig/twig/src'),
+    'Symfony\\Polyfill\\Mbstring\\' => array($vendorDir . '/symfony/polyfill-mbstring'),
+    'Symfony\\Polyfill\\Ctype\\' => array($vendorDir . '/symfony/polyfill-ctype'),
     'Psr\\Log\\' => array($vendorDir . '/psr/log/Psr/Log'),
-    'App\\' => array($baseDir . '/App/Controller', $baseDir . '/App/Contracts', $baseDir . '/App/Core', $baseDir . '/App/Models', $baseDir . '/App/Helpers', $baseDir . '/App/Helpers/Database', $baseDir . '/App/Services'),
+    'App\\' => array($baseDir . '/App/Controller', $baseDir . '/App/Contracts', $baseDir . '/App/Core', $baseDir . '/App/Models', $baseDir . '/App/Helpers', $baseDir . '/App/Helpers/Database', $baseDir . '/App/Helpers/Outputter', $baseDir . '/App/Services', $baseDir . '/App/ViewComposer'),
 );

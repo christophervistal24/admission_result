@@ -2,7 +2,7 @@
   <div class="block-header block-header-default">
   </div>
   <div class="block-content block-content-full col-lg-6">
-    <form class="form-signin" method="POST" action="/system/authcontroller/authentication">
+    <form class="form-signin" method="POST" action="/system/auth/authentication">
       <div class="container mb-4">
         <div class="text-center mb-4 col-lg-4 m-lg-auto">
           <img class="img-fluid" src="<?= APP['DOC_ROOT'] . '/assets/img/photos/sdssu.png' ?>">

@@ -7,7 +7,6 @@ use App\Helpers\Database\QueryHelper;
 
 abstract class Model extends Database
 {
-    // TODO Extract (SET statement in update method) to QueryHelper
     // TODO Add escape for every query params
 
     protected $table;
@@ -19,14 +18,12 @@ abstract class Model extends Database
     public function __construct()
     {
         parent::__construct();
-        // Remove the primary key
     }
 
     protected function columns() :array
     {
         return parent::columnsIn($this->table);
     }
-
 
     private function setModelProperties(array $fields = [])
     {
@@ -36,14 +33,12 @@ abstract class Model extends Database
         }
     }
 
-
     private function selectOnly(int $id , array $columns = ['*']) :string
     {
         $query = "SELECT " . implode(',',$columns) . " FROM {$this->table} WHERE id ='$id'";
 
         return $query;
     }
-
 
     private function select(array $columns = ['*']) :string
     {
@@ -52,11 +47,10 @@ abstract class Model extends Database
         return $query;
     }
 
-
     private function fetch(string $where, string $where_value, array $columns = ['*']) :string
     {
         $query = "SELECT " . implode(',',$columns) . " FROM {$this->table} 
-                 WHERE ".$where." = '".$where_value."' ";
+                  WHERE ".$where." = '".$where_value."' ";
 
         return $query;
     }
@@ -79,7 +73,6 @@ abstract class Model extends Database
         return $query;
     }
 
-
     private function update()
     {
         // Prefix for Update
@@ -95,7 +88,6 @@ abstract class Model extends Database
         return $query;
     }
 
-
     private function delete() :string
     {
         $query = "
@@ -108,7 +100,6 @@ abstract class Model extends Database
         return $query;
     }
 
-
     private function countData()
     {
         $query = "SELECT COUNT(id) as count FROM {$this->table}";
@@ -116,13 +107,11 @@ abstract class Model extends Database
         return $query;
     }
 
-
     public function get(array $columns = ['*']) :array 
     {
         return $this->db->query($this->select($columns))
                         ->fetchAll(PDO::FETCH_OBJ);
     }
-
 
     public function where(string $where, string $where_value, array $columns = ['*'])
     {
@@ -130,18 +119,15 @@ abstract class Model extends Database
                         ->fetch(PDO::FETCH_OBJ);
     }
 
-
     public function create(array $values = [])
     {
         $this->db->query($this->insert($values));
     }
 
-
     public function save()
     {
         $this->db->query($this->update());
     }
-
 
     public function find(int $id , array $columns = ['*']) :object 
     {

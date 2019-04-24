@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Core\Controller;
 use App\Core\Functions;
+use App\Helpers\Outputter\Transformer;
 use App\Models\AdmissionResult;
 use App\Models\GuidanceConselor;
 
@@ -35,12 +36,12 @@ class Admin extends Controller
 
         return [
                 'title'                           => '| Dashboard',
-                'info'                            => (array) $user_info,
+                'info'                            => Transformer::toArray($user_info),
+                'admission_result'                => Transformer::toArray($this->admission_results),
+                'deleted_admission_results'       => Transformer::toArray($this->deleted_admission_results),
                 'no_of_users'                     => $this->user->count(),
                 'guidance_conselors'              => count($this->guidance->get()),
-                'admission_result'                => (array) $this->admission_results,
                 'no_of_admission_results'         => count( $this->admission_results ),
-                'deleted_admission_results'       => (array) $this->deleted_admission_results,
                 'no_of_deleted_admission_results' => count( $this->deleted_admission_results ),
             ];
     }
@@ -48,6 +49,7 @@ class Admin extends Controller
 
     public function index()
     {
+        load('ViewComposer\AdminViewComposer');
         // if (!Functions::before_every_protected_page()) {
             $data = $this->data();
             $this->render('admin/dashboard',$data);
