@@ -1,4 +1,6 @@
 <?php
+
+
 session_start();
 
 define('APP',[
@@ -6,7 +8,6 @@ define('APP',[
     'APP_ROOT'      => str_replace("\\","/",dirname(__DIR__)) . "/App/",
     'DOC_ROOT'      =>  "/" . str_replace("\\","/",basename(dirname(__DIR__))) . "/",
 ]);
-
 
 
 require_once APP['URL_ROOT'] . 'vendor/autoload.php';
@@ -24,5 +25,6 @@ function dd($item)
     die(print_r($item,true));
 }
 
-
+class_alias('App\Core\Auth','Auth');
+class_alias('App\Helpers\Admission\EquivalentCalculator','Equivalent');
 

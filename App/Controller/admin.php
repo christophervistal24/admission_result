@@ -1,12 +1,13 @@
 <?php
 namespace App\Controller;
 
-
+use App\Core\Auth;
 use App\Core\Controller;
 use App\Core\Functions;
 use App\Helpers\Outputter\Transformer;
 use App\Models\AdmissionResult;
 use App\Models\GuidanceConselor;
+use App\Core\QueryBuilder as DB;
 
 class Admin extends Controller
 {
@@ -36,7 +37,6 @@ class Admin extends Controller
 
         return [
                 'title'                           => '| Dashboard',
-                'info'                            => Transformer::toArray($user_info),
                 'admission_result'                => Transformer::toArray($this->admission_results),
                 'deleted_admission_results'       => Transformer::toArray($this->deleted_admission_results),
                 'no_of_users'                     => $this->user->count(),
@@ -46,24 +46,26 @@ class Admin extends Controller
             ];
     }
 
-
     public function index()
     {
-        load('ViewComposer\AdminViewComposer');
-        // if (!Functions::before_every_protected_page()) {
             $data = $this->data();
-            $this->render('admin/dashboard',$data);
-        // }
+            $this->render('admin.dashboard2',$data);
     }
 
     public function create()
     {
             $data['title'] = 'Dashboard';
-            $data['info'] = (array)  $this->user_info->where('user_id',$_SESSION['id']);
             $data['admission_result']          = (array) $this->admission_results;
             $data['deleted_admission_results'] = (array) $this->deleted_admission_results;
             
             $this->render('admin.create',$data);
+    }
+
+    public function logout()
+    {
+        session_destroy();
+        session_unset();
+        header("Location:/system/login");
     }
 
 
@@ -73,7 +75,6 @@ class Admin extends Controller
         if (!Functions::before_every_protected_page()) {
         $data['title']                     = 'Add';
         $data['school_year']               = date('Y')  . ' - ' . date('Y',strtotime("+ 1 year"));
-        $data['info']                      = (array) $this->user_info;
         $data['deleted_admission_results'] = $this->deleted_admission_results;
         $data['course']                    =  $this->course->getCourse();
         $data['guidance_conselors']        = [ (array)$this->guidance->get()[0] ]; 
@@ -120,7 +121,6 @@ class Admin extends Controller
              if (isset($_GET['id'])) {
                 $data['id'] = $_GET['id'];
              }
-             $data['info'] = $this->profile;
              $data['deleted_admission_results'] = $this->deleted_admission_results;
              $fetch_data['examiner_results']    = $this->model->getAdmissionResultById($data['id']);
 
@@ -132,7 +132,6 @@ class Admin extends Controller
     public function profile()
     {
          if (!Functions::before_every_protected_page()) {
-                    $data['info'] = $this->profile;
                     $data['deleted_admission_results'] = $this->deleted_admission_results;
 
                     $this->render('admin/profile',$data);
@@ -146,7 +145,6 @@ class Admin extends Controller
             if (isset($_GET['id'])) {
                 $data['id'] = $_GET['id'];
             }
-            $data['info'] = $this->profile;
             $fetch_course['course']            = $this->model->getAllCourse();
             $data['examiner_results']          = $this->model->getAdmissionResultById($data['id']);
             $data['deleted_admission_results'] = $this->deleted_admission_results;
@@ -245,8 +243,4 @@ class Admin extends Controller
         }
     }
 
-    public function logout()
-    {
-        $this->render('admin/logout');
-    }
 }

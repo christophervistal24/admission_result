@@ -1,351 +1,167 @@
-<?php ob_start(); ?>
-<?php date_default_timezone_set('Asia/Manila'); ?>
 <!DOCTYPE html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-    <title>SDSSU (FES) <?= $title ?? '' ?></title>
-    <!-- The following icons can be replaced with your own, they are used by desktop and mobile browsers -->
-    <link rel="shortcut icon" href="<?= APP['DOC_ROOT'] ?>assets/img/photos/sdssu.png">
-    <style type="text/css">
-    body{
-    overflow-x: hidden;
-    }
-    </style>
-    <!-- <script src ="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
-    <!-- <script src ="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script> -->
-    <!-- <script src="<?= APP['DOC_ROOT'] ?>assets/js/jquery.min.js"></script> -->
-    <script src="<?= APP['DOC_ROOT'] ?>assets/js/sweetalert.min.js"></script>
-    <link rel   ="stylesheet" href="<?= APP['DOC_ROOT'] ?>assets/js/plugins/select2/select2.min.css">
-    <link rel   ="stylesheet" href="<?= APP['DOC_ROOT'] ?>assets/js/plugins/select2/select2-bootstrap.min.css">
-    <link rel   ="stylesheet" id="css-main" href="<?= APP['DOC_ROOT'] ?>assets/css/codebase.min.css">
-    <link rel   ="stylesheet" href="<?= APP['DOC_ROOT'] ?>assets/js/plugins/datatables/dataTables.bootstrap4.min.css">
-</head>
-<body>
-    <!-- Page Container -->
-    <!-- Pop Out Modal -->
-    <!-- end of pop out modal -->
-    <?php if (isset($_SESSION['id'])): ?>
-    <?php
-    extract($data['info']);
-    ?>
-    <div id="page-container" class="sidebar-o side-scroll page-header-modern main-content-boxed">
-        <!-- Side Overlay-->
-        <aside id="side-overlay">
-            <!-- Side Overlay Scroll Container -->
-            <div id="side-overlay-scroll">
-                <!-- Side Header -->
-                <div class="content-header content-header-fullrow">
-                    <div class="content-header-section align-parent">
-                        <!-- Close Side Overlay -->
-                        <!-- Layout API, functionality initialized in Codebase() -> uiApiLayout() -->
-                        <button type="button" class="btn btn-circle btn-dual-secondary align-v-r" data-toggle="layout" data-action="side_overlay_close">
-                        <i class="fa fa-times text-danger"></i>
-                        </button>
-                        <!-- END Close Side Overlay -->
-                        <!-- User Info -->
-                        <div class="content-header-item">
-                            <a class="img-link mr-5" href="/system/userprofile">
-                                <img class="img-avatar img-avatar32" src="<?= APP['DOC_ROOT'] ?>public/img/avatars/avatar15.jpg" alt="">
-                            </a>
-                            <a id="side_overlay_name" class="text-capitalize align-middle link-effect text-capitalize text-primary-dark font-w600" href="profile"><?=$lastname . ' , '. $firstname . ' ' . $middlename ?>.</a>
-                        </div>
-                        <!-- END User Info -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>SDSSU (ARS) | <?= $title ?? '' ?></title>
+        <link rel="shortcut icon" href="<?= APP['DOC_ROOT'] ?>assets/img/photos/sdssu.png">
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <link rel="stylesheet" href="<?= APP['DOC_ROOT'] ?>assets/vendor/fontawesome-free/css/all.min.css">
+        <link rel="stylesheet" href="<?= APP['DOC_ROOT'] ?>assets/vendor/datatables/dataTables.bootstrap4.min.css">
+        <!-- Custom styles for this template-->
+        <link rel="stylesheet" href="<?= APP['DOC_ROOT'] ?>assets/css/sb-admin-2.min.css">
+        <style>
+        .bg-login-image {
+        background:url(<?= APP['DOC_ROOT'] ?>assets/img/backgrounds/undraw_authentication_fsn5.svg) center right;
+        background-size: cover;
+        }
+        </style>
+    </head>
+    <body id="page-top">
+        <?php if (Auth::hasLogin()): ?>
+        <!-- Page Wrapper -->
+        <div id="wrapper">
+            <!-- Sidebar -->
+            <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+                <!-- Sidebar - Brand -->
+                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+                    <div class="sidebar-brand-icon rotate-n-15">
+                      <i class="fas fa-laugh-wink"></i>
                     </div>
-                </div>
-                <!-- END Side Header -->
-                <!-- Side Content -->
-                <div class="content-side">
-                    <div class="block pull-r-l">
-                        <div class="block-header bg-body-light">
-                            <h3 class="block-title"><i class="fa fa-fw fa-trash font-size-default mr-5"></i>DELETED ADMISSION RESULTS</h3>
-                            <div class="block-options">
-                                <button type="button" class="btn-block-option" data-toggle="block-option" data-action="content_toggle"></button>
-                            </div>
-                        </div>
-                        <div class="block-content">
-                            <ul class="nav-users push">
-                                <?php foreach ($deleted_admission_results as $keys => $info): ?>
-                                <li>
-                                    <i class="fa fa-fw fa-trash"></i> <?= $info['Fullname'] ?>
-                                    <div class="d-inline-flex">
-                                        <a class="font-w400" href="/system/admin/restore?a_id=<?= urlencode($info['id'])?>">Restore</a>
-                                        <a href="/system/admin/permanent_delete?a_id=<?= urlencode($info['id'])?>&e_r_id=<?=urlencode($info['entrace_rating_id'])?>&e_i_id=<?=urlencode($info['examiner_info_id'])?>" class="font-w400 ">P - Delete</a>
-                                    </div>
-                                </li>
-                                <?php endforeach ?>
-                            </ul>
-                        </div>
-                    </div>
-                    <!-- END Friends -->
-                </div>
-                <!-- END Side Content -->
-            </div>
-            <!-- END Side Overlay Scroll Container -->
-        </aside>
-        <!-- END Side Overlay -->
-        <!-- Sidebar -->
-        <nav id="sidebar">
-            <!-- Sidebar Scroll Container -->
-            <div id="sidebar-scroll">
-                <!-- Sidebar Content -->
-                <div class="sidebar-content">
-                    <!-- Side Header -->
-                    <div class="content-header content-header-fullrow px-15">
-                        <!-- Mini Mode -->
-                        <div class="content-header-section sidebar-mini-visible-b">
-                            <!-- Logo -->
-                            <span class="content-header-item font-w700 font-size-xl float-left animated fadeIn">
-                                <span class="text-dual-primary-dark">c</span><span class="text-primary">b</span>
-                            </span>
-                            <!-- END Logo -->
-                        </div>
-                        <!-- END Mini Mode -->
-                        <!-- Normal Mode -->
-                        <div class="content-header-section text-center align-parent sidebar-mini-hidden">
-                            <!-- Close Sidebar, Visible only on mobile screens -->
-                            <!-- Layout API, functionality initialized in Codebase() -> uiApiLayout() -->
-                            <button type="button" class="btn btn-circle btn-dual-secondary d-lg-none align-v-r" data-toggle="layout" data-action="sidebar_close">
-                            <i class="fa fa-times text-danger"></i>
-                            </button>
-                            <!-- END Close Sidebar -->
-                            <!-- Logo -->
-                            <div class="content-header-item">
-                                <a class="link-effect font-w700" href="/system/admin/">
-                                    <span class="font-size-xl text-primary">SDSSU</span>
-                                </a>
-                            </div>
-                            <!-- END Logo -->
-                        </div>
-                        <!-- END Normal Mode -->
-                    </div>
-                    <!-- END Side Header -->
-                    <!-- Side User -->
-                    <div class="content-side content-side-full content-side-user px-10 align-parent">
-                        <!-- Visible only in mini mode -->
-                        <div class="sidebar-mini-visible-b align-v animated fadeIn">
-                            <img class="img-avatar img-avatar32" src="assets/img/avatars/avatar15.jpg" alt="">
-                        </div>
-                        <!-- END Visible only in mini mode -->
-                        <!-- Visible only in normal mode -->
-                        <div class="sidebar-mini-hidden-b text-center">
-                            <a class="img-link " href="profile">
-                                <img id="sidebar_img" class="img-fluid img-avatar rounded-circle" src="<?= APP['DOC_ROOT'] . 'assets/img/uploads/' . $profile; ?>" alt="">
-                                
-                            </a>
-                            <ul class="list-inline mt-10">
-                                <li class="list-inline-item">
-                                    <a id="sidebar_name" class="link-effect text-dual-primary-dark font-size-xs font-w600 text-uppercase" href="profile"><?=$lastname . ' , '. $firstname . ' ' . $middlename ?>.</a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <!-- Layout API, functionality initialized in Codebase() -> uiApiLayout() -->
-                                    <a class="link-effect text-dual-primary-dark" data-toggle="layout" data-action="sidebar_style_inverse_toggle" href="javascript:void(0)">
-                                        <i class="si si-drop"></i>
-                                    </a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a class="link-effect text-dual-primary-dark" href="logout">
-                                        <i class="si si-logout"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <!-- END Visible only in normal mode -->
-                    </div>
-                    <!-- END Side User -->
-                    <!-- Side Navigation -->
-                    <div class="content-side content-side-full">
-                        <ul class="nav-main">
-                            <a href="/system/admin"><i class="fa fa-dashboard"></i><span class="sidebar-mini-hide">Dashboard</span></a>
-                            <a href="/system/userprofile/"><i class="si si-user"></i><span class="sidebar-mini-hide">Profile</span></a>
-
-                            <li>
-                                <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-plus"></i><span class="sidebar-mini-hide">G - Counselors</span></a>
-                                <ul>
-                                    <li>
-                                        <a href="/system/guidance/create">Add Guidance Counselor</a>
-                                    </li>
-                                    <li>
-                                        <a  href="/system/guidance/index"></i>List of Guidance Counselors</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-plus"></i><span class="sidebar-mini-hide">Add</span></a>
-                                <ul>
-                                    <li>
-                                        <a href="/system/admission/create">Add Admission Result</a>
-                                    </li>
-                                    <li>
-                                        <a href="/system/admin/create">Add New User</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-settings"></i><span class="sidebar-mini-hide">Account Settings</span></a>
-                                <ul>
-                                    <li>
-                                        <a href="/system/userprofile/edit">Personal Information</a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- END Side Navigation -->
-                </div>
-                <!-- Sidebar Content -->
-            </div>
-            <!-- END Sidebar Scroll Container -->
-        </nav>
-        <!-- END Sidebar -->
-        <!-- Header -->
-        <header id="page-header">
-            <!-- Header Content -->
-            <div class="content-header">
-                <!-- Left Section -->
-                <div class="content-header-section">
-                    <!-- Toggle Sidebar -->
-                    <!-- Layout API, functionality initialized in Codebase() -> uiApiLayout() -->
-                    <button type="button" class="btn btn-circle btn-dual-secondary" data-toggle="layout" data-action="sidebar_toggle">
-                    <i class="fa fa-navicon"></i>
-                    </button>
-                    <!-- END Toggle Sidebar -->
-                    <!-- Open Search Section -->
-                    <!-- Layout API, functionality initialized in Codebase() -> uiApiLayout() -->
-                    <a  class="btn  btn-dual-secondary">
-                        <?= date('l jS \of F Y  ',time()); ?>
-                        <!-- <i class="fa fa-search"></i> -->
+                    <div class="sidebar-brand-text mx-3">SDSSU (ARS)</div>
+                </a>
+                <hr class="sidebar-divider my-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="/system/admin/index">
+                        <i class="fas fa-fw fa-tachometer-alt"></i>
+                        <span class="font-weight-bold">Dashboard</span>
                     </a>
-                    <!-- END Open Search Section -->
-                    <!-- Layout Options (used just for demonstration) -->
-                    <!-- Layout API, functionality initialized in Codebase() -> uiApiLayout() -->
-                    <div class="btn-group" role="group">
-                        <div class="dropdown-menu" aria-labelledby="page-header-options-dropdown">
-                            <h6 class="dropdown-header">Header</h6>
-                            <button type="button" class="btn btn-sm btn-block btn-alt-secondary" data-toggle="layout" data-action="header_fixed_toggle">Fixed Mode</button>
-                            <button type="button" class="btn btn-sm btn-block btn-alt-secondary d-none d-lg-block mb-10" data-toggle="layout" data-action="header_style_classic">Classic Style</button>
-                            <div class="d-none d-xl-block">
-                                <h6 class="dropdown-header">Main Content</h6>
-                                <button type="button" class="btn btn-sm btn-block btn-alt-secondary mb-10" data-toggle="layout" data-action="content_layout_toggle">Toggle Layout</button>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/system/profile">
+                        <i class="fas fa-fw fa-user-alt"></i>
+                        <span class="font-weight-bold">Profile</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                        <i class="fas fa-fw fa-table"></i>
+                        <span class="font-weight-bold">Guidance Counselors</span>
+                    </a>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <a class="collapse-item" href="/system/guidance/create">Add new</a>
+                            <a class="collapse-item" href="/system/guidance/index">List</a>
+                        </div>
+                    </div>
+                 </li>
+                        
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                        <i class="fas fa-fw fa-address-book"></i>
+                        <span class="font-weight-bold">Admission Result</span>
+                    </a>
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <a class="collapse-item" href="/system/admission/create">Add new</a>
+                        </div>
+                    </div>
+                </li>
+
+                <hr class="sidebar-divider">
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#userCollapse" aria-expanded="true" aria-controls="userCollapse">
+                        <i class="fas fa-fw fa-address-book"></i>
+                        <span class="font-weight-bold">Users</span>
+                    </a>
+                    <div id="userCollapse" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <a class="collapse-item" href="/system/user">List</a>
+                        </div>
+                    </div>
+                </li>
+
+                            <hr class="sidebar-divider d-none d-md-block">
+                            <!-- Sidebar Toggler (Sidebar) -->
+                            <div class="text-center d-none d-md-inline">
+                                <button class="rounded-circle border-0" id="sidebarToggle"></button>
                             </div>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="be_layout_api.html">
-                                <i class="si si-chemistry"></i> All Options (API)
-                            </a>
-                        </div>
-                    </div>
-                    <!-- END Layout Options -->
-                    <!-- Color Themes (used just for demonstration) -->
-                    <!-- Themes functionality initialized in Codebase() -> uiHandleTheme() -->
-                    <div class="btn-group" role="group">
-                        <!-- change with import -->
-                        <div class="dropdown-menu min-width-150" aria-labelledby="page-header-themes-dropdown">
-                            <h6 class="dropdown-header text-center">Color Themes</h6>
-                            <div class="row no-gutters text-center mb-5">
-                                <div class="col-4 mb-5">
-                                    <a class="text-default" data-toggle="theme" data-theme="default" href="javascript:void(0)">
-                                        <i class="fa fa-2x fa-circle"></i>
-                                    </a>
-                                </div>
-                                <div class="col-4 mb-5">
-                                    <a class="text-elegance" data-toggle="theme" data-theme="assets/css/themes/elegance.min.css" href="javascript:void(0)">
-                                        <i class="fa fa-2x fa-circle"></i>
-                                    </a>
-                                </div>
-                                <div class="col-4 mb-5">
-                                    <a class="text-pulse" data-toggle="theme" data-theme="assets/css/themes/pulse.min.css" href="javascript:void(0)">
-                                        <i class="fa fa-2x fa-circle"></i>
-                                    </a>
-                                </div>
-                                <div class="col-4 mb-5">
-                                    <a class="text-flat" data-toggle="theme" data-theme="assets/css/themes/flat.min.css" href="javascript:void(0)">
-                                        <i class="fa fa-2x fa-circle"></i>
-                                    </a>
-                                </div>
-                                <div class="col-4 mb-5">
-                                    <a class="text-corporate" data-toggle="theme" data-theme="assets/css/themes/corporate.min.css" href="javascript:void(0)">
-                                        <i class="fa fa-2x fa-circle"></i>
-                                    </a>
-                                </div>
-                                <div class="col-4 mb-5">
-                                    <a class="text-earth" data-toggle="theme" data-theme="assets/css/themes/earth.min.css" href="javascript:void(0)">
-                                        <i class="fa fa-2x fa-circle"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="dropdown-divider"></div>
-                            <button type="button" class="btn btn-sm btn-block btn-alt-secondary mb-10" data-toggle="layout" data-action="sidebar_style_inverse_toggle">Sidebar Style</button>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="be_ui_color_themes.html">
-                                <i class="fa fa-paint-brush"></i> All Color Themes
-                            </a>
-                        </div>
-                    </div>
-                    <!-- END Color Themes -->
-                </div>
-                <!-- END Left Section -->
-                <!-- Right Section -->
-                <div class="content-header-section">
-                    <!-- User Dropdown -->
-                    <div class="btn-group" role="group">
-                        <button id="top_right_name" type="button" class="text-capitalize btn btn-rounded btn-dual-secondary" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <?=$lastname . ' , '. $firstname . ' ' . $middlename ?>.
-                        <i class="fa fa-angle-down ml-5"></i>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-right min-width-150" aria-labelledby="page-header-user-dropdown">
-                            <a class="dropdown-item" href="/system/userprofile">
-                                <i class="si si-user mr-5"></i> Profile
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <!-- Toggle Side Overlay -->
-                            <!-- Layout API, functionality initialized in Codebase() -> uiApiLayout() -->
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="logout">
-                                <i class="si si-logout mr-5"></i> Sign Out
-                            </a>
-                        </div>
-                    </div>
-                    <!-- END User Dropdown -->
-                    <!-- Toggle Side Overlay -->
-                    <!-- Layout API, functionality initialized in Codebase() -> uiApiLayout() -->
-                    <button type="button" class="btn btn-circle btn-dual-secondary" data-toggle="layout" data-action="side_overlay_toggle">
-                    <i class="fa fa-trash"></i>
-                    </button>
-                    <!-- END Toggle Side Overlay -->
-                </div>
-                <!-- END Right Section -->
-            </div>
-            <!-- END Header Content -->
-            <!-- Header Search -->
-            <div id="page-header-search" class="overlay-header">
-                <div class="content-header content-header-fullrow">
-                    <div class="input-group">
-                        <span class="input-group-btn">
-                            <!-- Close Search Section -->
-                            <!-- Layout API, functionality initialized in Codebase() -> uiApiLayout() -->
-                            <button type="button" class="btn btn-secondary" data-toggle="layout" data-action="header_search_off">
-                            <i class="fa fa-times"></i>
-                            </button>
-                            <!-- END Close Search Section -->
-                        </span>
-                    </div>
-                </div>
-            </div>
-            <!-- END Header Search -->
-            <!-- Header Loader -->
-            <!-- Please check out the Activity page under Elements category to see examples of showing/hiding it -->
-            <div id="page-header-loader" class="overlay-header bg-primary">
-                <div class="content-header content-header-fullrow text-center">
-                    <div class="content-header-item">
-                        <i class="fa fa-sun-o fa-spin text-white"></i>
-                    </div>
-                </div>
-            </div>
-            <!-- END Header Loader -->
-        </header>
-        <!-- END Header -->
-        <!-- Main Container -->
-        <main id="main-container">
-            <!-- Page Content -->
-            <div class="content">
-                <?php endif; ?>
+                        </ul>
+                        <!-- End of Sidebar -->
+                        <!-- Content Wrapper -->
+                        <div id="content-wrapper" class="d-flex flex-column">
+                            <!-- Main Content -->
+                            <div id="content">
+                                <!-- Topbar -->
+                                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                                    <!-- Sidebar Toggle (Topbar) -->
+                                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                                    <i class="fa fa-bars"></i>
+                                    </button>
+                                    <!-- Topbar Search -->
+                                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                                        <div class="input-group">
+                                            
+                                        </div>
+                                    </form>
+                                    <!-- Topbar Navbar -->
+                                    <ul class="navbar-nav ml-auto">
+                                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+                                        <li class="nav-item dropdown no-arrow d-sm-none">
+                                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="fas fa-search fa-fw"></i>
+                                            </a>
+                                            <!-- Dropdown - Messages -->
+                                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
+                                                <form class="form-inline mr-auto w-100 navbar-search">
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                                                        <div class="input-group-append">
+                                                            <button class="btn btn-primary" type="button">
+                                                            <i class="fas fa-search fa-sm"></i>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </li>
+                                        
+                                        <div class="topbar-divider d-none d-sm-block"></div>
+                                        <!-- Nav Item - User Information -->
+                                        <li class="nav-item dropdown no-arrow">
+                                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <span class="mr-2 d-none d-lg-inline text-gray-600 small text-capitalize">
+                                                    <?=
+                                                    Auth::user()->lastname . " , " .
+                                                    Auth::user()->firstname . " " .
+                                                    substr(Auth::user()->middlename, 0,1) . "."
+                                                    ?>
+                                                </span>
+                                                <img class="img-profile rounded-circle" src="<?= APP['DOC_ROOT'] . '/assets/img/uploads/' . Auth::user()->profile ?>">
+                                            </a>
+                                            <!-- Dropdown - User Information -->
+                                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                                                <a class="dropdown-item" href="/system/profile/edit">
+                                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                                    Account Settings
+                                                </a>
+                                                <a class="dropdown-item" href="/system/user/create">
+                                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                                    Add new user
+                                                </a>
+                                                <a class="dropdown-item" href="">
+                                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                                                    Activity Log
+                                                </a>
+                                                <div class="dropdown-divider"></div>
+                                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                                    Logout
+                                                </a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </nav>
+                                <!-- End of Topbar -->
+                                <?php endif ?>

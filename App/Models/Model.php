@@ -1,12 +1,14 @@
 <?php 
 namespace App\Models;
 
-use PDO;
 use App\Core\Database;
 use App\Helpers\Database\QueryHelper;
+use App\Helpers\Str;
+use PDO;
 
 abstract class Model extends Database
 {
+
     // TODO Add escape for every query params
 
     protected $table;
@@ -14,6 +16,8 @@ abstract class Model extends Database
     protected $primaryKey;
 
     protected $columns = [];
+
+    protected $query = [];
 
     public function __construct()
     {
@@ -31,6 +35,11 @@ abstract class Model extends Database
         foreach ($fields as $property => $value) {
           $this->$property = $value;
         }
+    }
+
+    public static function __callStatic($name, $arguments)
+    {
+        call_user_func_array([self,$name], $arguments);
     }
 
     private function selectOnly(int $id , array $columns = ['*']) :string
@@ -121,7 +130,10 @@ abstract class Model extends Database
 
     public function create(array $values = [])
     {
-        $this->db->query($this->insert($values));
+        $self = new static;
+        $self->db->query($self->insert($values));
+        // $this->db->query($this->insert($values));
+        return $self;
     }
 
     public function save()

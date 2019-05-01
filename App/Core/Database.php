@@ -2,6 +2,7 @@
 namespace App\Core;
 
 use PDO;
+use Exception;
 
 class Database
 {
@@ -16,12 +17,19 @@ class Database
         ]);
     }
 
+    public function getLastInsertedId()
+    {
+        return $this->db->lastInsertId() ?? null;
+    }
+
     protected function columnsIn(string $table_name)
     {
         // Query to get columns from table
         $query = $this->db->query("
-                SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = '" . $this->dbname . "' AND TABLE_NAME = '" . $table_name . "'
-                ");
+                SELECT COLUMN_NAME 
+                FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = '" . $this->dbname . "' 
+                AND TABLE_NAME = '" . $table_name . "'
+            ");
 
         while($row = $query->fetch()){
             $result[] = $row;

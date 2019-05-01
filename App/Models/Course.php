@@ -3,6 +3,7 @@ namespace App\Models;
 
 use PDO;
 use App\Models\Model;
+use App\Core\QueryBuilder as DB;
 
 class Course extends Model
 {
@@ -24,10 +25,14 @@ class Course extends Model
 
     public function getCourse()
     {
-        return $this->db->query("
-            SELECT course.id , course.course , departments.department_name FROM course
-            LEFT JOIN departments ON course.dept_id = departments.id ORDER BY course.dept_id
-            ")->fetchAll(PDO::FETCH_ASSOC);
+        return DB::table('course')
+                ->leftJoin('departments','course.dept_id','=','departments.id')
+                ->select(
+                    'course.id',
+                    'course.course',
+                    'course.course_abbr',
+                    'departments.department_short_name'
+                )->get();
     }
 
 }

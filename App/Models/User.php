@@ -16,8 +16,6 @@ class User extends Model
 
         // Get all columns of table
         $this->columns = parent::columns();
-
     }
-
    
 }

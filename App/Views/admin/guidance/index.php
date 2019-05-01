@@ -1,32 +1,42 @@
-<div class="block">
-    <div class="block-header block-header-default">
-        <h3 class="block-title">List of <small>Guidance Councelors</small></h3>
-    </div>
-    <div class="block-content block-content-full">
-        <!-- DataTables init on table by adding .js-dataTable-full-pagination class, functionality initialized in js/pages/be_tables_datatables.js -->
-        <table class="table table-bordered table-striped table-vcenter js-dataTable-full-pagination">
-            <thead>
+<div class="container-fluid">
+  <h5 class="h5 mb-4 text-gray-800 text-capitalize">List of all Guidance counselor</h5>
+  <div class="float-right">
+    <a  class="text-capitalize btn btn-primary btn-sm rounded-0" href="/system/guidance/create">New Guidance counselor</a>
+  </div>
+  <br>
+  <br>
+  <div class="clearfix"></div>
+  <table class="table table-bordered" id="guidanceCounselorsTable">
+    <thead>
+            <th class="text-center">ID</th>
+            <th class="text-center">Full name</th>
+            <th class="text-center d-none d-sm-table-cell">Position</th>
+            <th class="text-center d-none d-sm-table-cell">Signatures</th>
+            <th class="text-center d-none d-sm-table-cell">Actions</th>
+    </thead>
+    <tbody>
+            <?php foreach ($guidance_counselors as $keys => $guidance_counselor): ?>
                 <tr>
-                    <th class="text-center">ID</th>
-                    <th class="text-center">Full name</th>
-                    <th class="text-center d-none d-sm-table-cell">Position</th>
-                    <th class="text-center d-none d-sm-table-cell">Signatures</th>
-                    <th class="text-center d-none d-sm-table-cell" style="width: 15%;">Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($guidance_conselors as $keys => $value): ?>
-                <tr>
-                    <td class="text-center"><?= $value['id'] ?></td>
-                    <td><?= $value['fullname'] ?></td>
-                    <td class="text-center"><?= $value['position'] ?></td>
-                    <td class="text-center"><img  class="img-fluid" style="width:8%" src="<?= APP['DOC_ROOT'] ?>assets/img/uploads/<?= $value['signature'] ?>" alt=""></td>
-                    <td class="text-center"><a href="edit?id=<?= $value['id']?>" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Edit Informations">
+                    <td class="text-center"><?= $guidance_counselor->id ?></td>
+                    <td class="font-weight-bold text-truncate"><?= $guidance_counselor->fullname ?></td>
+                    <td class="text-center font-weight-bold text-truncate"><?= $guidance_counselor->position ?></td>
+                    <td class="text-center">
+                        <img 
+                        class="img-fluid text-truncate"
+                        style="width:8%" 
+                        src="<?= APP['DOC_ROOT'] ?>assets/img/uploads/<?= $guidance_counselor->signature ?>">
+                    </td>
+                    <td class="text-center">
+                        <a 
+                            href="edit?id=<?= $guidance_counselor->id?>" 
+                            class="btn btn-sm btn-primary" 
+                            data-toggle="tooltip" 
+                            title="Edit Information">
                             <i class="fa fa-edit"></i>
-                        </a></td>
+                        </a>
+                    </td>
                 </tr>
                 <?php endforeach ?>
-            </tbody>
-        </table>
-    </div>
+    </tbody>
+  </table>
 </div>

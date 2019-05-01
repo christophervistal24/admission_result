@@ -1,6 +1,8 @@
 <?php 
 namespace App\Helpers\Database;
 
+use App\Helpers\Str;
+
 trait QueryHelper
 {
     public static function reOrderGivenFields($childList , $baseList) :array
@@ -14,7 +16,7 @@ trait QueryHelper
     public static function removeUnnecessaryColumns(array $childList , array $baseList ) :array
     {
        return array_filter($childList, function($k) use($baseList) {
-                return in_array($k,$baseList) ;
+                return in_array($k,$baseList);
             }, ARRAY_FILTER_USE_KEY);
     }
 
@@ -24,6 +26,11 @@ trait QueryHelper
             'columns' => '`'. implode('`,`',array_keys($list)) . '`',
             'values' => self::generateValuesForTable($list),
         ];
+    }
+
+    private static function generateValuesForTable(array $list) :string
+    {
+        return "'" . implode("','",$list) . "'";
     }
 
     public static function prepareSetStatement(array $columns = [], $model) :string 
@@ -37,10 +44,34 @@ trait QueryHelper
         return rtrim($statement, ',');
     }
 
-    private static function generateValuesForTable(array $list) :string
+    public static function prepareJoin(string $type = ' INNER JOIN ' , string $table , string $clauses) :string
     {
-        return "'" . implode("','",$list) . "'";
+       $prefix = "{$type} {$table} ON "; 
+      
+       $query =  $prefix . $clauses;
+
+       return Str::replace(' ON ' . $table, ' ON ', $query);
     }
 
+    public function prepareWhereValues(array $columns) 
+    {
+        $iterator    = 0;
+        $values      = null;
+        $noOfColumns = count($columns);
+
+        foreach ($columns as $column_name => $value) {
+            $values .= "{$column_name} = '{$value}' ";
+
+            // Iterator for tracking if we need to concat and AND keyword or not.            
+            $iterator++;
+        
+            if ($iterator !== $noOfColumns) {
+                $values .= ' AND ';
+            }
+            
+        }
+        
+        return $values;
+    }
 
 }

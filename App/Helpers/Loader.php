@@ -5,10 +5,11 @@ use App\Helpers\Error;
 
 abstract class Loader
 {
+ 
     final protected static function load(string $directory, string $filename, array $data = [])
     {
         if (file_exists( $directory . $filename . '.php')) {
-
+            
             // Add some data to view
             empty($data) ? : extract($data);
 

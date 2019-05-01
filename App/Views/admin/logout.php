@@ -1,4 +1,4 @@
 <?php
 session_destroy();
 session_unset();
-header("Location:/system/page/index");
+header("Location:/system/login");

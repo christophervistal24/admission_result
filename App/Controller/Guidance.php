@@ -1,53 +1,89 @@
 <?php
 namespace App\Controller;
 
+use App\Controller\Guidance;
 use App\Core\Controller;
-use App\Models\AdmissionResult;
+use App\Helpers\Redirect;
 use App\Models\Course;
-use App\Models\GuidanceConselor;
-use App\Models\User;
-use App\Models\UserInfo;
 
 class Guidance extends Controller
 {
     public function __construct()
     {
-        $this->user_info = load('Models\UserInfo');
         $this->admission = load('Models\AdmissionResult');
         $this->guidance = load('Models\GuidanceConselor');
-        $this->profile = (array) $this->user_info->where('user_id',$_SESSION['id']);
+        $this->request = load('Helpers\Request');
     }
 
     public function index()
     {
           $data['title']                     = 'List of Guidance Counselor';
-          $data['info']                      = $this->profile;
           $data['admission_result']          = (array) $this->admission->results();
           $data['deleted_admission_results'] = (array) $this->admission->deletedResults();
-          $data['guidance_conselors']        = [ (array) $this->guidance->get()[0] ];
+          $data['guidance_counselors'] = $this->guidance->get();
         $this->render('admin.guidance.index', $data);
     }
 
     public function create()
     {
          $data['title'] = '| Add new Guidance Counselor';
-         $data['info'] = $this->profile;
          $data['deleted_admission_results'] = $this->admission->deletedResults();
          
         $this->render('admin.guidance.create',$data);
     }
 
+    public function store()
+    {
+
+      $newGuidance = $this->guidance->create([
+          'fullname'   => $this->request->fullname_with_degree,
+          'position'   => $this->request->position,
+          'signature'  => $this->request->signature_image['name'],
+          'created_at' => time(),
+      ]);
+
+      // If the record successfully add
+      if ( $newGuidance->getLastInsertedId() ) {
+          // Prepare a location for the image or signature
+          $destination = APP['URL_ROOT'] . 'assets/img/uploads/'
+                                          . $this->request->signature_image['name'];
+          // Upload
+          move_uploaded_file($this->request->signature_image['tmp_name'], $destination);
+
+          return Redirect::to('guidance/create');
+      }
+
+    }
+
+    public function guidanceInfo()
+    {
+        echo json_encode(['data' => $this->guidance->find($this->request->id)]);
+    }
+
     public function edit()
     {
-            if (isset($_GET['id'])) {
-                $data['id'] = $_GET['id'];
-            }
-            
-            $data['info'] = $this->profile;
-            $data['deleted_admission_results']   = $this->admission->deletedResults();
-            $fetch_data['counselor_information'] = (array) $this->guidance->find($data['id']);
+        $data['title'] = 'Edit Guidance counselor';
+        $data['deleted_admission_results']   = $this->admission->deletedResults();
+        $fetch_data['counselor_information'] = (array) $this->guidance->find($this->request->id);
+        $this->render('admin.guidance.edit',$data + $fetch_data);
+    }
 
-            $this->render('admin.guidance.edit',$data + $fetch_data);
+    public function update()
+    {
+
+        $guidanceCounselor = $this->guidance->find($this->request->id);
+        // Checking if the user upload new signature.
+        $signature = (empty($this->request->signature_image['name']) ? $guidanceCounselor->signature :
+                                                            $this->request->signature_image['name']);
+        
+        $guidanceCounselor->fullname = $this->request->fullname_with_degree;
+        $guidanceCounselor->position = $this->request->position;
+        $guidanceCounselor->signature = $signature;
+        $guidanceCounselor->save();
+        $destination = APP['URL_ROOT'] . 'assets/img/uploads/' . $signature;
+        // Upload
+        move_uploaded_file($this->request->signature_image['tmp_name'], $destination);
+        return Redirect::to('guidance/edit?id=' . $this->request->id);
     }
 
 }

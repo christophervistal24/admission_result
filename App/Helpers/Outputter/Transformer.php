@@ -7,4 +7,20 @@ class Transformer
     {
         return (array) $items;
     }
+
+    public static function flattenArray(array $array) :array
+    {
+        $list = [];
+        foreach ($array as $keys => $value) {
+            $keys = trim($keys);
+            if (is_array($value)) {
+                foreach ($value as $key => $values) {
+                    $list[$values] = $values;
+                }
+            } else {
+                $list[$keys] = $value;
+            }
+        }
+        return $list;
+    }
 }

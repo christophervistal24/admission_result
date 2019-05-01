@@ -1,6 +1,7 @@
 <?php
 namespace App\Core;
 
+use App\Helpers\Str;
 use App\Helpers\TemplateLoader as Template;
 use App\Helpers\ViewLoader as View;
 
@@ -14,15 +15,19 @@ class Controller
          */
 
         // Replace all (dot) with / accessing a directory
-        $filename = str_replace('.','/', $view);
+        $filename = Str::replace('.','/',$view);
 
-        Template::loadFile('header' , $data);
+        if ( !Str::contains($_GET['url'],'print')) {
+            Template::loadFile('header' , $data);    
+        }
+        
 
         View::loadFile($filename, $data);
 
-        Template::loadFile('footer');
-    
-       
+        if ( !Str::contains($_GET['url'],'print') ) {
+            Template::loadFile('footer');
+        }
+
     }
 
 }

@@ -1,4 +1,4 @@
-$(".verbal-score").keyup(function(){
+$(".verbal-score").keyup(function() {
 
      let comprehension_score = $('#verbal-comprehension').val();
      let reasoning_score     = $('#verbal-reasoning').val();
@@ -42,9 +42,9 @@ $("#quantitative-reasoning").keyup(function(){
 let calculateEquivalent  = (value,compare = []) => {
     if (value > compare[0]) {
         return "Above Average";
-    }else if (value < compare[1]){
+    } else if (value < compare[1]){
         return "Below Average";
-    }else{
+    } else{
         return "Average";
     }
 };

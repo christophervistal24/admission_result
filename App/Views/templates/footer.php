@@ -1,52 +1,77 @@
 </div>
-</main>
-<!-- END Main Container -->
+<footer class="sticky-footer bg-white">
+<div class="container my-auto">
+    <div class="copyright text-center my-auto">
+        <span>Copyright &copy; SDSSU <?= date('Y') ?></span>
+    </div>
 </div>
-<!-- END Page Container -->
-<!-- Codebase Core JS -->
-<script src="<?= APP['DOC_ROOT'] ?>assets/js/core/jquery.min.js"></script>
-<script src="<?= APP['DOC_ROOT'] ?>assets/js/core/popper.min.js"></script>
-<script src="<?= APP['DOC_ROOT'] ?>assets/js/core/bootstrap.min.js"></script>
-<script src="<?= APP['DOC_ROOT'] ?>assets/js/core/jquery.slimscroll.min.js"></script>
-<script src="<?= APP['DOC_ROOT'] ?>assets/js/core/jquery.scrollLock.min.js"></script>
-<script src="<?= APP['DOC_ROOT'] ?>assets/js/core/jquery.appear.min.js"></script>
-<script src="<?= APP['DOC_ROOT'] ?>assets/js/core/jquery.countTo.min.js"></script>
-<script src="<?= APP['DOC_ROOT'] ?>assets/js/core/js.cookie.min.js"></script>
-<script src="<?= APP['DOC_ROOT'] ?>assets/js/codebase.js"></script>
-<script src="<?= APP['DOC_ROOT'] ?>assets/js/plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="<?= APP['DOC_ROOT'] ?>assets/js/plugins/datatables/dataTables.bootstrap4.min.js"></script>
-<script src="<?= APP['DOC_ROOT'] ?>assets/js/pages/be_tables_datatables.js"></script>
-<script src="<?= APP['DOC_ROOT'] ?>assets/js/plugins/bootstrap-wizard/jquery.bootstrap.wizard.js"></script>
-<script src="<?= APP['DOC_ROOT'] ?>assets/js/plugins/jquery-validation/jquery.validate.min.js"></script>
-<script src="<?= APP['DOC_ROOT'] ?>assets/js/plugins/jquery-validation/additional-methods.min.js"></script>
-<script src="<?= APP['DOC_ROOT'] ?>assets/js/pages/be_forms_wizard.js"></script>
+</footer>
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <a class="btn btn-primary" href="/system/admin/logout">Logout</a>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</div>
+<script src="<?= APP['DOC_ROOT'] ?>assets/vendor/jquery/jquery.min.js"></script>
+<script src="<?= APP['DOC_ROOT'] ?>assets/js/sb-admin-2.min.js"></script>
+<script src="<?= APP['DOC_ROOT'] ?>assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- <script src="<?= APP['DOC_ROOT'] ?>assets/vendor/jquery-easing/jquery.easing.min.js"></script> -->
+<script src="<?= APP['DOC_ROOT'] ?>assets/vendor/datatables/jquery.dataTables.min.js"></script>
+<script src="<?= APP['DOC_ROOT'] ?>assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 <script src="<?= APP['DOC_ROOT'] ?>assets/js/admin/addadmission.js"></script>
 <script src="<?= APP['DOC_ROOT'] ?>assets/js/admin/editadmission.js"></script>
 <script src="<?= APP['DOC_ROOT'] ?>assets/js/admin/admissionkeypress.js"></script>
-<script src="<?= APP['DOC_ROOT'] ?>assets/js/admin/addnewcounselor.js"></script>
-<script src="<?= APP['DOC_ROOT'] ?>assets/js/admin/change_information.js"></script>
-<script src="<?= APP['DOC_ROOT'] ?>assets/js/admin/custom.js"></script>
-<script src="<?= APP['DOC_ROOT'] ?>assets/js/plugins/sparkline/jquery.sparkline.min.js"></script>
-<script src="<?= APP['DOC_ROOT'] ?>assets/js/pages/be_blocks_widgets_stats.js"></script>
-<script src="<?= APP['DOC_ROOT'] ?>assets/js/jqueryvalidation.js"></script>
-<script src="<?= APP['DOC_ROOT'] ?>assets/js/additionalmethodsjvalidate.js"></script>
- <!-- Page JS Code -->
-        <script>
-            
-            jQuery(function () {
-                    // Init page helpers (Content Filtering helper)
-                    Codebase.helpers('content-filter');
-                });
-           
-                $("#birthDate").change((function () {
-                    //get the yearOfBirth
-                    let yearOfBirth = $("#birthDate").val().split('-')[0];
-                    //get the current date
-                    let currentDate = new Date().getFullYear();
+<!-- Page JS Code -->
+<script>
+$("#admissionResultTable").dataTable();
+$("#guidanceCounselorsTable").dataTable();
+$("#usersTable").dataTable();
 
-                    $('#examineeAge').val(currentDate - yearOfBirth);
-                }));
-        </script>
 
+$("#birthDate").change((function () {
+    //get the yearOfBirth
+    let yearOfBirth = $("#birthDate").val().split('-')[0];
+    //get the current date
+    
+    let currentDate = new Date().getFullYear();
+    $('#examineeAge').val(currentDate - yearOfBirth);
+}));
+
+</script>
+
+<script>
+// Function for Add new admission result in Guidance section
+let guidanceCounselor = document.querySelector('#guidance_counselor_name');
+let position          = document.querySelector("#position");
+let signatureImage    = document.querySelector('#signature_image');
+let signatureDirectory = "/system/assets/img/uploads/";
+
+  guidanceCounselor.addEventListener('change' , (event) => {
+      fetch(`/system/guidanceapi/show?id=${event.target.value}`)
+      .then(response => response.json())
+      .then( data => {
+        const guidanceInfo = data;
+        for (var key in guidanceInfo) {
+            position.innerHTML = guidanceInfo[key].position;
+
+            // Change the image
+            signatureImage.setAttribute('src',`${signatureDirectory}${guidanceInfo[key].signature}`);
+        }
+      });
+  });
+</script>
 </body>
 </html>

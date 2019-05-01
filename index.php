@@ -1,12 +1,14 @@
 <?php
+
 use App\Core\App;
-use App\Services\Container;
+use App\Services\ViewComposer;
+use Whoops\Handler\PrettyPageHandler;
+use Whoops\Run;
 
 require_once './App/init.php';
 
-$whoops = new \Whoops\Run;
-$whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
+$whoops = new Run;
+$whoops->pushHandler(new PrettyPageHandler);
 $whoops->register();
-
 
 $app = new App;

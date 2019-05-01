@@ -1,26 +1,56 @@
-<div class="block row">
-  <div class="block-header block-header-default">
-  </div>
-  <div class="block-content block-content-full col-lg-6">
-    <form class="form-signin" method="POST" action="/system/auth/authentication">
-      <div class="container mb-4">
-        <div class="text-center mb-4 col-lg-4 m-lg-auto">
-          <img class="img-fluid" src="<?= APP['DOC_ROOT'] . '/assets/img/photos/sdssu.png' ?>">
+<body class="bg-gradient-primary">
+  <div class="container">
+    <!-- Outer Row -->
+    <div class="row justify-content-center">
+      <div class="col-xl-10 col-lg-12 col-md-9">
+        <div class="card o-hidden border-0 shadow-lg my-5">
+          <div class="card-body p-0">
+            <!-- Nested Row within Card Body -->
+            <div class="row">
+              <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+              <div class="col-lg-6">
+                <div class="p-5">
+                  <div class="text-center">
+                    <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                  </div>
+                  <form class="user" autocomplete="off"  method="POST" action="/system/auth/authentication">
+                    <div class="form-group">
+                      <input type="text" class="form-control form-control-user" name="username" name="username" placeholder="Enter Username">
+                      
+                    </div>
+                    <div class="form-group">
+                      <input type="password" class="form-control form-control-user" name="password" placeholder="Enter Password">
+                      
+                    </div>
+                    <div class="form-group">
+                      <div class="custom-control custom-checkbox small">
+                        <input type="checkbox" class="custom-control-input" id="customCheck">
+                        <label class="custom-control-label" for="customCheck">Remember Me</label>
+                      </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-user btn-block">
+                    Login
+                    </button>
+                    <hr>
+                    <a href="index.html" class="btn btn-google btn-user btn-block">
+                      <i class="fab fa-google fa-fw"></i> Login with Google
+                    </a>
+                    <a href="index.html" class="btn btn-facebook btn-user btn-block">
+                      <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
+                    </a>
+                  </form>
+                  <hr>
+                  <div class="text-center">
+                    <a class="small" href="forgot-password.html">Forgot Password?</a>
+                  </div>
+                  <div class="text-center">
+                    <a class="small" href="register.html">Create an Account!</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      
-      <?php include_once  APP['URL_ROOT'] . 'App/Views/templates/errors.php'; ?>
-
-      <div class="form-label-group">
-        <label for="username">Username</label>
-        <input type="text" id="username" class="form-control" name="username" placeholder="Username" required autofocus>
-      </div>
-      <div class="form-label-group mt-2">
-        <label for="password">Password</label>
-        <input type="password" id="password" class="form-control" name="password" placeholder="Password" required>
-      </div>
-      <button class="float-right  btn mt-3 btn-primary rounded-0" type="submit">Sign in</button>
-      <p class="mt-5 mb-3  text-muted text-center"><b>SDSSU ADMISSION RESULT &copy; <?= date('Y'); ?></b></p>
-    </form>
+    </div>
   </div>
-</div>

@@ -15,7 +15,7 @@ class Request
     
     private function get(string $field_name)
     {
-        return $_GET[$field_name] ?? $_POST[$field_name] ?? null;
+        return $_GET[$field_name] ?? $_POST[$field_name] ?? $_FILES[$field_name] ?? null;
     }
 
     public function __get(string $name)
@@ -23,6 +23,7 @@ class Request
         if ( !is_null($this->get($name)) ) {
             return $this->get($name);
         } 
+        
         Error::throwA422('Undefined ' . $name . ' field, Please check every name to your forms');    
     }
 

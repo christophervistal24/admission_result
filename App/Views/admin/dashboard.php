@@ -46,9 +46,9 @@
                     <th class="text-center">ID</th>
                     <th class="text-center">Full name</th>
                     <!-- <th class="text-center d-none d-sm-table-cell">V. Comprehension</th> -->
-                    <!-- <th class="d-none d-sm-table-cell" style="width: 15%;">V. Reasoning</th>
+                     <th class="d-none d-sm-table-cell" style="width: 15%;">V. Reasoning</th>
                     <th class="d-none d-sm-table-cell" style="width: 15%;">F. Reasoning</th>
-                    <th class="d-none d-sm-table-cell" style="width: 15%;">Q. Reasoning</th>-->
+                    <th class="d-none d-sm-table-cell" style="width: 15%;">Q. Reasoning</th>
                     <th class="text-center d-none d-sm-table-cell" style="width: 15%;">V. Total</th>
                     <th class="text-center d-none d-sm-table-cell" style="width: 15%;">Non V. Total</th>
                     <th class="text-center d-none d-sm-table-cell" style="width: 15%;">Over All Total</th>
@@ -62,21 +62,21 @@
                 <?php foreach ($admission_result as $keys => $value): ?>
                 <tr>
                     <td class="text-capitalize text-center"><?= $value['id']; ?></td>
-                    <td class="text-capitalize text-center"><a href="print3?id=<?= $value['id'] ?>"><?= $value['Name']; ?></a></td>
+                    <td class="text-capitalize text-center"><a href="/system/admission/print?id=<?= $value['id'] ?>"><?= $value['Firstname']; ?></a></td>
                     <td class="text-capitalize text-center"><?= $value['verbal_total']; ?></td>
                     <td class="text-capitalize text-center"><?= $value['non_verbal_total']; ?></td>
                     <td class="text-capitalize text-center"><?= $value['over_all_total']; ?></td>
                     <td class="text-center text-sm-center">
-                        <a href="vprofile?id=<?= $value['id']?>" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="View Profile"><i class="fa fa-user"></i></a>
-                        <a href="editresult?id=<?= $value['id']?>" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Edit Full Result">
+                        <a href="/system/admission/show?id=<?= $value['id']?>" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="View Profile"><i class="fa fa-user"></i></a>
+                        <a href="/system/admission/edit?id=<?= $value['id']?>" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Edit Full Result">
                             <i class="fa fa-edit"></i>
                         </a>
-                        <a href="print3?id=<?= $value['id']?>" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Print Full Result">
+                        <a href="/system/admission/print?id=<?= $value['id']?>" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Print Full Result">
                             <i class="fa fa-print"></i>
                         </a>
                     </td>
                     <td class="text-center text-sm-center">
-                        <a href="delete?id=<?= $value['id']?>" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Delete Result">
+                        <a href="/system/admission/delete?id=<?= $value['id']?>" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Delete Result">
                             <i class="fa fa-trash"></i>
                         </a>
                     </td>

@@ -44,7 +44,7 @@ trait Functions
                 foreach ($value as $key => $values) {
                     $list[$values] = $values;
                 }
-            }else{
+            } else{
                 $list[$keys] = $value;
             }
         }

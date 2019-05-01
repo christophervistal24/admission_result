@@ -12,7 +12,7 @@ $('#addAdmissionResult').submit(function(e) {
                 swal({ title: "Do you want to print this result?", text: "just hit the print button", icon: "success", buttons: true, dangerMode: true,})
                 .then((wantToProceed) => {
                   if (wantToProceed) {
-                    location.replace('print3?id='+data.result_id);
+                    location.replace('/system/admission/print?id='+data.result_id);
                   } 
                 });
            }

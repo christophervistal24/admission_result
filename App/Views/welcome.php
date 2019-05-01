@@ -15,7 +15,7 @@
       <?php endif ?>
       <div class="form-label-group">
         <label for="username">Username</label>
-        <input type="text" id="username" class="form-control" name="username" placeholder="Username" required autofocus>
+        <input type="text" id="username"  class="form-control" name="username" placeholder="Username" required autofocus>
       </div>
       <div class="form-label-group mt-2">
         <label for="password">Password</label>

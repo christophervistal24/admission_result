@@ -1,8 +1,7 @@
 {
     "require": {
         "setasign/fpdf": "^1.8",
-        "filp/whoops": "^2.3",
-        "twig/twig": "^2.8"
+        "filp/whoops": "^2.3"
     },
 
     "autoload" : {
@@ -15,8 +14,7 @@
                 "App/Helpers",
                 "App/Helpers/Database",
                 "App/Helpers/Outputter",
-                "App/Services",
-                "App/ViewComposer"
+                "App/Services"
             ]
         }
     }
