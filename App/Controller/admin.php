@@ -49,7 +49,7 @@ class Admin extends Controller
     public function index()
     {
             $data = $this->data();
-            $this->render('admin.dashboard2',$data);
+            $this->render('admin.dashboard',$data);
     }
 
     public function create()

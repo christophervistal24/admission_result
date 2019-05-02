@@ -69,7 +69,7 @@
                     </div>
                 </li>
 
-                <hr class="sidebar-divider">
+                <!-- <hr class="sidebar-divider">
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#userCollapse" aria-expanded="true" aria-controls="userCollapse">
                         <i class="fas fa-fw fa-address-book"></i>
@@ -81,7 +81,7 @@
                         </div>
                     </div>
                 </li>
-
+                 -->
                             <hr class="sidebar-divider d-none d-md-block">
                             <!-- Sidebar Toggler (Sidebar) -->
                             <div class="text-center d-none d-md-inline">
@@ -142,14 +142,14 @@
                                             </a>
                                             <!-- Dropdown - User Information -->
                                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                                                <a class="dropdown-item" href="/system/profile/edit">
+                                                <a class="dropdown-item" href="/system/user/edit?id=<?=Auth::user()->id ?>">
                                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                                     Account Settings
                                                 </a>
-                                                <a class="dropdown-item" href="/system/user/create">
+                                                <!-- <a class="dropdown-item" href="/system/user/create">
                                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                                     Add new user
-                                                </a>
+                                                </a> -->
                                                 <a class="dropdown-item" href="">
                                                     <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                                                     Activity Log

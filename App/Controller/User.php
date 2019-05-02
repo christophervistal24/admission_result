@@ -60,7 +60,7 @@ class User extends Controller
 
         $this->render('admin.user.edit',[
             'title' => 'Edit user',
-            'user' => $this->userInfo->withCredentials($this->request->id,'FETCH_OBJ'),
+            'user' => $this->userInfo->withCredentials($this->request->id),
         ]);
     }
 

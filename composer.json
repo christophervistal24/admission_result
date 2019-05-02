@@ -14,6 +14,7 @@
                 "App/Helpers",
                 "App/Helpers/Database",
                 "App/Helpers/Outputter",
+                "App/Helpers/Form",
                 "App/Services"
             ]
         }

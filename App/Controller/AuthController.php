@@ -9,7 +9,9 @@ class AuthController extends Controller
 {
     public function index()
     {
-        $this->render('auth.login',[]);
+        $this->render('auth.login',[
+            'title' => 'Welcome to ARS'
+        ]);
     }
 
     public function authentication()
