@@ -74,4 +74,19 @@ trait QueryHelper
         return $values;
     }
 
+    public static function queryHasSelect(string $query)
+    {
+        return Str::contains($query, "SELECT");
+    }
+
+    public static function queryHasWhere(string $query)
+    {
+        return Str::contains($query, "WHERE");
+    }
+
+    public static function queryHasJoin(string $query)
+    {
+        return Str::contains($query, "JOIN");
+    }
+
 }

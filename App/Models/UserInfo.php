@@ -1,8 +1,10 @@
 <?php
 namespace App\Models;
 
-use PDO;
+use App\Core\Auth;
+use App\Helpers\Session;
 use App\Models\Model;
+use PDO;
 
 class UserInfo extends Model
 {
@@ -18,9 +20,23 @@ class UserInfo extends Model
         $this->columns = parent::columns();
     }
 
+    public function save()
+    {
+        parent::save();
+        $userInfo = $this->where('user_id',Session::get('id'), [
+            'lastname','firstname','middlename',
+            'profile','gender','birthdate','user_id'
+        ]);
+
+        // Update 
+        foreach ($userInfo as $columns => $value) {
+            Session::set($columns,$value);
+        }
+
+    }
+
     public function userWithLoginInfo()
     {
-        
         return $this->db->query("
             SELECT
             `tbl_users`.`id`,

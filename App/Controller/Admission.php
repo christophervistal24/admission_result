@@ -38,7 +38,7 @@ class Admission extends Controller
     public function create()
     {
         $this->render('admin.admission.create',[
-            'title'                     => 'Add',
+            'title'                     => ' Add new admission',
             'course'                    => $this->data()['course'],
             'deleted_admission_results' => $this->data()['deleted_admission_results'],
             'course'                    => $this->data()['course'],

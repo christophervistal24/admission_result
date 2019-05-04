@@ -8,7 +8,7 @@ use App\Helpers\Session;
 class Auth
 {
     // Set up columns that will fetch.
-    private static $fetchOnly = [ 'id', 'username', 'password'];
+    private static $fetchOnly = [ 'id', 'username', 'password','updated_at'];
     private static $models = [];
 
     private static function isAuthorize(array $credentials = [])
@@ -42,29 +42,23 @@ class Auth
         return Session::has('id');
     }
 
-    private function authDataFromDB(string $property) :string
+    private function requestToDB(string $property) :string
     {
-      // The reason why it is in local scope
-      // to avoid having a side effect and performance issue.
-      $user     = load('Models\User');
-      $userInfo = load('Models\UserInfo');
-
       $userId = Session::get('id');
-      return $user->where('id',$userId)->$property 
-             ?? $userInfo->where('user_id', $userId)->$property;
-      
+      $data = User::where('id', $userId)->$property 
+                    ?? UserInfo::where('user_id', $userId)->$property;
+      return $data;
     }
 
     public function __get(string $property)
     {
         // If there's no data in session we inforce the method to request in DB
-        if ( Session::has($property) ) {
-            return Session::get($property);
-        } else {
-            $fetchedData = $this->authDataFromDB($property);
-            Session::set($property, $fetchedData);
-            return $fetchedData;
+        if ( !Session::has($property) ) {
+            $userData = $this->requestToDB($property);
+            Session::set($property, $userData);
+            return $userData;
         }
+        return Session::get($property);
     }
 
     public static function user()

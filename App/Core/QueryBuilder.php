@@ -61,7 +61,6 @@ class QueryBuilder extends Database
 
         $this->query[] =  "SELECT " . implode(', ', $columns)
                           . " FROM {$table}";
-
         return $this;
     }
 
@@ -90,12 +89,14 @@ class QueryBuilder extends Database
 
         foreach ($this->query as $key => $query) {
 
-            $where .= Str::contains($query , "WHERE") ? $query : null;
+            if ( QueryHelper::queryHasWhere($query) ) {
+                $where = $query;
+            } else if ( QueryHelper::queryHasSelect($query) ) {
+                $select = $query;        
+            } else if ( QueryHelper::queryHasJoin($query) ) {
+                $joins .= $query;
+            }
 
-            $select = Str::contains($query, "SELECT") ? $query : null;
-
-            $joins .= Str::contains($query, "JOIN") ? $query : null;
-            
         }
 
         return $this->db->query($select  . $joins . " " . $where)->fetchAll(PDO::FETCH_ASSOC);

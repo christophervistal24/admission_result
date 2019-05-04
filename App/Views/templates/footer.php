@@ -25,6 +25,12 @@
 </div>
 </div>
 </div>
+<?php 
+    // Rebase
+    Session::set('errors',null);
+    Session::set('status',null);
+?>
+
 <script src="<?= APP['DOC_ROOT'] ?>assets/vendor/jquery/jquery.min.js"></script>
 <script src="<?= APP['DOC_ROOT'] ?>assets/js/sb-admin-2.min.js"></script>
 <script src="<?= APP['DOC_ROOT'] ?>assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -35,6 +41,7 @@
 <script src="<?= APP['DOC_ROOT'] ?>assets/js/admin/editadmission.js"></script>
 <script src="<?= APP['DOC_ROOT'] ?>assets/js/admin/admissionkeypress.js"></script>
 <!-- Page JS Code -->
+
 <script>
 $("#admissionResultTable").dataTable();
 $("#guidanceCounselorsTable").dataTable();

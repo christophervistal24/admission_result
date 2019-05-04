@@ -27,4 +27,9 @@ class Request
         Error::throwA422('Undefined ' . $name . ' field, Please check every name to your forms');    
     }
 
+    public function all()
+    {
+        return array_merge($_POST,$_FILES);
+    }
+
 }

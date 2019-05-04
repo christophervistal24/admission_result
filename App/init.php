@@ -27,4 +27,5 @@ function dd($item)
 
 class_alias('App\Core\Auth','Auth');
 class_alias('App\Helpers\Admission\EquivalentCalculator','Equivalent');
+class_alias('App\Helpers\Session','Session');
 

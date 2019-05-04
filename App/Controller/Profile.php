@@ -13,8 +13,10 @@ class Profile extends Controller
 
     public function index()
     {
-        $data['deleted_admission_results'] = $this->admission->deletedResults();
-        $this->render('admin.profile.index',$data);
+        $this->render('admin.profile.index', [
+            'title'                     => 'Profile',
+            'deleted_admission_results' => $this->admission->deletedResults(),
+        ]);
     }
 
     public function edit()

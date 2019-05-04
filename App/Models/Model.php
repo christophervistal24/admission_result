@@ -124,15 +124,15 @@ abstract class Model extends Database
 
     public function where(string $where, string $where_value, array $columns = ['*'])
     {
-        return $this->db->query($this->fetch($where,$where_value,$columns))
-                        ->fetch(PDO::FETCH_OBJ);
+        $self = new static;
+        return $self->db->query($self->fetch($where,$where_value,$columns))
+                 ->fetch(PDO::FETCH_OBJ);
     }
 
     public function create(array $values = [])
     {
         $self = new static;
         $self->db->query($self->insert($values));
-        // $this->db->query($this->insert($values));
         return $self;
     }
 
@@ -143,12 +143,13 @@ abstract class Model extends Database
 
     public function find(int $id , array $columns = ['*']) :object 
     {
-        $result = $this->db->query($this->selectOnly($id, $columns))
+        $self = new static;
+        $result = $self->db->query($self->selectOnly($id, $columns))
                            ->fetch(PDO::FETCH_OBJ);
 
-        $this->setModelProperties( (array) $result);
+        $self->setModelProperties( (array) $result);
 
-        return $this;
+        return $self;
     }
 
     public function destroy()

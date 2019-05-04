@@ -11,6 +11,11 @@ class Redirect
         return new static;
     }
 
+    public function with(string $key , string $message)
+    {
+        $_SESSION[$key] = $message;
+    }
+
     public function withData(array $data = [])
     {
         return new static;

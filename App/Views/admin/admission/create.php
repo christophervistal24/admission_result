@@ -1,6 +1,6 @@
 <div class="container-fluid">
-  <h5 class="h5 mb-4 text-gray-800 text-capitalize">&nbsp;</h5>
-  <h2 class="content-heading">
+  <h5 class="h5 mb-4 text-gray-800 text-capitalize"><?= $title ?></h5>
+  <!-- <h2 class="content-heading">
   <div class="row text-center">
     <div class="col-lg-4 mt-3 ">
       <img width="125px" src="<?= APP['DOC_ROOT'] ?>assets/img/photos/sdssu.png">
@@ -21,11 +21,11 @@
       <h6><b><?= date('m/d/Y'); ?></b></h6>
     </div>
   </div>
-  </h2>
+  </h2> -->
   <div class="block">
-    <div class=" text-center">
+  <!--   <div class=" text-center">
       <h4><b>UNIVERSITY ADMISSION TEST RESULT</b><br>1st Semester AY <?= date('Y')  . ' - ' . date('Y',strtotime("+ 1 year")); ?></h4>
-    </div>
+    </div> -->
     <hr>
     <div class="block-content">
       <div class="row justify-content-center py-20">
@@ -221,7 +221,7 @@
                   </div>
                   <br>
                   <input type="hidden" value="add_admission_result" name="action">
-                  <input type="submit" value="Add & Print" class="mr-5 btn btn-primary border-0 rounded-0 float-right">
+                  <input type="submit" value="Add & Print" class="mb-3 btn btn-sm btn-primary border-0 rounded-0 float-right">
                 </div>
               </div>
             </form>

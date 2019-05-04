@@ -8,5 +8,5 @@ $baseDir = dirname($vendorDir);
 return array(
     'Whoops\\' => array($vendorDir . '/filp/whoops/src/Whoops'),
     'Psr\\Log\\' => array($vendorDir . '/psr/log/Psr/Log'),
-    'App\\' => array($baseDir . '/App/Controller', $baseDir . '/App/Contracts', $baseDir . '/App/Core', $baseDir . '/App/Models', $baseDir . '/App/Helpers', $baseDir . '/App/Helpers/Database', $baseDir . '/App/Helpers/Outputter', $baseDir . '/App/Services'),
+    'App\\' => array($baseDir . '/App/Controller', $baseDir . '/App/Contracts', $baseDir . '/App/Core', $baseDir . '/App/Models', $baseDir . '/App/Helpers', $baseDir . '/App/Helpers/Database', $baseDir . '/App/Helpers/Outputter', $baseDir . '/App/Helpers/Form', $baseDir . '/App/Services'),
 );

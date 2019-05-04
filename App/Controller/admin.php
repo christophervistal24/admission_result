@@ -36,7 +36,7 @@ class Admin extends Controller
         $user_info                 = $this->user_info->where('user_id',$_SESSION['id']);
 
         return [
-                'title'                           => '| Dashboard',
+                'title'                           => 'Dashboard',
                 'admission_result'                => Transformer::toArray($this->admission_results),
                 'deleted_admission_results'       => Transformer::toArray($this->deleted_admission_results),
                 'no_of_users'                     => $this->user->count(),

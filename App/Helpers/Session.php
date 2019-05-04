@@ -3,7 +3,7 @@ namespace App\Helpers;
 
 class Session
 {
-    public static function set(string $key , string $value)
+    public static function set(string $key , $value = '')
     {
         $_SESSION[$key] = $value;
     }

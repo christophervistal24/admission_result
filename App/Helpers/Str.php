@@ -12,4 +12,5 @@ class Str
     {
         return strpos($haystack, $needle) !== false;
     }
+
 }

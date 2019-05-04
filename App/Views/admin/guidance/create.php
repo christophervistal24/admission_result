@@ -1,5 +1,7 @@
 <div class="container-fluid">
     <h5 class="h5 mb-4 text-gray-800 text-capitalize">Add new Guidance Counselor</h5>
+    <?php include_once APP['APP_ROOT'] . '/Views/templates/form-errors.php'; ?>
+    <?php include_once APP['APP_ROOT'] . '/Views/templates/form-success.php'; ?>
     <div class="card shadow mb-4" >
         <div class="card-header py-3">
             <h6 class="text-primary m-0 font-weight-bold text-primary">Form for new guidance counselor</h6>

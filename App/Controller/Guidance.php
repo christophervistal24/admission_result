@@ -50,7 +50,8 @@ class Guidance extends Controller
           // Upload
           move_uploaded_file($this->request->signature_image['tmp_name'], $destination);
 
-          return Redirect::to('guidance/create');
+          return Redirect::to('guidance/create')
+                         ->with('status', 'Successfully add new guidance counselor.');
       }
 
     }
