@@ -2,6 +2,8 @@
 namespace App\Controller;
 
 use App\Core\Controller;
+use App\Core\QueryBuilder as DB;
+
 
 class Profile extends Controller
 {

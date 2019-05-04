@@ -17,6 +17,7 @@
         background-size: cover;
         }
         </style>
+        <link rel="stylesheet" href="<?= APP['DOC_ROOT'] ?>assets/css/custom.min.css">
     </head>
     <body id="page-top">
         <?php if (Auth::hasLogin()): ?>
@@ -25,7 +26,7 @@
             <!-- Sidebar -->
             <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
                 <!-- Sidebar - Brand -->
-                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/system/admin/index">
                     <div class="sidebar-brand-icon rotate-n-15">
                       <i class="fas fa-laugh-wink"></i>
                     </div>
@@ -38,12 +39,14 @@
                         <span class="font-weight-bold">Dashboard</span>
                     </a>
                 </li>
+
                 <li class="nav-item">
-                  <a class="nav-link" href="/system/profile">
-                        <i class="fas fa-fw fa-user-alt"></i>
-                        <span class="font-weight-bold">Profile</span>
+                  <a class="nav-link" href="/system/rankings">
+                        <i class="fas fa-fw fa-users"></i>
+                        <span class="font-weight-bold">Rankings</span>
                   </a>
                 </li>
+
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
                         <i class="fas fa-fw fa-table"></i>
@@ -143,8 +146,13 @@
                                             <!-- Dropdown - User Information -->
                                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                                                 <a class="dropdown-item" href="/system/user/edit?id=<?=Auth::user()->id ?>">
-                                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                                    <i class="fas fa-lock fa-sm fa-fw mr-2 text-gray-400"></i>
                                                     Account Settings
+                                                </a>
+                                                <a class="dropdown-item" href="/system/profile">
+                                                        <!-- <i class="fas fa-fw fa-user-alt"></i> -->
+                                                        <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                                        <span class="">Profile</span>
                                                 </a>
                                                 <!-- <a class="dropdown-item" href="/system/user/create">
                                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>

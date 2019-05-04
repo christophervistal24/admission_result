@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid p-3" style="background:white;">
   <h5 class="h5 mb-4 text-gray-800 text-capitalize">&nbsp;</h5>
   <h2 class="content-heading">
   <div class="row text-center">
@@ -26,7 +26,7 @@
     <div class=" text-center">
       <h4><b>UNIVERSITY ADMISSION TEST RESULT</b><br>1st Semester AY <?= date('Y')  . ' - ' . date('Y',strtotime("+ 1 year")); ?></h4>
     </div>
-    <hr>
+    <br>
     <div class="block-content">
       <div class="row justify-content-center py-20">
         <div class="col-xl-12">

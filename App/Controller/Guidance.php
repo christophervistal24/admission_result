@@ -5,9 +5,12 @@ use App\Controller\Guidance;
 use App\Core\Controller;
 use App\Helpers\Redirect;
 use App\Models\Course;
+use App\Helpers\Form\Validator;
 
 class Guidance extends Controller
 {
+  use Validator;
+
     public function __construct()
     {
         $this->admission = load('Models\AdmissionResult');
@@ -26,7 +29,7 @@ class Guidance extends Controller
 
     public function create()
     {
-         $data['title'] = '| Add new Guidance Counselor';
+         $data['title'] = 'Add new Guidance Counselor';
          $data['deleted_admission_results'] = $this->admission->deletedResults();
          
         $this->render('admin.guidance.create',$data);
@@ -34,6 +37,14 @@ class Guidance extends Controller
 
     public function store()
     {
+        $this->validate($this->request->all(), [
+            'fullname_with_degree' => 'required',
+            'position'             => 'required',
+        ]);
+
+        if ($this->fail()) {
+            return Redirect::back();
+        }
 
       $newGuidance = $this->guidance->create([
           'fullname'   => $this->request->fullname_with_degree,
@@ -71,6 +82,14 @@ class Guidance extends Controller
 
     public function update()
     {
+        $this->validate($this->request->all(), [
+              'fullname_with_degree' => 'required',
+              'position'             => 'required',
+          ]);
+
+          if ($this->fail()) {
+              return Redirect::back();
+          }
 
         $guidanceCounselor = $this->guidance->find($this->request->id);
         // Checking if the user upload new signature.
@@ -82,9 +101,12 @@ class Guidance extends Controller
         $guidanceCounselor->signature = $signature;
         $guidanceCounselor->save();
         $destination = APP['URL_ROOT'] . 'assets/img/uploads/' . $signature;
+
         // Upload
         move_uploaded_file($this->request->signature_image['tmp_name'], $destination);
-        return Redirect::to('guidance/edit?id=' . $this->request->id);
+
+        return Redirect::back()
+                      ->with('status', 'Successfully update guidance counselor information.');
     }
 
 }

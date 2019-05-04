@@ -23,7 +23,7 @@
                 <div class="row">
                     <div class="form-group col-lg-3">
                         <label class="font-weight-bold">Signature ( Attach an image )</label>
-                        <input type="file" required name="signature_image" id="signature_image">
+                        <input type="file"  required name="signature_image" id="signature_image">
                     </div>
                 </div>
                 <div class="form-group float-right">

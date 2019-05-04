@@ -46,6 +46,7 @@
 $("#admissionResultTable").dataTable();
 $("#guidanceCounselorsTable").dataTable();
 $("#usersTable").dataTable();
+$("#rankingsTable").dataTable({ "ordering": false });
 
 
 $("#birthDate").change((function () {

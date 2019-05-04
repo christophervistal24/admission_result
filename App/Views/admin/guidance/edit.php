@@ -1,5 +1,7 @@
 <div class="container-fluid">
     <h5 class="h5 mb-4 text-gray-800 text-capitalize">Edit Guidance Counselor</h5>
+    <?php include_once APP['APP_ROOT'] . '/Views/templates/form-errors.php'; ?>
+    <?php include_once APP['APP_ROOT'] . '/Views/templates/form-success.php'; ?>
     <div class="card shadow mb-4" >
         <div class="card-header py-3">
             <h6 class="text-primary m-0 font-weight-bold text-primary">Form to update guidance counselor</h6>
@@ -9,13 +11,13 @@
                 <div class="row">
                     <div class="form-group col-lg-12">
                         <label class="font-weight-bold">Fullname with degree : </label>
-                        <input type="text" required name="fullname_with_degree" value="<?= $counselor_information['fullname'] ?>" class="form-control">
+                        <input type="text"  name="fullname_with_degree" value="<?= $counselor_information['fullname'] ?>" class="form-control">
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group col-lg-12">
                         <label class="font-weight-bold">Position : </label>
-                        <input type="text" required name="position" value="<?= $counselor_information['position'] ?>"  class="form-control">
+                        <input type="text"  name="position" value="<?= $counselor_information['position'] ?>"  class="form-control">
                     </div>
                 </div>
                 <div class="row">

@@ -3,8 +3,9 @@ namespace App\Controller;
 
 use App\Core\Controller;
 use App\Core\Database;
-use App\Helpers\Response;
+use App\Helpers\Arr;
 use App\Helpers\Redirect;
+use App\Helpers\Response;
 use App\Models\AdmissionResult;
 use App\Models\EntranceRating;
 use App\Models\ExaminerInfo;
@@ -49,7 +50,6 @@ class Admission extends Controller
     public function store()
     {
         // TODO add a database transaction here.
-        // TODO add a validation here.
         
         // Checking if the request is post and the action is add new admission result 
         if ( $this->request->post() && $this->request->action === 'add_admission_result' ) {
@@ -95,9 +95,14 @@ class Admission extends Controller
 
     public function show()
     {
+        $rankList = $this->admission->rankings(); 
+        $rank = Arr::find($this->request->id,array_column($rankList, 'id'))[0];
+
         $this->render('admin.admission.show',[
+            'title'                     => 'Admission Result',
             'deleted_admission_results' => $this->data()['deleted_admission_results'],
             'examiner_results'          => $this->admission->resultById($this->request->id),
+            'rank'                      => ($rank + 1),
         ]);
     }
 

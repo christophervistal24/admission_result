@@ -61,6 +61,7 @@ class ComposerStaticInit61f822a742abdc540a4d326cb1c13013
         'App\\Core\\PDF' => __DIR__ . '/../..' . '/App/Core/PDF.php',
         'App\\Core\\QueryBuilder' => __DIR__ . '/../..' . '/App/Core/QueryBuilder.php',
         'App\\Helpers\\Admission\\EquivalentCalculator' => __DIR__ . '/../..' . '/App/Helpers/Admission/EquivalentCalculator.php',
+        'App\\Helpers\\Arr' => __DIR__ . '/../..' . '/App/Helpers/Arr.php',
         'App\\Helpers\\Database\\QueryHelper' => __DIR__ . '/../..' . '/App/Helpers/Database/QueryHelper.php',
         'App\\Helpers\\Error' => __DIR__ . '/../..' . '/App/Helpers/Error.php',
         'App\\Helpers\\Form\\Validator' => __DIR__ . '/../..' . '/App/Helpers/Form/Validator.php',

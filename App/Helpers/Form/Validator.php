@@ -11,8 +11,11 @@ trait Validator
 
     private $errors = [];
 
+
     public function validate(array $fields = [], array $rules = [])
     {
+
+        $rules = $this->removeNullableWithNoValue($rules);
 
         // Filter and get all the fields that need to validate.
         $formFields = array_diff_assoc($rules, array_keys($fields));
@@ -31,14 +34,16 @@ trait Validator
      private function validateWithOneRule(array $fields = [] , $values = [])
     {
         foreach ($fields as $field => $rule) {
-            // Temporary cause this is constant
-            // if ( is_array($values[$field]) && in_array($field, array_keys($_FILES)) ) {
-                // $this->setErrors($field, $this->$rule($field,$values[$field]['name']));
-            // } else {
+             if ( $this->isRuleHasParameter($rule) ) {
+                    $value = $this->getRuleValue($rule);
+                    $rule  = $this->getOnlyTheRule($rule);
+                    $this->setErrors($field, $this->$rule($value, $values[$field] , $field));
+            } else {
                 $this->setErrors($field, $this->$rule($field,$values[$field]));
-            // }
+            }
         }
     }
+
 
      private function validateWithManyRule(array $fields = [], array $values)
     {
@@ -49,6 +54,7 @@ trait Validator
             $fields[$field] = explode(',',$value);
 
              foreach ($fields[$field] as $rule) {
+
                  if ( $this->isRuleHasParameter($rule) ) {
                     $value = $this->getRuleValue($rule);
                     $rule  = $this->getOnlyTheRule($rule);
@@ -60,6 +66,18 @@ trait Validator
             }
 
         }
+    }
+
+    private function removeNullableWithNoValue(array $items)
+    {
+        foreach ($items as $field => $rule) {
+            $fieldValue = $this->request->$field;
+            if ( Str::contains($rule, 'nullable') && $this->required($field, $fieldValue) ) {
+                unset($items[$field]);
+            } 
+        }
+
+        return $items;
     }
 
     private function fail() :bool
@@ -74,5 +92,6 @@ trait Validator
             Session::set('errors', $this->errors);
         }
     }
-    
+
+
 }

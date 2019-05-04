@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid p-3" style="background:white;">
   <h5 class="h5 mb-4 text-gray-800 text-capitalize">List of all Guidance counselor</h5>
   <div class="float-right">
     <a  class="text-capitalize btn btn-primary btn-sm rounded-0" href="/system/guidance/create">New Guidance counselor</a>

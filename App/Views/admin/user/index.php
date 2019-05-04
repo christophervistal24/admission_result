@@ -27,7 +27,7 @@
         <td><?= $user->gender ?></td>
         <td><?= $user->birthdate ?></td>
         <td class="text-center text-truncate"><?= date(' jS \of F Y ',$user->created_at) ?></td>
-        <td class="text-center"><button class="btn btn-primary btn-sm">Profile</button> <a class="btn btn-info btn-sm" href="/system/user/edit?id=<?=$user->id ?>">Edit User</a></td>
+        <td class="text-center"><button class="btn btn-primary btn-sm">Profile</button> <a class="btn btn-info btn-sm" href="/system/user/edit?id=<?= $user->id ?>">Edit User</a></td>
       </tr>
       <?php endforeach ?>
     </tbody>

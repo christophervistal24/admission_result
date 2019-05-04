@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid p-3" style="background:white;">
   <h5 class="h5 mb-4 text-gray-800 text-capitalize"><?= $title ?></h5>
   <!-- <h2 class="content-heading">
   <div class="row text-center">
@@ -231,5 +231,3 @@
     </div>
   </div>
 </div>
-
-

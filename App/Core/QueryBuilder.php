@@ -1,4 +1,8 @@
 <?php
+/**
+* The letters in each queries is important
+* to easily sort the statement
+*/
 namespace App\Core;
 
 use App\Helpers\Database\QueryHelper;
@@ -7,6 +11,7 @@ use PDO;
 
 class QueryBuilder extends Database
 {
+
     protected static $table;
     protected $query;
 
@@ -26,8 +31,7 @@ class QueryBuilder extends Database
        $table   = func_get_arg(0);
 
        $clauses = implode(' ', func_get_args());
-
-       $this->query[] = QueryHelper::prepareJoin(' INNER JOIN ',$table , $clauses);
+       $this->query['b'][] = QueryHelper::prepareJoin(' INNER JOIN ', $table, $clauses);
 
         return $this;
     }
@@ -38,7 +42,7 @@ class QueryBuilder extends Database
         
         $clauses = implode(' ' , func_get_args());
         
-        $this->query[] = QueryHelper::prepareJoin(' LEFT JOIN ' , $table , $clauses);
+        $this->query['b'][] = QueryHelper::prepareJoin(' LEFT JOIN ' , $table , $clauses);
 
         return $this;
     }
@@ -49,7 +53,7 @@ class QueryBuilder extends Database
 
         $clauses = implode(' ', func_get_args());
 
-        $this->query[] = QueryHelper::prepareJoin(' RIGHT JOIN ' , $table , $clauses);
+        $this->query['b'][] = QueryHelper::prepareJoin(' RIGHT JOIN ' , $table , $clauses);
         return $this;
     }
 
@@ -59,47 +63,45 @@ class QueryBuilder extends Database
 
         $table = self::$table;
 
-        $this->query[] =  "SELECT " . implode(', ', $columns)
+        $this->query['a'][] =  " SELECT " . implode(', ', $columns)
                           . " FROM {$table}";
         return $this;
     }
 
-    public function orWhere(string $column, string $value)
+    public function orWhere(string $column, string $operation = '=' ,string $value)
     {
-        $this->query[] = " OR WHERE {$column} = '${value}'";
+        $this->query['c'][] = " OR WHERE {$column} {$operation} '${value}'";
         return $this;
     }
 
-    public function where($column , $value = null)
+    public function where(string $column, string $operation,  string $value)
     {
-        if ( is_array($column) ) {
-            $values = QueryHelper::prepareWhereValues($column);
-            $this->query[] = " WHERE $values ";
-        } else {
-            $this->query[] = " WHERE {$column} = '${value}'";    
-        }
+        $this->query['c'][] = " WHERE {$column} ${operation} '${value}'";
+        return $this;
+    }
 
+    public function andWhere(string $column, string $operation,  string $value)
+    {
+        $this->query['c'][] = "AND WHERE {$column} ${operation} '${value}'";
+        return $this;
+    }
+
+    public function limit(int $no)
+    {
+        $this->query['e'][] = "LIMIT ${no}";
+        return $this;
+    }
+
+    public function orderBy(string $column , string $value = 'DESC')
+    {
+        $this->query['d'][] = "ORDER BY {$column} ${value}";
         return $this;
     }
 
     public function get()
     {
-        
-        $joins  = $select = $where = null;
-
-        foreach ($this->query as $key => $query) {
-
-            if ( QueryHelper::queryHasWhere($query) ) {
-                $where = $query;
-            } else if ( QueryHelper::queryHasSelect($query) ) {
-                $select = $query;        
-            } else if ( QueryHelper::queryHasJoin($query) ) {
-                $joins .= $query;
-            }
-
-        }
-
-        return $this->db->query($select  . $joins . " " . $where)->fetchAll(PDO::FETCH_ASSOC);
+        $statement = QueryHelper::prepareQueryStatements($this->query);
+        return $this->db->query($statement)->fetchAll(PDO::FETCH_ASSOC);
     }
 
 

@@ -70,20 +70,18 @@ class User extends Controller
 
     public function update()
     {
-
         $this->validate($this->request->all() , [
             'firstname'             => 'required,min:6,max:20',
             'middlename'            => 'required,min:6,max:20',
             'username'              => 'required,min:6,max:20,unique:tbl_users',
-            'password'              => 'required,min:8,max:20',
-            'password_confirmation' => 'required,min:8,max:20,confirm:password',
+            'password'              => 'nullable,min:8,max:20',
+            'password_confirmation' => 'confirm:password',
             'lastname'              => 'required',
             'gender'                => 'required',
             'birthdate'             => 'required',
             // 'profile'    => 'required',
         ]);
-
-
+ 
         if ( $this->fail() ) {
            return Redirect::to('user/edit?id=' . Auth::user()->id);
         }
@@ -114,16 +112,12 @@ class User extends Controller
 
         $userLoginInfo = $this->user->find($userId);
 
-        $userPassword = !empty(trim($this->request->password)) 
-                            ? password_hash($this->request->password, PASSWORD_DEFAULT)
-                            : $userLoginInfo->password;
-
-        $userLoginInfo->password = $userPassword;                    
         $userLoginInfo->username   = $this->request->username;
+        $userLoginInfo->password = password_hash($this->request->password, PASSWORD_DEFAULT);
         $userLoginInfo->updated_at = time();
         $userLoginInfo->save();
 
-        return Redirect::to('user/edit?id=' . $userLoginInfo->id)
+        return Redirect::to('user/edit')
                         ->with('status','Successfully update your information.');
     }
 }

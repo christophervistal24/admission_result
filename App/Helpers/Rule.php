@@ -3,6 +3,7 @@ namespace App\Helpers;
 
 use App\Core\Auth;
 use App\Core\QueryBuilder as DB;
+use App\Helpers\Arr;
 use App\Helpers\Session;
 use App\Helpers\Str;
 
@@ -44,11 +45,16 @@ trait Rule
         }
     }
 
-    public function confirm(string $originalField, string $fieldValue, string $confirmField)
+    public function confirm(string $originalField, string $confirmFieldValue, string $confirmField)
     {
-        if ( $this->request->$originalField !== $fieldValue ) {
+        if ( $this->request->$originalField !== $confirmFieldValue ) {
             return "{$originalField} and " . ucfirst($confirmField) . " must be equal.";            
         }
+    }
+
+    public function nullable(string $fieldName, string $value)
+    {
+        
     }
 
     private function fieldThatHasManyRule(array $fields = [])
@@ -63,15 +69,12 @@ trait Rule
 
     private function getOnlyTheRule(string $rule)
     {
-        preg_match("/^(.+)\:/", $rule, $matches);
-        return $matches[1];
+        return Str::before(':', $rule);
     }
 
-    // Regular Expression temporary
     private function getRuleValue(string $rule)
     {
-        preg_match("/([a-z|A-Z]|_|\d+)+$/", $rule, $matches);
-        return array_shift($matches);
+        return Str::after(':', $rule);
     }
 
     private function isRuleHasParameter(string $rule)

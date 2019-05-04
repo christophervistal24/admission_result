@@ -2,6 +2,7 @@
 namespace App\Helpers\Database;
 
 use App\Helpers\Str;
+use App\Helpers\Arr;
 
 trait QueryHelper
 {
@@ -74,19 +75,12 @@ trait QueryHelper
         return $values;
     }
 
-    public static function queryHasSelect(string $query)
+    public static function prepareQueryStatements(array $statements = [])
     {
-        return Str::contains($query, "SELECT");
+        // Sort all the statements by keys
+        ksort($statements);
+        // Flatten and conver to string
+        return  implode(' ', Arr::flatten($statements));
     }
-
-    public static function queryHasWhere(string $query)
-    {
-        return Str::contains($query, "WHERE");
-    }
-
-    public static function queryHasJoin(string $query)
-    {
-        return Str::contains($query, "JOIN");
-    }
-
+    
 }

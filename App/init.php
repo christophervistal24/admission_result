@@ -1,7 +1,7 @@
 <?php
-
-
 session_start();
+
+date_default_timezone_set('Asia/Manila');
 
 define('APP',[
     'URL_ROOT'      => str_replace("\\","/",dirname(__DIR__)) . "/",

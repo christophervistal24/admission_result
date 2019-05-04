@@ -22,6 +22,7 @@ return array(
     'App\\Core\\PDF' => $baseDir . '/App/Core/PDF.php',
     'App\\Core\\QueryBuilder' => $baseDir . '/App/Core/QueryBuilder.php',
     'App\\Helpers\\Admission\\EquivalentCalculator' => $baseDir . '/App/Helpers/Admission/EquivalentCalculator.php',
+    'App\\Helpers\\Arr' => $baseDir . '/App/Helpers/Arr.php',
     'App\\Helpers\\Database\\QueryHelper' => $baseDir . '/App/Helpers/Database/QueryHelper.php',
     'App\\Helpers\\Error' => $baseDir . '/App/Helpers/Error.php',
     'App\\Helpers\\Form\\Validator' => $baseDir . '/App/Helpers/Form/Validator.php',
