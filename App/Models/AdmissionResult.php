@@ -26,14 +26,11 @@ class AdmissionResult extends Model
                  ->join('examiner_info','admission_result.examiner_info_id','=','examiner_info.id')
                  ->join('entrace_rating','admission_result.entrace_rating_id','=','entrace_rating.id')
                  ->where('admission_result.is_delete','=','NO')
-                 ->select("CONCAT(examiner_info.firstname, ' ',
-                          examiner_info.middlename, ' ' ,
-                          examiner_info.lastname) as fullname "
-                          ,'over_all_total'
-                          ,'admission_result.id')
+                 ->select("CONCAT(examiner_info.firstname, ' ', examiner_info.middlename, ' ' ,
+                  examiner_info.lastname) as fullname", 'over_all_total','admission_result.id')
                  ->limit('10')
                  ->orderBy('over_all_total')
-                 ->get();
+                 ->get(PDO::FETCH_OBJ);
     }
 
    public function deletedResults()
@@ -52,7 +49,8 @@ class AdmissionResult extends Model
                ->select('admission_result.id','entrace_rating.verbal_total',
                          'entrace_rating.non_verbal_total','entrace_rating.over_all_total',
                          "CONCAT(`examiner_info`.`lastname` , ' , ', `examiner_info`.`firstname` , ' ' , `examiner_info`.`middlename`,'.') as Name")
-                ->get();
+                ->get(PDO::FETCH_ASSOC);
+
    }
 
     public function resultById(int $id)

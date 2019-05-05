@@ -17,7 +17,7 @@ abstract class Model extends Database
 
     protected $columns = [];
 
-    protected $query = [];
+    // protected $query = [];
 
     public function __construct()
     {

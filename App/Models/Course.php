@@ -32,7 +32,7 @@ class Course extends Model
                     'course.course',
                     'course.course_abbr',
                     'departments.department_short_name'
-                )->get();
+                )->get(PDO::FETCH_ASSOC);
     }
 
 }

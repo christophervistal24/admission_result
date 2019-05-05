@@ -1,18 +1,12 @@
 <?php
-namespace App\Controller;
+namespace App\Controllers;
 
-use App\Core\Auth;
 use App\Core\Controller;
 use App\Helpers\Outputter\Transformer;
-use App\Models\AdmissionResult;
-use App\Models\GuidanceConselor;
-use App\Core\QueryBuilder as DB;
 
 class Admin extends Controller
 {
 
-    private $model;
-    private $profile_info;
     private $deleted_admission_results;
 
     public function __construct()
@@ -23,15 +17,15 @@ class Admin extends Controller
         $this->guidance  = load('Models\GuidanceConselor');
         $this->course    = load('Models\Course');
 
-        $this->data();
+        // $this->data();
     }
 
     private function data()
     {
         $this->deleted_admission_results = $this->admission->deletedResults();
         $this->admission_results         = $this->admission->results();
-        $user_info                 = $this->user_info->where('user_id',$_SESSION['id']);
-
+        $user_info                       = $this->user_info->where('user_id', Sesssion::get('id'));
+        
         return [
                 'title'                           => 'Dashboard',
                 'admission_result'                => Transformer::toArray($this->admission_results),
@@ -64,6 +58,5 @@ class Admin extends Controller
         session_unset();
         header("Location:/system/login");
     }
-
 
 }

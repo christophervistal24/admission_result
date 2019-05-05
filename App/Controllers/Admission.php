@@ -1,5 +1,5 @@
 <?php
-namespace App\Controller;
+namespace App\Controllers;
 
 use App\Core\Controller;
 use App\Core\Database;
@@ -49,7 +49,6 @@ class Admission extends Controller
 
     public function store()
     {
-        // TODO add a database transaction here.
         
         // Checking if the request is post and the action is add new admission result 
         if ( $this->request->post() && $this->request->action === 'add_admission_result' ) {

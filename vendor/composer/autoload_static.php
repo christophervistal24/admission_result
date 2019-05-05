@@ -45,14 +45,6 @@ class ComposerStaticInit61f822a742abdc540a4d326cb1c13013
     );
 
     public static $classMap = array (
-        'App\\Controller\\Admin' => __DIR__ . '/../..' . '/App/Controller/Admin.php',
-        'App\\Controller\\Admission' => __DIR__ . '/../..' . '/App/Controller/Admission.php',
-        'App\\Controller\\AuthController' => __DIR__ . '/../..' . '/App/Controller/AuthController.php',
-        'App\\Controller\\Guidance' => __DIR__ . '/../..' . '/App/Controller/Guidance.php',
-        'App\\Controller\\GuidanceApi' => __DIR__ . '/../..' . '/App/Controller/GuidanceApi.php',
-        'App\\Controller\\Help' => __DIR__ . '/../..' . '/App/Controller/Help.php',
-        'App\\Controller\\Profile' => __DIR__ . '/../..' . '/App/Controller/Profile.php',
-        'App\\Controller\\User' => __DIR__ . '/../..' . '/App/Controller/User.php',
         'App\\Core\\App' => __DIR__ . '/../..' . '/App/Core/App.php',
         'App\\Core\\Auth' => __DIR__ . '/../..' . '/App/Core/Auth.php',
         'App\\Core\\Controller' => __DIR__ . '/../..' . '/App/Core/Controller.php',
@@ -66,6 +58,7 @@ class ComposerStaticInit61f822a742abdc540a4d326cb1c13013
         'App\\Helpers\\Error' => __DIR__ . '/../..' . '/App/Helpers/Error.php',
         'App\\Helpers\\Form\\Validator' => __DIR__ . '/../..' . '/App/Helpers/Form/Validator.php',
         'App\\Helpers\\Loader' => __DIR__ . '/../..' . '/App/Helpers/Loader.php',
+        'App\\Helpers\\Logs\\ActivityLog' => __DIR__ . '/../..' . '/App/Helpers/Logs/ActivityLog.php',
         'App\\Helpers\\Outputter\\Transformer' => __DIR__ . '/../..' . '/App/Helpers/Outputter/Transformer.php',
         'App\\Helpers\\Redirect' => __DIR__ . '/../..' . '/App/Helpers/Redirect.php',
         'App\\Helpers\\Request' => __DIR__ . '/../..' . '/App/Helpers/Request.php',

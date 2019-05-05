@@ -98,12 +98,11 @@ class QueryBuilder extends Database
         return $this;
     }
 
-    public function get()
+    public function get(string $type)
     {
         $statement = QueryHelper::prepareQueryStatements($this->query);
         return $this->db->query($statement)
-                        ->fetchAll(PDO::FETCH_ASSOC);
+                        ->fetchAll($type);
     }
-
 
 }

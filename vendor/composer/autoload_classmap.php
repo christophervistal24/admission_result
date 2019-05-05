@@ -6,14 +6,6 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'App\\Controller\\Admin' => $baseDir . '/App/Controller/Admin.php',
-    'App\\Controller\\Admission' => $baseDir . '/App/Controller/Admission.php',
-    'App\\Controller\\AuthController' => $baseDir . '/App/Controller/AuthController.php',
-    'App\\Controller\\Guidance' => $baseDir . '/App/Controller/Guidance.php',
-    'App\\Controller\\GuidanceApi' => $baseDir . '/App/Controller/GuidanceApi.php',
-    'App\\Controller\\Help' => $baseDir . '/App/Controller/Help.php',
-    'App\\Controller\\Profile' => $baseDir . '/App/Controller/Profile.php',
-    'App\\Controller\\User' => $baseDir . '/App/Controller/User.php',
     'App\\Core\\App' => $baseDir . '/App/Core/App.php',
     'App\\Core\\Auth' => $baseDir . '/App/Core/Auth.php',
     'App\\Core\\Controller' => $baseDir . '/App/Core/Controller.php',
@@ -27,6 +19,7 @@ return array(
     'App\\Helpers\\Error' => $baseDir . '/App/Helpers/Error.php',
     'App\\Helpers\\Form\\Validator' => $baseDir . '/App/Helpers/Form/Validator.php',
     'App\\Helpers\\Loader' => $baseDir . '/App/Helpers/Loader.php',
+    'App\\Helpers\\Logs\\ActivityLog' => $baseDir . '/App/Helpers/Logs/ActivityLog.php',
     'App\\Helpers\\Outputter\\Transformer' => $baseDir . '/App/Helpers/Outputter/Transformer.php',
     'App\\Helpers\\Redirect' => $baseDir . '/App/Helpers/Redirect.php',
     'App\\Helpers\\Request' => $baseDir . '/App/Helpers/Request.php',

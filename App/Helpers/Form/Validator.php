@@ -18,7 +18,7 @@ trait Validator
 
         $rules = $this->removeNullableWithNoValue($rules);
 
-        // Filter and get all the fields that need to validate,
+        // Get all the fields that need to validate.
         $formFields = array_diff_assoc($rules, array_keys(array_filter($fields)));
 
         // Get all fields that has many rule.
@@ -84,7 +84,7 @@ trait Validator
     
 
     // Extract this to it's own class
-    private function setErrors(string $field, $message)
+    private function setErrors(string $field, string $message)
     {
         if ( !empty($message) ) {
             $this->errors[$field] = Str::replace('_',' ' ,$message);

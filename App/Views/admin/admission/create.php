@@ -34,7 +34,7 @@
             <div class="row">
               <div class="col-lg-4 mb-4">
                 <div class="form-material">
-                  <input required type="text" class="text-capitalize form-control rounded-0 shadow-none" name="lastname" placeholder="Enter a lastname..">
+                  <input required type="text" class="text-capitalize form-control rounded-0 shadow-none" name="lastname" placeholder="Enter lastname..">
                 </div>
                 <div class="text-center">
                   <label class="font-weight-bold">Lastname</label>
@@ -42,7 +42,7 @@
               </div>
               <div class="col-lg-4">
                 <div class="form-material">
-                  <input required type="text" class="text-capitalize form-control rounded-0 shadow-none" name="firstname" placeholder="Enter a firstname..">
+                  <input required type="text" class="text-capitalize form-control rounded-0 shadow-none" name="firstname" placeholder="Enter firstname..">
                 </div>
                 <div class="text-center">
                   <label class="font-weight-bold">Firstname</label>
@@ -50,7 +50,7 @@
               </div>
               <div class="col-lg-4">
                 <div class="form-material">
-                  <input required type="text" class="rounded-0 shadow-none text-uppercase font-weight-bold text-center form-control" name="middlename" placeholder="M">
+                  <input required type="text" class="rounded-0 shadow-none text-uppercase font-weight-bold text-center form-control" name="middlename">
                 </div>
                 <div class="text-center">
                   <label class="font-weight-bold">M.I</label>

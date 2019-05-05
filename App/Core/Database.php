@@ -17,6 +17,20 @@ class Database
         ]);
     }
 
+    public function transaction($function)
+    {
+        // Create new instance of this object to call this method statically.
+        $self = new static; 
+
+        $self->db->beginTransaction();
+        try {
+            $function();
+            $self->db->commit();
+        } catch (Exception $e) {
+            $self->db->rollBack();
+        }
+    }
+
     public function getLastInsertedId()
     {
         return $this->db->lastInsertId() ?? null;

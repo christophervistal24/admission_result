@@ -1,5 +1,5 @@
 <?php
-namespace App\Controller;
+namespace App\Controllers;
 
 use App\Core\Controller;
 use App\Core\QueryBuilder as DB;
@@ -15,6 +15,7 @@ class Profile extends Controller
 
     public function index()
     {
+        
         $this->render('admin.profile.index', [
             'title'                     => 'Profile',
             'deleted_admission_results' => $this->admission->deletedResults(),

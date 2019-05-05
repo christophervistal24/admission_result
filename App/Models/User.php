@@ -4,10 +4,13 @@ namespace App\Models;
 use App\Core\Auth;
 use App\Helpers\Session;
 use App\Models\Model;
+use App\Helpers\Logs\ActivityLog;
 use PDO;
 
 class User extends Model
 {
+    use ActivityLog;
+    
     protected $table      = 'tbl_users';
     protected $primaryKey = 'id';
     protected $columns    = [];
@@ -19,6 +22,7 @@ class User extends Model
         // Get all columns of table
         $this->columns = parent::columns();
     }
+
 
     public function save()
     {

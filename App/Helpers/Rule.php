@@ -26,7 +26,7 @@ trait Rule
         if ( !Str::contains($types,$imageType) ) {
             return "{$item} must be " . Str::replace('|', ' , ', $types);            
         }
-        
+
     }
 
     private function min(int $length, string $value, string $field)
@@ -43,22 +43,26 @@ trait Rule
         }
     }
 
-    public function unique(string $table, string $value, string $column)
+    private function unique(string $table, string $value, string $column)
     {
-        $result = DB::table($table)->select($column)->where($column,'=',$value)->get();
-        if (count($result) > 0 && Auth::user()->username != $value) {
+        $result = DB::table($table)
+                    ->select($column)
+                    ->where($column, '=', $value)
+                    ->get();
+
+        if ( count($result) > 0 && Auth::user()->username != $value ) {
             return "{$column} is already exists";
         }
     }
 
-    public function confirm(string $originalField, string $confirmFieldValue, string $confirmField)
+    private function confirm(string $originalField, string $confirmFieldValue, string $confirmField)
     {
         if ( $this->request->$originalField !== $confirmFieldValue ) {
             return "{$originalField} and " . ucfirst($confirmField) . " must be equal.";            
         }
     }
 
-    public function nullable(string $fieldName, string $value)
+    private function nullable(string $fieldName, string $value)
     {
         
     }

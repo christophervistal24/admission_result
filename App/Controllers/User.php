@@ -1,8 +1,9 @@
 <?php
-namespace App\Controller;
+namespace App\Controllers;
 
 use App\Core\Auth;
 use App\Core\Controller;
+use App\Core\Database;
 use App\Helpers\Form\Validator;
 use App\Helpers\Redirect;
 use App\Helpers\Session;
@@ -70,6 +71,7 @@ class User extends Controller
 
     public function update()
     {
+
         $this->validate($this->request->all() , [
             'firstname'             => 'required,min:6,max:20',
             'middlename'            => 'required,min:6,max:20',
@@ -79,46 +81,51 @@ class User extends Controller
             'lastname'              => 'required',
             'gender'                => 'required',
             'birthdate'             => 'required',
-            'profile'               => 'required,mimes:jpg|png|gif|jpeg',
+            'profile'               => 'nullable,required,mimes:jpg|png|gif|jpeg',
         ]);
 
- 
+        // If there's an error throw by the validation.
         if ( $this->fail() ) {
            return Redirect::to('user/edit?id=' . Auth::user()->id);
         }
 
-        $userId = UserInfo::where('user_id', Auth::user()->id, ['id'])->id;
+        Database::transaction(function () {
 
-        $userInfo = $this->userInfo->find($userId);
+            $userId = UserInfo::where('user_id', Auth::user()->id, ['id'])->id;
 
-        $profileImg = empty($this->request->profile['name']) 
-                        ? Auth::user()->profile : $this->request->profile['name'];
+            $userInfo = $this->userInfo->find($userId);
+
+            $profileImg = empty($this->request->profile['name']) 
+                            ? Auth::user()->profile : $this->request->profile['name'];
+            
+            $userId = $userInfo->user_id;
+
+            $userInfo->firstname  = $this->request->firstname;
+            $userInfo->middlename = $this->request->middlename;
+            $userInfo->lastname   = $this->request->lastname;
+            $userInfo->gender     = $this->request->gender;
+            $userInfo->profile    = $profileImg;
+            $userInfo->updated_at =  time();
+
+            $userInfo->save();
+
+            $destination = APP['URL_ROOT'] . 'assets/img/uploads/' . $profileImg;
+            if ( !empty($profileImg) ) {
+                // Upload
+                move_uploaded_file($this->request->profile['tmp_name'], $destination);
+            }
+
+            $userLoginInfo = $this->user->find($userId);
+
+            $userLoginInfo->username   = $this->request->username;
+            $userLoginInfo->password = password_hash($this->request->password, PASSWORD_DEFAULT);
+            $userLoginInfo->updated_at = time();
+            $userLoginInfo->save();
+
+            return Redirect::to('user/edit')
+                            ->with('status','Successfully update your information.');
+        });
+
         
-        $userId = $userInfo->user_id;
-
-        $userInfo->firstname  = $this->request->firstname;
-        $userInfo->middlename = $this->request->middlename;
-        $userInfo->lastname   = $this->request->lastname;
-        $userInfo->gender     = $this->request->gender;
-        $userInfo->profile    = $profileImg;
-        $userInfo->updated_at =  time();
-
-        $userInfo->save();
-
-        $destination = APP['URL_ROOT'] . 'assets/img/uploads/' . $profileImg;
-        if ( !empty($profileImg) ) {
-            // Upload
-            move_uploaded_file($this->request->profile['tmp_name'], $destination);
-        }
-
-        $userLoginInfo = $this->user->find($userId);
-
-        $userLoginInfo->username   = $this->request->username;
-        $userLoginInfo->password = password_hash($this->request->password, PASSWORD_DEFAULT);
-        $userLoginInfo->updated_at = time();
-        $userLoginInfo->save();
-
-        return Redirect::to('user/edit')
-                        ->with('status','Successfully update your information.');
     }
 }

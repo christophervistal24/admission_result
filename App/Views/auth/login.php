@@ -13,7 +13,7 @@
                   <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                   </div>
-                  <form class="user" autocomplete="off"  method="POST" action="/system/auth/authentication">
+                  <form class="user" autocomplete="off"  method="POST" action="/system/authcontroller/authentication">
                     <div class="form-group">
                       <input type="text" class="form-control form-control-user" name="username" name="username" placeholder="Enter Username">
                       
