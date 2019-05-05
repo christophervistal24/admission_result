@@ -79,8 +79,9 @@ class User extends Controller
             'lastname'              => 'required',
             'gender'                => 'required',
             'birthdate'             => 'required',
-            // 'profile'    => 'required',
+            'profile'               => 'required,mimes:jpg|png|gif|jpeg',
         ]);
+
  
         if ( $this->fail() ) {
            return Redirect::to('user/edit?id=' . Auth::user()->id);

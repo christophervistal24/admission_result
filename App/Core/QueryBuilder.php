@@ -101,7 +101,8 @@ class QueryBuilder extends Database
     public function get()
     {
         $statement = QueryHelper::prepareQueryStatements($this->query);
-        return $this->db->query($statement)->fetchAll(PDO::FETCH_ASSOC);
+        return $this->db->query($statement)
+                        ->fetchAll(PDO::FETCH_ASSOC);
     }
 
 

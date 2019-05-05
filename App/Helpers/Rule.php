@@ -9,17 +9,24 @@ use App\Helpers\Str;
 
 trait Rule
 {
-    protected $mimes = [
-        'png',
-        'jpg',
-        'gif'
-    ];
 
-    private function required(string $item, string $value)
+    private function required($item, $value)
     {
+        $value = ($this->request->isFile($item)) ? $value['name'] : $value;
+
         if (empty(str_replace(' ' , '' , $value))) {
             return $item . ' is required';
         } 
+    }
+
+    private function mimes(string $types, array $file, string $item)
+    {
+        $imageType = empty($file['type']) ? 'image' : $file['type'];
+
+        if ( !Str::contains($types,$imageType) ) {
+            return "{$item} must be " . Str::replace('|', ' , ', $types);            
+        }
+        
     }
 
     private function min(int $length, string $value, string $field)
@@ -38,8 +45,7 @@ trait Rule
 
     public function unique(string $table, string $value, string $column)
     {
-        $result = DB::table($table)->select($column)->where($column,$value)->get();
-        
+        $result = DB::table($table)->select($column)->where($column,'=',$value)->get();
         if (count($result) > 0 && Auth::user()->username != $value) {
             return "{$column} is already exists";
         }
@@ -57,16 +63,6 @@ trait Rule
         
     }
 
-    private function fieldThatHasManyRule(array $fields = [])
-    {
-        foreach ($fields as $fieldName => $rule) {
-            if ( !$this->hasManyRule($rule) ) {
-                  unset($fields[$fieldName]);
-            }
-        }
-        return $fields;
-    }
-
     private function getOnlyTheRule(string $rule)
     {
         return Str::before(':', $rule);
@@ -82,9 +78,35 @@ trait Rule
         return Str::contains($rule, ':');
     }
 
+    private function checkRuleParameter(string $rule, string $field)
+    {
+        if ( $this->isRuleHasParameter($rule) ) {
+            $this->ruleHavingParameter($rule,$field);
+        } else {
+            $this->ruleDoesntHaveParameter($rule,$field);
+        }
+    }
+
+    private function ruleHavingParameter(string $rule, string $field)
+    {
+        $value = $this->getRuleValue($rule);
+        $rule  = $this->getOnlyTheRule($rule);
+        $this->setErrors($field, $this->$rule($value, $this->request->$field, $field));
+    }
+
+    private function ruleDoesntHaveParameter(string $rule, string $field)
+    {
+        $this->setErrors($field, $this->$rule($field, $this->request->$field));   
+    }
+
     private function hasManyRule(string $rule)
     {
-        return Str::contains($rule , ",");
+        return Str::contains($rule , ',');
+    }
+
+    private function isFieldNullable(string $field, string $rule)
+    {
+        return Str::contains($rule, 'nullable') && $this->required($field, $this->request->$field);
     }
 
 }

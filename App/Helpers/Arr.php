@@ -34,4 +34,13 @@ class Arr
 
         return $result;
     }
+
+
+    public static function filter(array $childArray , array $baseArray ) :array
+    {
+       return array_filter($childArray, function($key) use($baseArray) {
+                return in_array($key,$baseArray);
+       }, ARRAY_FILTER_USE_KEY);
+    }
+    
 }

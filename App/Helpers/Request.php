@@ -32,4 +32,9 @@ class Request
         return array_merge($_POST,$_FILES);
     }
 
+    public function isFile(string $name) :bool
+    {
+        return in_array($name, array_keys($_FILES));
+    }
+
 }

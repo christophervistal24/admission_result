@@ -14,11 +14,9 @@ trait QueryHelper
         return $childList;
     }
 
-    public static function removeUnnecessaryColumns(array $childList , array $baseList ) :array
+    public static function removeUnnecessaryColumns(array $childList , array $baseList) :array
     {
-       return array_filter($childList, function($k) use($baseList) {
-                return in_array($k,$baseList);
-            }, ARRAY_FILTER_USE_KEY);
+        return Arr::filter($childList,$baseList);
     }
 
     public static function columnsAndValues(array $list) : array
