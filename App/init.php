@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 
 date_default_timezone_set('Asia/Manila');
@@ -24,6 +25,7 @@ function dd($item)
     echo "<pre>";
     die(print_r($item,true));
 }
+
 
 class_alias('App\Core\Auth','Auth');
 class_alias('App\Helpers\Admission\EquivalentCalculator','Equivalent');

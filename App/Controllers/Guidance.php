@@ -1,7 +1,6 @@
 <?php
 namespace App\Controllers;
 
-use App\Controller\Guidance;
 use App\Core\Controller;
 use App\Helpers\Redirect;
 use App\Models\Course;

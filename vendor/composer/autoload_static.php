@@ -32,19 +32,21 @@ class ComposerStaticInit61f822a742abdc540a4d326cb1c13013
         ),
         'App\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/App/Controller',
-            1 => __DIR__ . '/../..' . '/App/Contracts',
-            2 => __DIR__ . '/../..' . '/App/Core',
-            3 => __DIR__ . '/../..' . '/App/Models',
-            4 => __DIR__ . '/../..' . '/App/Helpers',
-            5 => __DIR__ . '/../..' . '/App/Helpers/Database',
-            6 => __DIR__ . '/../..' . '/App/Helpers/Outputter',
-            7 => __DIR__ . '/../..' . '/App/Helpers/Form',
-            8 => __DIR__ . '/../..' . '/App/Services',
+            0 => __DIR__ . '/../..' . '/App',
         ),
     );
 
     public static $classMap = array (
+        'App\\Controllers\\Admin' => __DIR__ . '/../..' . '/App/Controllers/Admin.php',
+        'App\\Controllers\\Admission' => __DIR__ . '/../..' . '/App/Controllers/Admission.php',
+        'App\\Controllers\\AuthController' => __DIR__ . '/../..' . '/App/Controllers/AuthController.php',
+        'App\\Controllers\\Guidance' => __DIR__ . '/../..' . '/App/Controllers/Guidance.php',
+        'App\\Controllers\\GuidanceApi' => __DIR__ . '/../..' . '/App/Controllers/GuidanceApi.php',
+        'App\\Controllers\\Help' => __DIR__ . '/../..' . '/App/Controllers/Help.php',
+        'App\\Controllers\\Page' => __DIR__ . '/../..' . '/App/Controllers/Page.php',
+        'App\\Controllers\\Profile' => __DIR__ . '/../..' . '/App/Controllers/Profile.php',
+        'App\\Controllers\\Rankings' => __DIR__ . '/../..' . '/App/Controllers/Rankings.php',
+        'App\\Controllers\\User' => __DIR__ . '/../..' . '/App/Controllers/User.php',
         'App\\Core\\App' => __DIR__ . '/../..' . '/App/Core/App.php',
         'App\\Core\\Auth' => __DIR__ . '/../..' . '/App/Core/Auth.php',
         'App\\Core\\Controller' => __DIR__ . '/../..' . '/App/Core/Controller.php',

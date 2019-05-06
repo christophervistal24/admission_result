@@ -148,7 +148,6 @@ abstract class Model extends Database
                            ->fetch(PDO::FETCH_OBJ);
 
         $self->setModelProperties( (array) $result);
-
         return $self;
     }
 

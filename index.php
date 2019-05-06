@@ -1,7 +1,7 @@
 <?php
 
 use App\Core\App;
-use App\Services\ViewComposer;
+use App\Core\Controller;
 use Whoops\Handler\PrettyPageHandler;
 use Whoops\Run;
 

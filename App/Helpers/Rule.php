@@ -6,6 +6,7 @@ use App\Core\QueryBuilder as DB;
 use App\Helpers\Arr;
 use App\Helpers\Session;
 use App\Helpers\Str;
+use PDO;
 
 trait Rule
 {
@@ -22,8 +23,7 @@ trait Rule
     private function mimes(string $types, array $file, string $item)
     {
         $imageType = empty($file['type']) ? 'image' : $file['type'];
-
-        if ( !Str::contains($types,$imageType) ) {
+        if ( !in_array(Str::after('/', $imageType) , explode('|', $types)) ) {
             return "{$item} must be " . Str::replace('|', ' , ', $types);            
         }
 
@@ -48,7 +48,7 @@ trait Rule
         $result = DB::table($table)
                     ->select($column)
                     ->where($column, '=', $value)
-                    ->get();
+                    ->get(PDO::FETCH_OBJ);
 
         if ( count($result) > 0 && Auth::user()->username != $value ) {
             return "{$column} is already exists";
@@ -62,9 +62,9 @@ trait Rule
         }
     }
 
-    private function nullable(string $fieldName, string $value)
+    private function nullable(string $fieldName, $value)
     {
-        
+        return;
     }
 
     private function getOnlyTheRule(string $rule)

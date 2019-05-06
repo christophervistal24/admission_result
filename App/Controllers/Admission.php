@@ -25,7 +25,6 @@ class Admission extends Controller
     private function data()
     {
         return [
-            'deleted_admission_results' => $this->admission->deletedResults(),
             'course'                    =>  $this->course->getCourse(),
             'guidance_conselors'        => [ (array) $this->guidance->get()[0] ], 
         ];
@@ -35,13 +34,13 @@ class Admission extends Controller
     {
         
     }
-    
+
+    // TODO get rid the guidance counselors herer
+    // make an view composer    
     public function create()
     {
         $this->render('admin.admission.create',[
             'title'                     => ' Add new admission',
-            'course'                    => $this->data()['course'],
-            'deleted_admission_results' => $this->data()['deleted_admission_results'],
             'course'                    => $this->data()['course'],
             'guidance_conselors'        => $this->guidance->get(),
         ]);

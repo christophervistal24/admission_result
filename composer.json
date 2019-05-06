@@ -6,17 +6,7 @@
 
     "autoload" : {
         "psr-4" : {
-            "App\\" : [
-                "App/Controller",
-                "App/Contracts",
-                "App/Core",
-                "App/Models",
-                "App/Helpers",
-                "App/Helpers/Database",
-                "App/Helpers/Outputter",
-                "App/Helpers/Form",
-                "App/Services"
-            ]
+            "App\\" : ["App/"]
         }
     }
 }

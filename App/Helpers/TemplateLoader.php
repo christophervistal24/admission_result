@@ -2,6 +2,7 @@
 namespace App\Helpers;
 
 use App\Helpers\Loader;
+use App\Services\ViewComposer;
 
 class TemplateLoader extends Loader
 {

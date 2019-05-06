@@ -77,14 +77,13 @@ trait Validator
                 unset($items[$field]);
             } 
         }
-
         return $items;
     }
 
     
 
     // Extract this to it's own class
-    private function setErrors(string $field, string $message)
+    private function setErrors(string $field, $message)
     {
         if ( !empty($message) ) {
             $this->errors[$field] = Str::replace('_',' ' ,$message);

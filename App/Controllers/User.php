@@ -86,12 +86,12 @@ class User extends Controller
 
         // If there's an error throw by the validation.
         if ( $this->fail() ) {
-           return Redirect::to('user/edit?id=' . Auth::user()->id);
+           return Redirect::back();
         }
 
         Database::transaction(function () {
 
-            $userId = UserInfo::where('user_id', Auth::user()->id, ['id'])->id;
+            $userId = UserInfo::where('user_id', Auth::user()->id, ['id'] )->id;
 
             $userInfo = $this->userInfo->find($userId);
 

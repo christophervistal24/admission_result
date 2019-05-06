@@ -42,7 +42,7 @@
               <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Admission Results</div>
               <div class="row no-gutters align-items-center">
                 <div class="col-auto">
-                  <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><?= $no_of_admission_results ?></div>
+                  <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><?= count($admission_results) ?></div>
                 </div>
               </div>
             </div>
@@ -86,7 +86,7 @@
       <th class="text-center d-none d-sm-table-cell text-truncate">Actions</th>
     </thead>
     <tbody>
-      <?php foreach ($admission_result as $keys => $value): ?>
+      <?php foreach ( $admission_results as $keys => $value ): ?>
       <tr>
         <td class="text-capitalize text-center"><?= $value['id']; ?></td>
         <td class="text-capitalize text-center text-truncate"><a href="/system/admission/print?id=<?= $value['id'] ?>"><?= $value['Name']; ?></a></td>

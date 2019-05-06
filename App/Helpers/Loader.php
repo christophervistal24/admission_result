@@ -2,13 +2,20 @@
 namespace App\Helpers;
 
 use App\Helpers\Error;
+use App\Services\ViewComposer;
 
 abstract class Loader
 {
- 
+
     final protected static function load(string $directory, string $filename, array $data = [])
     {
+
         if (file_exists( $directory . $filename . '.php')) {
+            
+            if ( ViewComposer::handle($directory,$filename) ) {
+                // Concat
+                $data += ViewComposer::list();
+            }
             
             // Add some data to view
             empty($data) ? : extract($data);
@@ -21,7 +28,7 @@ abstract class Loader
 
             $size = sizeof($file_array) - 1;
 
-            $message = 'Can\'t find '.$file_array[$size].' in ' .$file_array[$size - 1]. ' directory';
+            $message = 'Can\'t find ' . $file_array[$size] . ' in ' . $file_array[$size - 1] . ' directory';
 
             Error::throwA500($message);
         }
